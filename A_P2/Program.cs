@@ -10,6 +10,7 @@ namespace A_P2
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hello!");
         }
     }
 }
