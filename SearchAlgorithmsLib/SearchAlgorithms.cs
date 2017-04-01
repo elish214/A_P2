@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace A_P2
+namespace SearchAlgorithmsLib
 {
-    class Program
+    public class DFS
     {
-        static void Main(string[] args)
-        {
-            
-        }
+    }
 
-
+    public class BFS
+    {
     }
 }
