@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.10
+VisualStudioVersion = 15.0.26228.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A_P2", "A_P2\A_P2.csproj", "{221DA77D-85D7-4DD5-B896-FF813EEBDB71}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchAlgorithmsLib", "SearchAlgorithmsLib\SearchAlgorithmsLib.csproj", "{8D4B5BE6-9801-4E2B-B517-6C70795DA338}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{6877E624-43EB-402B-A389-A4415CAAA1DE}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\MazeGeneratorLib.dll = ..\..\..\Downloads\MazeGeneratorLib.dll
+		..\..\..\Downloads\MazeLib.dll = ..\..\..\Downloads\MazeLib.dll
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
