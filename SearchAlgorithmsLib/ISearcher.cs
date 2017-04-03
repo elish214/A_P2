@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SearchAlgorithmsLib
 {
-    interface ISearcher
+    public interface ISearcher<T>
     {
-        Solution<T> Search<T>(ISearchable<T> searchable);
+        Solution<T> Search(ISearchable<T> searchable);
     }
 }

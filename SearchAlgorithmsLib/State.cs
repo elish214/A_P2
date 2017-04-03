@@ -6,18 +6,27 @@ using System.Threading.Tasks;
 
 namespace SearchAlgorithmsLib
 {
-    class State<T>
+    public class State<T>
     {
-        private T state; // the state represented by a string
-        private double cost; // cost to reach this state (set by a setter)
-        private State<T> cameFrom; // the state we came from to this state (setter)
-        public State(T state) // CTOR
+        public T TState { get; set; } // the state representation
+        public double Cost { get; set; } // cost to reach this state (set by a setter)
+        public State<T> CameFrom { get; set; } // the state we came from to this state (setter)
+
+        public State(T state, State<T> cameFrom = null, double cost = 0) // CTOR
         {
-            this.state = state;
+            TState = state;
+            CameFrom = cameFrom;
+            Cost = cost;
         }
+
+        public String ToString()
+        {
+            return $"{TState}, {Cost}, {CameFrom}";
+        }
+
         public bool Equals(State<T> s) // we overload Object's Equals method
         {
-            return state.Equals(s.state);
+            return TState.Equals(s.TState);
         }
     }
 }
