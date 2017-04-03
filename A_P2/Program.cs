@@ -32,12 +32,25 @@ namespace A_P2
             //search
             SearchableMaze smaze = new SearchableMaze(maze);
             Solution<Position> solution = new BFS<Position>().Search(smaze);
-            
+         
             //print
-            foreach(State<Position> s in solution)
+            /*
+            foreach (State<Position> s in solution)
             {
                 Console.WriteLine($"({s.TState.Row}, {s.TState.Col})");
-            }
+            }*/
+            Console.WriteLine();
+
+            Solution<Position> solution2 = new DFS<Position>().Search(smaze);
+            /*
+            foreach (State<Position> s in solution2)
+            {
+                Console.WriteLine($"({s.TState.Row}, {s.TState.Col})");
+            }*/
+
+            Console.WriteLine($"BFS had: {solution.Count()}");
+            Console.WriteLine($"DFS had: {solution2.Count()}");
+
         }
 
     }

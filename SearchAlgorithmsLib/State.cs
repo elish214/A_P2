@@ -19,7 +19,7 @@ namespace SearchAlgorithmsLib
             Cost = cost;
         }
 
-        public String ToString()
+        public override String ToString()
         {
             return $"{TState}, {Cost}, {CameFrom}";
         }
