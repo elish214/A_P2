@@ -7,7 +7,7 @@ using Priority_Queue;
 
 namespace SearchAlgorithmsLib.searchers
 {
-    public class BFS<T> : Searcher<T>, ISearcher<T>
+    public class BFS<T> : PrioritySearcher<T>, ISearcher<T>
     {
         public override Solution<T> Search(ISearchable<T> searchable)
         { // Searcher's abstract method overriding
@@ -21,14 +21,14 @@ namespace SearchAlgorithmsLib.searchers
 
                 if (n.Equals(searchable.GetGoalState()))
                 {
-                    return BackTrace(n); // private method, back traces through the parents
+                    return n.BackTrace(); ; // private method, back traces through the parents
                 }                         // calling the delegated method, returns a list of states with n as a parent
 
                 List<State<T>> succerssors = searchable.GetAllPossibleStates(n);
 
                 foreach (State<T> s in succerssors)
                 {
-                    if (!SetContains(closed, s) && !OpenContains(s))
+                    if (!closed.Contains(s) && !OpenContains(s))
                     {
                         // s.setCameFrom(n); // already done by getSuccessors
                         AddToOpenList(s);

@@ -10,27 +10,29 @@ namespace SearchAlgorithmsLib.searchers
     {
         public override Solution<T> Search(ISearchable<T> searchable)
         {
-            AddToOpenList(searchable.GetInitialState());
+            Stack<State<T>> open = new Stack<State<T>>();
+            open.Push(searchable.GetInitialState());
             HashSet<State<T>> discovered = new HashSet<State<T>>(); // labeled as discovered.
 
-            while (OpenListSize > 0)
+            while (open.Count() > 0)
             {
-                State<T> n = PopOpenList();
+                State<T> n = open.Pop();
+                discovered.Add(n); // label it.
+                Increase();
 
                 if (n.Equals(searchable.GetGoalState())) // got to the goal state.
                 {
                     //return AllDiscovered(discovered, searchable);
-                    return BackTrace(n);
+                    return n.BackTrace();
                 }
 
-                discovered.Add(n); // label it.
                 List<State<T>> neighbours = searchable.GetAllPossibleStates(n); // get neighbours.
 
                 foreach (State<T> s in neighbours)
                 {
-                    if (!SetContains(discovered, s))
+                    if (!discovered.Contains(s))
                     {
-                        AddToOpenList(s);
+                        open.Push(s);
                     }
                 }
             }
