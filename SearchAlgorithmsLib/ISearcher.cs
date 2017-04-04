@@ -9,5 +9,7 @@ namespace SearchAlgorithmsLib
     public interface ISearcher<T>
     {
         Solution<T> Search(ISearchable<T> searchable);
+
+        int GetNumberOfNodesEvaluated();
     }
 }

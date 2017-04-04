@@ -42,18 +42,5 @@ namespace SearchAlgorithmsLib.searchers
 
             return null;
         }
-
-        private bool SetContains(HashSet<State<T>> set, State<T> s)
-        {
-            foreach(State<T> elem in set)
-            {
-                if(elem.Equals(s))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
     }
 }

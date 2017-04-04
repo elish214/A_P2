@@ -28,5 +28,15 @@ namespace SearchAlgorithmsLib
         {
             return TState.Equals(s.TState);
         }
+
+        public override int GetHashCode()
+        {
+            return TState.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as State<T>);
+        }
     }
 }

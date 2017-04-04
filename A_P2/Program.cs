@@ -22,34 +22,37 @@ namespace A_P2
 
         static void CompareSolvers()
         {
-            const int ROWS = 10, COLS = 10; //params
+            const int ROWS = 300, COLS = 300; //params
 
             //maze set up
             IMazeGenerator generator = new DFSMazeGenerator();
-            Maze maze = generator.Generate(ROWS, COLS);
+            MazeLib.Maze maze = generator.Generate(ROWS, COLS);
             Console.WriteLine(maze);
 
             //search
             SearchableMaze smaze = new SearchableMaze(maze);
-            Solution<Position> solution = new BFS<Position>().Search(smaze);
-         
+
+            BFS<Position> bfs = new BFS<Position>();
+            Solution<Position> bfsSol = bfs.Search(smaze);
+            Console.WriteLine($"BFS had: {bfs.GetNumberOfNodesEvaluated()}");
+
+            DFS<Position> dfs = new DFS<Position>();
+            Solution<Position> dfsSol = dfs.Search(smaze);
+            Console.WriteLine($"DFS had: {dfs.GetNumberOfNodesEvaluated()}");
+
             //print
             /*
-            foreach (State<Position> s in solution)
+            foreach (State<Position> s in bfsSol)
             {
                 Console.WriteLine($"({s.TState.Row}, {s.TState.Col})");
-            }*/
+            }
+
             Console.WriteLine();
-
-            Solution<Position> solution2 = new DFS<Position>().Search(smaze);
-            /*
-            foreach (State<Position> s in solution2)
+            foreach (State<Position> s in dfsSol)
             {
                 Console.WriteLine($"({s.TState.Row}, {s.TState.Col})");
-            }*/
-
-            Console.WriteLine($"BFS had: {solution.Count()}");
-            Console.WriteLine($"DFS had: {solution2.Count()}");
+            }
+            */
 
         }
 

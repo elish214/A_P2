@@ -10,9 +10,9 @@ namespace MazeComp
 {
     public class SearchableMaze : ISearchable<Position>
     {
-        public Maze Maze { get; set; }
+        public MazeLib.Maze Maze { get; set; }
         
-        public SearchableMaze(Maze maze)
+        public SearchableMaze(MazeLib.Maze maze)
         {
             Maze = maze;
         }

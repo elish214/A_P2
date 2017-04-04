@@ -11,23 +11,24 @@ namespace SearchAlgorithmsLib.searchers
         public override Solution<T> Search(ISearchable<T> searchable)
         {
             AddToOpenList(searchable.GetInitialState());
-            HashSet < State<T> > discovered = new HashSet<State<T>>(); // labeled as discovered.
-            
+            HashSet<State<T>> discovered = new HashSet<State<T>>(); // labeled as discovered.
+
             while (OpenListSize > 0)
             {
                 State<T> n = PopOpenList();
 
-                if(n.Equals(searchable.GetGoalState())) // got to the goal state.
+                if (n.Equals(searchable.GetGoalState())) // got to the goal state.
                 {
-                    return AllDiscovered(discovered, searchable);
+                    //return AllDiscovered(discovered, searchable);
+                    return BackTrace(n);
                 }
 
-                if (!SetContains(discovered, n)) // not labeled as discovered yet.
-                {
-                    discovered.Add(n); // label it.
-                    List<State<T>> neighbours = searchable.GetAllPossibleStates(n); // get neighbours.
+                discovered.Add(n); // label it.
+                List<State<T>> neighbours = searchable.GetAllPossibleStates(n); // get neighbours.
 
-                    foreach(State<T> s in neighbours)
+                foreach (State<T> s in neighbours)
+                {
+                    if (!SetContains(discovered, s))
                     {
                         AddToOpenList(s);
                     }
@@ -35,33 +36,6 @@ namespace SearchAlgorithmsLib.searchers
             }
 
             return null;
-        }
-
-        private bool SetContains(HashSet<State<T>> set, State<T> s)
-        {
-            foreach (State<T> elem in set)
-            {
-                if (elem.Equals(s))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        private Solution<T> AllDiscovered(HashSet<State<T>> set, ISearchable<T> searchable)
-        {
-            Solution<T> solution = new Solution<T>();
-
-            foreach(State<T> s in set)
-            {
-                solution.Add(s);
-            }
-
-            solution.Add(searchable.GetGoalState());
-
-            return solution;
         }
     }
 }

@@ -63,8 +63,21 @@ namespace SearchAlgorithmsLib.searchers
             return solution;
         }
 
+        protected bool SetContains(HashSet<State<T>> set, State<T> s)
+        {
+            foreach (State<T> elem in set)
+            {
+                if (elem.Equals(s))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         // ISearcher’s methods:
-        public virtual int getNumberOfNodesEvaluated()
+        public int GetNumberOfNodesEvaluated()
         {
             return evaluatedNodes;
         }
