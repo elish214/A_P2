@@ -21,7 +21,7 @@ namespace Server
                 {
                     string commandLine = reader.ReadLine();
                     Console.WriteLine("Got command: {0}", commandLine);
-                    string result = ExecuteCommand(commandLine, client);//execute-command pattern by dict.
+                    string result = ExecuteCommand(commandLine, client); //execute-command pattern by dict.
                     writer.Write(result);
                 }
                 client.Close();
