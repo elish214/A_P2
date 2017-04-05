@@ -44,8 +44,13 @@ namespace SearchAlgorithmsLib.searchers
         }
 
         protected void UpdatePriority(State<T> s)
-        {
-            openList.UpdatePriority(s, (float)s.Cost);
+        {   //UPDATED
+            openList.UpdatePriority(s, (float) s.Cost);
+
+            State<T> state = openList.Where(elem => elem.Equals(s)).ToList().ElementAt(0);
+
+            state.Cost = s.Cost;
+            state.CameFrom = s.CameFrom;
         }
 
         public abstract override Solution<T> Search(ISearchable<T> searchable);
