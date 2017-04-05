@@ -9,6 +9,7 @@ namespace Server
 {
     class Controller
     {
+        /*
         private Dictionary<string, ICommand> commands;
         private IModel model;
         public Controller()
@@ -27,6 +28,6 @@ namespace Server
             string[] args = arr.Skip(1).ToArray();
             ICommand command = commands[commandKey];
             return command.Execute(args, client);
-        }
+        }*/
     }
 }

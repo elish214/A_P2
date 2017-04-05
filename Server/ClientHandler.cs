@@ -12,7 +12,7 @@ namespace Server
     public class ClientHandler : IClientHandler
     {
         public void HandleClient(TcpClient client)
-        {
+        {/*
             new Task(() =>
             {
                 using (NetworkStream stream = client.GetStream())
@@ -26,7 +26,7 @@ namespace Server
                 }
                 client.Close();
             }).Start();
-            
+            */
         }
     }
 }

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeComp", "Maze\MazeComp.c
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{F629B3D2-EF29-4DF4-8DC2-EBF1163190CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{A27BE8B7-FDD5-4654-BBB0-64C2800C87A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F629B3D2-EF29-4DF4-8DC2-EBF1163190CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F629B3D2-EF29-4DF4-8DC2-EBF1163190CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F629B3D2-EF29-4DF4-8DC2-EBF1163190CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A27BE8B7-FDD5-4654-BBB0-64C2800C87A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A27BE8B7-FDD5-4654-BBB0-64C2800C87A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A27BE8B7-FDD5-4654-BBB0-64C2800C87A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A27BE8B7-FDD5-4654-BBB0-64C2800C87A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

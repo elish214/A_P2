@@ -22,7 +22,7 @@ namespace A_P2
 
         static void CompareSolvers()
         {
-            const int ROWS = 600, COLS = 600; //params
+            const int ROWS = 7, COLS = 7; //params
 
             //maze set up
             IMazeGenerator generator = new DFSMazeGenerator();
@@ -40,7 +40,8 @@ namespace A_P2
             Solution<Position> dfsSol = dfs.Search(smaze);
             Console.WriteLine($"DFS had: {dfs.GetNumberOfNodesEvaluated()}");
 
-
+            //Console.WriteLine();
+            //Console.WriteLine(Maze.MazeSolution.FromSolution(dfsSol).ToString());
 
             //print
             /*

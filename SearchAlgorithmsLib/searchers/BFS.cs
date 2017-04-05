@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Priority_Queue;
+using SearchAlgorithmsLib;
 
 namespace SearchAlgorithmsLib.searchers
 {
@@ -21,7 +22,9 @@ namespace SearchAlgorithmsLib.searchers
 
                 if (n.Equals(searchable.GetGoalState()))
                 {
-                    return n.BackTrace(); ; // private method, back traces through the parents
+                    Solution<T> solution = n.BackTrace();
+                    solution.NodesEvaluated = GetNumberOfNodesEvaluated();
+                    return solution; // private method, back traces through the parents
                 }                         // calling the delegated method, returns a list of states with n as a parent
 
                 List<State<T>> succerssors = searchable.GetAllPossibleStates(n);
