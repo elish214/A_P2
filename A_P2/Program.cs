@@ -40,8 +40,33 @@ namespace A_P2
             Solution<Position> dfsSol = dfs.Search(smaze);
             Console.WriteLine($"DFS had: {dfs.GetNumberOfNodesEvaluated()}");
 
-            //Console.WriteLine();
-            //Console.WriteLine(Maze.MazeSolution.FromSolution(dfsSol).ToString());
+            /*
+            Console.WriteLine();
+            MazeSolution ms = MazeSolution.FromSolution(dfsSol);
+            string str = MazeSolution.FromSolution(dfsSol).Solution.ToString();
+            Console.WriteLine(str);
+            Console.WriteLine();
+
+            str = ms.ToJSON();
+            Console.WriteLine(str);
+            Console.WriteLine();
+
+            Console.WriteLine(MazeSolution.FromJSON(str).Solution.ToString());
+        
+            Console.WriteLine();
+            Move move = new Move();
+            move.MazeName = "BLA bla";
+            move.Direction = Direction.Right;           
+            Console.WriteLine();
+
+            string stri = move.ToJSON();
+            Console.WriteLine(stri);
+            Console.WriteLine();
+
+            Console.WriteLine(Move.FromJSON(stri).MazeName);
+            Console.WriteLine((int)Move.FromJSON(stri).Direction);
+            */
+
 
             //print
             /*

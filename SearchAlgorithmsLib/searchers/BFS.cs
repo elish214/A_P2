@@ -22,7 +22,7 @@ namespace SearchAlgorithmsLib.searchers
 
                 if (n.Equals(searchable.GetGoalState()))
                 {
-                    Solution<T> solution = n.BackTrace();
+                    Solution<T> solution = BackTrace(n);
                     solution.NodesEvaluated = GetNumberOfNodesEvaluated();
                     return solution; // private method, back traces through the parents
                 }                         // calling the delegated method, returns a list of states with n as a parent

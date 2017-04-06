@@ -22,8 +22,9 @@ namespace SearchAlgorithmsLib.searchers
 
                 if (n.Equals(searchable.GetGoalState())) // got to the goal state.
                 {
-                    //return AllDiscovered(discovered, searchable);
-                    return n.BackTrace();
+                    Solution<T> solution = BackTrace(n);
+                    solution.NodesEvaluated = GetNumberOfNodesEvaluated();
+                    return solution;
                 }
 
                 List<State<T>> neighbours = searchable.GetAllPossibleStates(n); // get neighbours.

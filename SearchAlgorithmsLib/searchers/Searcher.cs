@@ -26,6 +26,19 @@ namespace SearchAlgorithmsLib.searchers
             return evaluatedNodes;
         }
 
+        protected Solution<T> BackTrace(State<T> s)
+        {
+            Solution<T> solution = new Solution<T>();           
+
+            while (s != null)
+            {
+                solution.Add(s);
+                s = s.CameFrom;
+            }
+
+            return solution;
+        }
+
         public abstract Solution<T> Search(ISearchable<T> searchable);
     }
 }

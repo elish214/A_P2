@@ -39,19 +39,5 @@ namespace SearchAlgorithmsLib
             return Equals(obj as State<T>);
         }
 
-        public Solution<T> BackTrace()
-        {
-            Solution<T> solution = new Solution<T>();
-
-            State<T> s = this;
-
-            while (s != null)
-            {
-                solution.Add(s);
-                s = s.CameFrom;
-            }
-
-            return solution;
-        }
     }
 }

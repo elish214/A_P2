@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Server.commands
 {
     class ListCommand : ICommand
-    {
+    {/*
         private IModel model;
 
         public ListCommand(IModel model)
@@ -20,6 +20,10 @@ namespace Server.commands
         {
             //List = model.GameList;
             return maze.ToJSON();
+        }*/
+        public string Execute(string[] args, TcpClient client = null)
+        {
+            throw new NotImplementedException();
         }
     }
 }

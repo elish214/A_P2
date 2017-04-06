@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Server.commands
 {
     class SolveMazeCommand : ICommand
-    {
+    {/*
         private IModel model;
 
         public SolveMazeCommand(IModel model)
@@ -22,6 +22,10 @@ namespace Server.commands
             int algo = int.Parse(args[1]);
             Solution solution = model.SolveMaze(name, algo);
             return solution.ToJSON();
+        }*/
+        public string Execute(string[] args, TcpClient client = null)
+        {
+            throw new NotImplementedException();
         }
     }
 }

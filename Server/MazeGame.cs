@@ -12,7 +12,7 @@ namespace Server
     public class MazeGame
     {
         public string Name { get; set; }
-        public Maze Maze { get; set; }
+        public MazeLib.Maze Maze { get; set; }
         public Dictionary<TcpClient, Position> Players { get; set; }
         public int NumOfPlayers { get; set; }
         public Solution<Position> Solution { get; set; }
