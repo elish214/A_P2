@@ -10,6 +10,7 @@ namespace SearchAlgorithmsLib.searchers
     public abstract class PrioritySearcher<T> : Searcher<T>, ISearcher<T>
     {
         private SimplePriorityQueue<State<T>> openList;
+        //private GenericPriorityQueue<State<T, S>, > openList;
 
         public PrioritySearcher()
         {
