@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    public interface ICommand
+    public interface IController
     {
-        string Execute(string[] args, TcpClient client = null);
+        string ExecuteCommand(string commandLine, TcpClient client);
     }
 }

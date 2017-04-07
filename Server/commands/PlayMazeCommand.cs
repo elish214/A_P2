@@ -7,21 +7,19 @@ using System.Threading.Tasks;
 
 namespace Server.commands
 {
-    public class SolveMazeCommand : ICommand
+    class PlayMazeCommand : ICommand
     {
         private IModel model;
 
-        public SolveMazeCommand(IModel model)
+        public PlayMazeCommand(IModel model)
         {
             this.model = model;
         }
 
         public string Execute(string[] args, TcpClient client = null)
         {
-            string name = args[0];
-            int algo = int.Parse(args[1]);
-            Solution solution = model.SolveMaze(name, algo);
-            return solution.ToJSON();
+            string direction = args[0];
+            model.Play(name, client);
+            return "move played";
         }
     }
-}

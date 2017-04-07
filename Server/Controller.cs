@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Server.commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -7,18 +8,27 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    class Controller
+    class Controller : IController
     {
-        /*
-        private Dictionary<string, ICommand> commands;
         private IModel model;
-        public Controller()
+        private Dictionary<string, ICommand> commands;
+
+        public Controller(IModel model)
         {
-            model = new Model();
-            commands = new Dictionary<string, ICommand>();
-            //commands.Add("generate", new GenerateMazeCommand(model));
-            // more commands...
+            this.model = model;
+
+            commands = new Dictionary<string, ICommand>
+            {
+                { "generate", new GenerateMazeCommand(model) },
+                { "solve", new SolveMazeCommand(model) },
+                { "start", new StartMazeCommand(model) },
+                { "list", new ListCommand(model) },
+                { "join", new JoinMazeCommand(model) },
+                { "play", new PlayMazeCommand(model) },
+                { "close", new CloseMazeCommand(model) }
+            };
         }
+
         public string ExecuteCommand(string commandLine, TcpClient client)
         {
             string[] arr = commandLine.Split(' ');
@@ -28,6 +38,6 @@ namespace Server
             string[] args = arr.Skip(1).ToArray();
             ICommand command = commands[commandKey];
             return command.Execute(args, client);
-        }*/
+        }
     }
 }

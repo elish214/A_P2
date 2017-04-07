@@ -19,11 +19,6 @@ namespace SearchAlgorithmsLib
             Cost = cost;
         }
 
-        public override String ToString()
-        {
-            return $"{TState}, {Cost}, {CameFrom}";
-        }
-
         public bool Equals(State<T> s) // we overload Object's Equals method
         {
             return TState.Equals(s.TState);
@@ -38,6 +33,5 @@ namespace SearchAlgorithmsLib
         {
             return Equals(obj as State<T>);
         }
-
     }
 }

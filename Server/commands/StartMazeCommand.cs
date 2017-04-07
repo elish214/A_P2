@@ -4,11 +4,12 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using MazeLib;
 
 namespace Server.commands
 {
-    class StartMazeCommand : ICommand
-    {/*
+    public class StartMazeCommand : ICommand
+    {
         private IModel model;
 
         public StartMazeCommand(IModel model)
@@ -22,11 +23,7 @@ namespace Server.commands
             int rows = int.Parse(args[1]);
             int cols = int.Parse(args[2]);
             model.StartMaze(name, rows, cols);
-            return "waiting for second player"; //PROBLEM
-        }*/
-        public string Execute(string[] args, TcpClient client = null)
-        {
-            throw new NotImplementedException();
+            return model.StartMaze(name, rows, cols).ToJSON; //PROBLEM
         }
     }
 }

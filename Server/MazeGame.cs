@@ -1,4 +1,5 @@
-﻿using MazeLib;
+﻿using Maze;
+using MazeLib;
 using SearchAlgorithmsLib;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,17 @@ namespace Server
         public MazeLib.Maze Maze { get; set; }
         public Dictionary<TcpClient, Position> Players { get; set; }
         public int NumOfPlayers { get; set; }
-        public Solution<Position> Solution { get; set; }
+        public MazeSolution Solution { get; set; }
 
         public MazeGame()
         {
             Players = new Dictionary<TcpClient, Position>();
             Solution = null;
+        }
+
+        public Boolean ArePlayersReady()
+        {
+            return Players.Keys.Count >= NumOfPlayers;
         }
     }
 }
