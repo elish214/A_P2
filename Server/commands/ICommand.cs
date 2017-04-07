@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    interface ICommand
+    public interface ICommand
     {
         string Execute(string[] args, TcpClient client = null);
     }

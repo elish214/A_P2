@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Server.commands
 {
-    class GenerateMazeCommand : ICommand
+    public class GenerateMazeCommand : ICommand
     {
         private IModel model;
 
@@ -22,8 +22,7 @@ namespace Server.commands
             string name = args[0];
             int rows = int.Parse(args[1]);
             int cols = int.Parse(args[2]);
-            Maze maze = model.GenerateMaze(name, rows, cols);
-            return maze.ToJSON();
+            return model.GenerateMaze(name, rows, cols).ToJSON();
         }
     }
 }

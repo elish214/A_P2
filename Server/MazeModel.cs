@@ -1,4 +1,5 @@
-﻿using MazeComp;
+﻿using Maze;
+using MazeComp;
 using MazeGeneratorLib;
 using MazeLib;
 using SearchAlgorithmsLib;
@@ -12,7 +13,9 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    public class MazeModel
+    enum SearchAlgo { Bfs, Dfs };
+
+    public class MazeModel : IModel
     {
         private Dictionary<string, MazeGame> games;
         private Dictionary<TcpClient, MazeGame> players;
@@ -22,40 +25,106 @@ namespace Server
             games = new Dictionary<string, MazeGame>();
         }
 
-        public Maze GenerateMaze(string name, int rows, int cols, TcpClient client)
+        public MazeLib.Maze GenerateMaze(string name, int rows, int cols, TcpClient client, int numOfPlayers = 1)
         {
             MazeGame game = new MazeGame()
             {
                 Name = name,
                 Maze = new DFSMazeGenerator().Generate(rows, cols),
-                NumOfPlayers = 1
+                NumOfPlayers = numOfPlayers
             };
 
+            game.Maze.Name = name;
             game.Players.Add(client, game.Maze.InitialPos);
             players.Add(client, game);
 
             return game.Maze;
         }
 
-        public Solution<Position> SolveMaze(string name, int algo)
+        public MazeSolution SolveMaze(string name, int algo)
         {
             MazeGame game = games[name];
             SearchableMaze smaze = new SearchableMaze(game.Maze);
             ISearcher<Position> searcher = null;
+            SearchAlgo search = (SearchAlgo) algo;
 
-            switch(algo)
+            switch (search)
             {
-                case 0: //BFS
+                case SearchAlgo.Bfs:
                     searcher = new BFS<Position>();
                     break;
 
-                case 1: //DFS
-                    searcher = new BFS<Position>();
+                case SearchAlgo.Dfs:
+                    searcher = new DFS<Position>();
                     break;
             }
 
-            game.Solution = searcher.Search(smaze);
+            game.Solution = MazeSolution.FromSolution(searcher.Search(smaze));
+            //update solution with maze name!!!!!!
             return game.Solution;
+        }
+
+        public void StartMaze(String name, int rows, int cols, TcpClient client, int numOfPlayers = 2)
+        { 
+            MazeLib.Maze maze = GenerateMaze(name, rows, cols, client, numOfPlayers);
+
+            //while?
+        }
+
+        public List<string> GameList()
+        {
+            return games.Keys.ToList();
+        }
+
+        public MazeLib.Maze Join(string name, TcpClient client)
+        {
+            MazeGame game = games[name];
+
+            game.Players.Add(client, game.Maze.InitialPos);
+            players.Add(client, game);
+
+            //if(game.ArePlayersReady())
+            //update first client
+
+            return game.Maze;
+            
+        }
+
+        public void Play(Direction direction, TcpClient client)
+        {
+            MazeGame game = players[client];
+            Position pos = game.Players[client];
+
+            switch (direction)
+            {
+                case Direction.Up:
+                    pos.Col--;
+                    break;
+
+                case Direction.Down:
+                    pos.Col++;
+                    break;
+
+                case Direction.Left:
+                    pos.Row--;
+                    break;
+
+                case Direction.Right:
+                    pos.Row++;
+                    break;
+            }
+
+            if (game.Maze[pos.Row, pos.Col] != CellType.Wall)
+            {
+                game.Players[client] = pos;
+
+                //notify other player about pos change
+            }
+        }
+
+        public void Close(string name, TcpClient client)
+        {
+            //notify other player about game end
         }
     }
 }

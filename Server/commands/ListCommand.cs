@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Server.commands
 {
-    class ListCommand : ICommand
+    public class ListCommand : ICommand
     {
         private IModel model;
 
@@ -18,8 +18,7 @@ namespace Server.commands
 
         public string Execute(string[] args, TcpClient client = null)
         {
-            //List = model.GameList;
-            return maze.ToJSON();
+           return model.GameList().Aggregate((result, next) => $"{result},{next}");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Server.commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -9,15 +10,21 @@ namespace Server
 {
     class Controller
     {
-        /*
+        
         private Dictionary<string, ICommand> commands;
         private IModel model;
         public Controller()
         {
-            model = new Model();
+            model = new MazeModel();
             commands = new Dictionary<string, ICommand>();
-            //commands.Add("generate", new GenerateMazeCommand(model));
-            // more commands...
+            commands.Add("generate", new GenerateMazeCommand(model));
+            commands.Add("solve", new SolveMazeCommand(model));
+            commands.Add("start", new StartMazeCommand(model));
+            commands.Add("list", new ListCommand(model));
+            commands.Add("join", new JoinMazeCommand(model));
+            commands.Add("play", new PlayMazeCommand(model));
+            commands.Add("close", new CloseMazeCommand(model));
+
         }
         public string ExecuteCommand(string commandLine, TcpClient client)
         {
@@ -28,6 +35,6 @@ namespace Server
             string[] args = arr.Skip(1).ToArray();
             ICommand command = commands[commandKey];
             return command.Execute(args, client);
-        }*/
+        }
     }
 }

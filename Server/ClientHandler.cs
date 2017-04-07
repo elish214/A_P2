@@ -12,7 +12,7 @@ namespace Server
     public class ClientHandler : IClientHandler
     {
         public void HandleClient(TcpClient client)
-        {/*
+        {
             new Task(() =>
             {
                 using (NetworkStream stream = client.GetStream())
@@ -20,13 +20,13 @@ namespace Server
                 using (StreamWriter writer = new StreamWriter(stream))
                 {
                     string commandLine = reader.ReadLine();
-                    Console.WriteLine("Got command: {0}", commandLine);
+                    Console.WriteLine("Got command: {0} - from {1}", commandLine, client);
                     string result = ExecuteCommand(commandLine, client); //execute-command pattern by dict.
                     writer.Write(result);
                 }
                 client.Close();
             }).Start();
-            */
+            
         }
     }
 }

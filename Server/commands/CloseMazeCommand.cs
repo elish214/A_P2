@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Server.commands
 {
-    public class SolveMazeCommand : ICommand
+    public class CloseMazeCommand : ICommand
     {
         private IModel model;
 
-        public SolveMazeCommand(IModel model)
+        public CloseMazeCommand(IModel model)
         {
             this.model = model;
         }
@@ -19,9 +19,8 @@ namespace Server.commands
         public string Execute(string[] args, TcpClient client = null)
         {
             string name = args[0];
-            int algo = int.Parse(args[1]);
-            Solution solution = model.SolveMaze(name, algo);
-            return solution.ToJSON();
+            model.Close(name, client);
+            return " ";
         }
     }
 }
