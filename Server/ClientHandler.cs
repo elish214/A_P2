@@ -11,6 +11,10 @@ namespace Server
 {
     public class ClientHandler : IClientHandler
     {
+        private IController controller;
+
+
+
         public void HandleClient(TcpClient client)
         {
             new Task(() =>
@@ -21,7 +25,7 @@ namespace Server
                 {
                     string commandLine = reader.ReadLine();
                     Console.WriteLine("Got command: {0} - from {1}", commandLine, client);
-                    string result = ExecuteCommand(commandLine, client); //execute-command pattern by dict.
+                    string result = controller.ExecuteCommand(commandLine, client); //execute-command pattern by dict.
                     writer.Write(result);
                 }
                 client.Close();

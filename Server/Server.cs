@@ -13,11 +13,13 @@ namespace Server
         private int port;
         private TcpListener listener;
         private IClientHandler ch;
+
         public Server(int port, IClientHandler ch)
         {
             this.port = port;
             this.ch = ch;
         }
+
         public void Start()
         {
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
@@ -42,6 +44,7 @@ namespace Server
             });
             task.Start();
         }
+
         public void Stop()
         {
             listener.Stop();

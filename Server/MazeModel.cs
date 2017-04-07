@@ -23,6 +23,7 @@ namespace Server
         public MazeModel()
         {
             games = new Dictionary<string, MazeGame>();
+            players = new Dictionary<TcpClient, MazeGame>();
         }
 
         public MazeLib.Maze GenerateMaze(string name, int rows, int cols, TcpClient client, int numOfPlayers = 1)

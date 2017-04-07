@@ -19,11 +19,6 @@ namespace SearchAlgorithmsLib
             Cost = cost;
         }
 
-        public override String ToString()
-        {
-            return $"{TState}, {Cost}, {CameFrom}";
-        }
-
         public bool Equals(State<T> s) // we overload Object's Equals method
         {
             return TState.Equals(s.TState);
@@ -37,21 +32,6 @@ namespace SearchAlgorithmsLib
         public override bool Equals(object obj)
         {
             return Equals(obj as State<T>);
-        }
-
-        public Solution<T> BackTrace()
-        {
-            Solution<T> solution = new Solution<T>();
-
-            State<T> s = this;
-
-            while (s != null)
-            {
-                solution.Add(s);
-                s = s.CameFrom;
-            }
-
-            return solution;
         }
     }
 }

@@ -8,24 +8,27 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    class Controller
+    class Controller : IController
     {
-        
-        private Dictionary<string, ICommand> commands;
         private IModel model;
-        public Controller()
-        {
-            model = new MazeModel();
-            commands = new Dictionary<string, ICommand>();
-            commands.Add("generate", new GenerateMazeCommand(model));
-            commands.Add("solve", new SolveMazeCommand(model));
-            commands.Add("start", new StartMazeCommand(model));
-            commands.Add("list", new ListCommand(model));
-            commands.Add("join", new JoinMazeCommand(model));
-            commands.Add("play", new PlayMazeCommand(model));
-            commands.Add("close", new CloseMazeCommand(model));
+        private Dictionary<string, ICommand> commands;
 
+        public Controller(IModel model)
+        {
+            this.model = model;
+
+            commands = new Dictionary<string, ICommand>
+            {
+                { "generate", new GenerateMazeCommand(model) },
+                { "solve", new SolveMazeCommand(model) },
+                { "start", new StartMazeCommand(model) },
+                { "list", new ListCommand(model) },
+                { "join", new JoinMazeCommand(model) },
+                { "play", new PlayMazeCommand(model) },
+                { "close", new CloseMazeCommand(model) }
+            };
         }
+
         public string ExecuteCommand(string commandLine, TcpClient client)
         {
             string[] arr = commandLine.Split(' ');
