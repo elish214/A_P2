@@ -1,4 +1,4 @@
-﻿using Maze;
+﻿using MazeComp;
 using MazeLib;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server
+namespace Server.model
 {
     public interface IModel
     {

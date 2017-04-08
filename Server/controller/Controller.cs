@@ -1,4 +1,6 @@
 ﻿using Server.commands;
+using Server.model;
+using Server.view;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,17 +8,16 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server
+namespace Server.controller
 {
     class Controller : IController
     {
-        private IModel model;
+        public IModel Model { get; set; }
+        public IClientHandler View { get; set; }
         private Dictionary<string, ICommand> commands;
 
         public Controller(IModel model)
         {
-            this.model = model;
-
             commands = new Dictionary<string, ICommand>
             {
                 { "generate", new GenerateMazeCommand(model) },

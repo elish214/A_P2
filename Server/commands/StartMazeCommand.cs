@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using MazeLib;
+using Server.model;
 
 namespace Server.commands
 {

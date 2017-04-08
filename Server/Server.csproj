@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientHandler.cs" />
+    <Compile Include="view\ClientHandler.cs" />
     <Compile Include="commands\CloseMazeCommand.cs" />
     <Compile Include="commands\GenerateMazeCommand.cs" />
     <Compile Include="commands\JoinMazeCommand.cs" />
@@ -56,16 +56,16 @@
     <Compile Include="commands\PlayMazeCommand.cs" />
     <Compile Include="commands\SolveMazeCommand.cs" />
     <Compile Include="commands\StartMazeCommand.cs" />
-    <Compile Include="Controller.cs" />
-    <Compile Include="IClientHandler.cs" />
+    <Compile Include="controller\Controller.cs" />
+    <Compile Include="view\IClientHandler.cs" />
     <Compile Include="commands\ICommand.cs" />
-    <Compile Include="IController.cs" />
-    <Compile Include="IModel.cs" />
-    <Compile Include="MazeGame.cs" />
-    <Compile Include="MazeModel.cs" />
+    <Compile Include="controller\IController.cs" />
+    <Compile Include="model\IModel.cs" />
+    <Compile Include="model\MazeGame.cs" />
+    <Compile Include="model\MazeModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Server.cs" />
+    <Compile Include="view\Server.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

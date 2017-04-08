@@ -5,15 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Net.Sockets;
+using Server.controller;
 
-
-namespace Server
+namespace Server.view
 {
     public class ClientHandler : IClientHandler
     {
         private IController controller;
 
-
+        public ClientHandler(IController controller)
+        {
+            this.controller = controller;
+        }
 
         public void HandleClient(TcpClient client)
         {

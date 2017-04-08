@@ -1,9 +1,9 @@
-﻿using Maze;
-using MazeComp;
+﻿using MazeComp;
 using MazeGeneratorLib;
 using MazeLib;
 using SearchAlgorithmsLib;
 using SearchAlgorithmsLib.searchers;
+using Server.controller;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,17 +11,19 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server
+namespace Server.model
 {
     enum SearchAlgo { Bfs, Dfs };
 
     public class MazeModel : IModel
     {
+        private IController controller;
         private Dictionary<string, MazeGame> games;
         private Dictionary<TcpClient, MazeGame> players;
 
-        public MazeModel()
+        public MazeModel(IController controller)
         {
+            this.controller = controller;
             games = new Dictionary<string, MazeGame>();
             players = new Dictionary<TcpClient, MazeGame>();
         }
@@ -52,7 +54,7 @@ namespace Server
             switch (search)
             {
                 case SearchAlgo.Bfs:
-                    searcher = new BFS<Position>();
+                    searcher = new BFS<Position, int>((s1, s2) => 1, (i, j) => i + j);
                     break;
 
                 case SearchAlgo.Dfs:

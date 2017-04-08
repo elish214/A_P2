@@ -1,4 +1,4 @@
-﻿using Maze;
+﻿using MazeComp;
 using MazeLib;
 using SearchAlgorithmsLib;
 using System;
@@ -8,7 +8,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server
+namespace Server.model
 {
     public class MazeGame
     {
