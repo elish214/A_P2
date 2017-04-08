@@ -1,19 +1,18 @@
 ﻿using MazeLib;
+using SearchAlgorithmsLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SearchAlgorithmsLib;
-using Newtonsoft.Json.Linq;
 
-namespace MazeLibrary
+namespace MazeComp
 {
     public class SearchableMaze : ISearchable<Position>
     {
-        public MazeLib.Maze Maze { get; set; }
-        
-        public SearchableMaze(MazeLib.Maze maze)
+        public Maze Maze { get; set; }
+
+        public SearchableMaze(Maze maze)
         {
             Maze = maze;
         }
@@ -36,7 +35,7 @@ namespace MazeLibrary
             int row = s.TState.Row;
             int col = s.TState.Col;
 
-            if(row > 0 && Maze[row - 1, col] != CellType.Wall)
+            if (row > 0 && Maze[row - 1, col] != CellType.Wall)
             {
                 Console.Write($"({row - 1}, {col})");
                 states.Add(State<Position>.StatePool.GetState(new Position(row - 1, col)));

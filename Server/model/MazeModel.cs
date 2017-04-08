@@ -28,7 +28,7 @@ namespace Server.model
             players = new Dictionary<TcpClient, MazeGame>();
         }
 
-        public MazeLib.Maze GenerateMaze(string name, int rows, int cols, TcpClient client, int numOfPlayers = 1)
+        public Maze GenerateMaze(string name, int rows, int cols, TcpClient client, int numOfPlayers = 1)
         {
             MazeGame game = new MazeGame()
             {
@@ -68,8 +68,8 @@ namespace Server.model
         }
 
         public void StartMaze(String name, int rows, int cols, TcpClient client, int numOfPlayers = 2)
-        { 
-            MazeLib.Maze maze = GenerateMaze(name, rows, cols, client, numOfPlayers);
+        {
+            Maze maze = GenerateMaze(name, rows, cols, client, numOfPlayers);
 
             //while?
         }
@@ -79,7 +79,7 @@ namespace Server.model
             return games.Keys.ToList();
         }
 
-        public MazeLib.Maze Join(string name, TcpClient client)
+        public Maze Join(string name, TcpClient client)
         {
             MazeGame game = games[name];
 

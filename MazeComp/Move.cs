@@ -1,10 +1,10 @@
-﻿using System;
+﻿using MazeLib;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MazeLib;
-using Newtonsoft.Json.Linq;
 
 namespace MazeComp
 {
@@ -12,7 +12,7 @@ namespace MazeComp
     {
         public string MazeName { get; set; }
         public Direction Direction { get; set; }
-        
+
         public string ToJSON()
         {
             JObject moveObj = new JObject();

@@ -62,6 +62,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MazeComp\MazeComp.csproj">
+      <Project>{5f38e099-2387-4a2c-ad79-2df03996817d}</Project>
+      <Name>MazeComp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SearchAlgorithmsLib\SearchAlgorithmsLib.csproj">
       <Project>{8d4b5be6-9801-4e2b-b517-6c70795da338}</Project>
       <Name>SearchAlgorithmsLib</Name>

@@ -1,21 +1,21 @@
-﻿using System;
+﻿using MazeLib;
+using Newtonsoft.Json.Linq;
+using SearchAlgorithmsLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MazeLib;
-using SearchAlgorithmsLib;
-using Newtonsoft.Json.Linq;
 
 namespace MazeComp
 {
-    public class MazeSolution 
+    public class MazeSolution
     {
         public string MazeName { get; set; }
         public int NodesEvaluated { get; set; }
         public string Solution { get; set; }
 
-        public static MazeSolution FromSolution (Solution<Position> backTrace)
+        public static MazeSolution FromSolution(Solution<Position> backTrace)
         {
             MazeSolution MS = new MazeSolution();
             MS.Solution = "";
@@ -23,12 +23,12 @@ namespace MazeComp
 
             int rowDiff, colDiff;
 
-            if(backTrace.Count() > 1)
+            if (backTrace.Count() > 1)
             {
-                for(int i = 1; i < backTrace.Count(); i++)
+                for (int i = 1; i < backTrace.Count(); i++)
                 {
-                    rowDiff = backTrace.ElementAt(i).TState.Row - backTrace.ElementAt(i-1).TState.Row;
-                    colDiff = backTrace.ElementAt(i).TState.Col - backTrace.ElementAt(i-1).TState.Col;
+                    rowDiff = backTrace.ElementAt(i).TState.Row - backTrace.ElementAt(i - 1).TState.Row;
+                    colDiff = backTrace.ElementAt(i).TState.Col - backTrace.ElementAt(i - 1).TState.Col;
 
                     if (rowDiff == 0)
                     {
@@ -36,7 +36,7 @@ namespace MazeComp
                         {
                             MS.Solution += "0";
                         }
-                        else if (colDiff == -1) 
+                        else if (colDiff == -1)
                         {
                             MS.Solution += "1";
                         }
@@ -66,7 +66,7 @@ namespace MazeComp
             JObject solutionObj = new JObject();
             solutionObj["Name"] = MazeName;
             solutionObj["Solution"] = Solution;
-            solutionObj["NodesEvaluated"] = this.NodesEvaluated;
+            solutionObj["NodesEvaluated"] = NodesEvaluated;
 
             return solutionObj.ToString();
         }
