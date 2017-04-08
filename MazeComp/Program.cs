@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MazeComp;
 using MazeLib;
 using MazeGeneratorLib;
 using SearchAlgorithmsLib;
 using SearchAlgorithmsLib.searchers;
 
-namespace A_P2
+namespace MazeComp
 {
     class Program
     {
