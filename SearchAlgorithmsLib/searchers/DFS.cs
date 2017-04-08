@@ -12,12 +12,11 @@ namespace SearchAlgorithmsLib.searchers
         {
             Stack<State<T>> open = new Stack<State<T>>();
             open.Push(searchable.GetInitialState());
-            HashSet<State<T>> discovered = new HashSet<State<T>>(); // labeled as discovered.
 
             while (open.Count() > 0)
             {
                 State<T> n = open.Pop();
-                discovered.Add(n); // label it.
+                Closed.Add(n); // label it.
                 Increase();
 
                 if (n.Equals(searchable.GetGoalState())) // got to the goal state.
@@ -32,7 +31,7 @@ namespace SearchAlgorithmsLib.searchers
 
                 foreach (State<T> s in neighbours)
                 {
-                    if (!discovered.Contains(s))
+                    if (!Closed.Contains(s))
                     {
                         CameFrom[s] = n;
                         open.Push(s);

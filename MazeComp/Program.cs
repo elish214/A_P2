@@ -21,7 +21,7 @@ namespace MazeComp
 
         static void CompareSolvers()
         {
-            const int ROWS = 10, COLS = 10; //params
+            const int ROWS = 50, COLS = 50; //params
 
             //maze set up
             IMazeGenerator generator = new DFSMazeGenerator();
