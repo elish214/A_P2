@@ -19,7 +19,7 @@ namespace SearchAlgorithmsLib
 
         public bool Equals(State<T> s) // we overload Object's Equals method
         {
-            return TState.Equals(s.TState);
+            return this == s;
         }
 
         public override int GetHashCode()
@@ -38,7 +38,7 @@ namespace SearchAlgorithmsLib
 
             public static State<T> GetState(T t)
             {
-                if (!pool.Keys.Contains(t))
+                if (!pool.ContainsKey(t))
                 {
                     pool[t] = new State<T>(t);
                     Console.WriteLine(" created");

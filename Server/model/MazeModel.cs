@@ -67,11 +67,13 @@ namespace Server.model
             return game.Solution;
         }
 
-        public void StartMaze(String name, int rows, int cols, TcpClient client, int numOfPlayers = 2)
+        public Maze StartMaze(String name, int rows, int cols, TcpClient client, int numOfPlayers = 2)
         {
             Maze maze = GenerateMaze(name, rows, cols, client, numOfPlayers);
 
             //while?
+
+            return maze;
         }
 
         public List<string> GameList()

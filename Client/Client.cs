@@ -15,21 +15,34 @@ namespace Client
         {
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
             TcpClient client = new TcpClient();
+
             client.Connect(ep);
             Console.WriteLine("You are connected");
 
             using (NetworkStream stream = client.GetStream())
-            using (BinaryReader reader = new BinaryReader(stream))
-            using (BinaryWriter writer = new BinaryWriter(stream))
+            using (StreamReader reader = new StreamReader(stream))
+            using (StreamWriter writer = new StreamWriter(stream))
             {
-                // Send data to server
-                Console.Write("Please enter a number: ");
-                int num = int.Parse(Console.ReadLine());
-                writer.Write(num);
+                // listen to server
+                Task task = new Task(() =>
+                {
+                    while (true)
+                    {
+                        string result = reader.ReadLine();
+                        if (result != null)
+                            Console.Write("Result = {0}\n- ", result);
+                    }
+                });
+                task.Start();
 
-                // Get result from server
-                int result = reader.ReadInt32();
-                Console.WriteLine("Result = {0}", result);
+                // send commands to server
+                while (true)
+                {
+                    Console.Write("- ");
+                    writer.Flush();
+                    writer.Write(Console.ReadLine() + "\n");
+                }
+
             }
             client.Close();
         }

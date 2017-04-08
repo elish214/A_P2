@@ -9,8 +9,8 @@ namespace SearchAlgorithmsLib.searchers
     public abstract class Searcher<T> : ISearcher<T>
     {
         private int evaluatedNodes;
-        public HashSet<State<T>> Closed { get; }
-        public Dictionary<State<T>, State<T>> CameFrom { get; }
+        protected HashSet<State<T>> Closed { get; }
+        protected Dictionary<State<T>, State<T>> CameFrom { get; }
 
         public Searcher()
         {

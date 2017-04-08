@@ -23,7 +23,7 @@ namespace Server.commands
             string name = args[0];
             int rows = int.Parse(args[1]);
             int cols = int.Parse(args[2]);
-            return model.GenerateMaze(name, rows, cols).ToJSON();
+            return model.GenerateMaze(name, rows, cols, client).ToJSON();
         }
     }
 }

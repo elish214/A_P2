@@ -16,18 +16,18 @@ namespace Server.controller
         public IClientHandler View { get; set; }
         private Dictionary<string, ICommand> commands;
 
-        public Controller(IModel model)
+        public void BuildCommands()
         {
             commands = new Dictionary<string, ICommand>
-            {
-                { "generate", new GenerateMazeCommand(model) },
-                { "solve", new SolveMazeCommand(model) },
-                { "start", new StartMazeCommand(model) },
-                { "list", new ListCommand(model) },
-                { "join", new JoinMazeCommand(model) },
-                { "play", new PlayMazeCommand(model) },
-                { "close", new CloseMazeCommand(model) }
-            };
+                {
+                    { "generate", new GenerateMazeCommand(Model) },
+                    { "solve", new SolveMazeCommand(Model) },
+                    { "start", new StartMazeCommand(Model) },
+                    { "list", new ListCommand(Model) },
+                    { "join", new JoinMazeCommand(Model) },
+                    { "play", new PlayMazeCommand(Model) },
+                    { "close", new CloseMazeCommand(Model) }
+                };
         }
 
         public string ExecuteCommand(string commandLine, TcpClient client)

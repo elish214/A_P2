@@ -26,14 +26,16 @@ namespace Server.view
                 using (StreamReader reader = new StreamReader(stream))
                 using (StreamWriter writer = new StreamWriter(stream))
                 {
+                    Console.WriteLine("waiting for a command....");
                     string commandLine = reader.ReadLine();
                     Console.WriteLine("Got command: {0} - from {1}", commandLine, client);
                     string result = controller.ExecuteCommand(commandLine, client); //execute-command pattern by dict.
-                    writer.Write(result);
+                    writer.Flush();
+                    writer.Write(result + "\n");
                 }
                 client.Close();
             }).Start();
-            
+
         }
     }
 }

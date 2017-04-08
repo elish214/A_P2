@@ -1,4 +1,5 @@
-﻿using Server.model;
+﻿using MazeComp;
+using Server.model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace Server.commands
         {
             string name = args[0];
             int algo = int.Parse(args[1]);
-            Solution solution = model.SolveMaze(name, algo);
+            MazeSolution solution = model.SolveMaze(name, algo);
             return solution.ToJSON();
         }
     }
