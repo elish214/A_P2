@@ -1,5 +1,4 @@
-﻿using MazeLib;
-using Server.model;
+﻿using Server.model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +19,8 @@ namespace Server.commands
 
         public string Execute(string[] args, TcpClient client = null)
         {
-            Enum.TryParse(args[0], out Direction direction);
-            model.Play(direction, client);
+            string direction = args[0];
+            model.Play(name, client);
             return "move played";
         }
     }
-}
