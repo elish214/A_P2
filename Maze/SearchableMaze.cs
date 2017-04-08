@@ -20,12 +20,14 @@ namespace MazeComp
 
         public State<Position> GetInitialState()
         {
-            return new State<Position>(Maze.InitialPos);
+            Console.Write($"({Maze.InitialPos.Row}, {Maze.InitialPos.Col})");
+            return State<Position>.StatePool.GetState(Maze.InitialPos);
         }
 
         public State<Position> GetGoalState()
         {
-            return new State<Position>(Maze.GoalPos);
+            Console.Write($"({Maze.GoalPos.Row}, {Maze.GoalPos.Col})");
+            return State<Position>.StatePool.GetState(Maze.GoalPos);
         }
 
         public List<State<Position>> GetAllPossibleStates(State<Position> s)
@@ -36,22 +38,26 @@ namespace MazeComp
 
             if(row > 0 && Maze[row - 1, col] != CellType.Wall)
             {
-                states.Add(new State<Position>(new Position(row - 1, col), s, s.Cost + 1));
+                Console.Write($"({row - 1}, {col})");
+                states.Add(State<Position>.StatePool.GetState(new Position(row - 1, col)));
             }
 
             if (col > 0 && Maze[row, col - 1] != CellType.Wall)
             {
-                states.Add(new State<Position>(new Position(row, col - 1), s, s.Cost + 1));
+                Console.Write($"({row}, {col - 1})");
+                states.Add(State<Position>.StatePool.GetState(new Position(row, col - 1)));
             }
 
             if (row < Maze.Rows - 1 && Maze[row + 1, col] != CellType.Wall)
             {
-                states.Add(new State<Position>(new Position(row + 1, col), s, s.Cost + 1));
+                Console.Write($"({row + 1}, {col})");
+                states.Add(State<Position>.StatePool.GetState(new Position(row + 1, col)));
             }
 
             if (col < Maze.Cols - 1 && Maze[row, col + 1] != CellType.Wall)
             {
-                states.Add(new State<Position>(new Position(row, col + 1), s, s.Cost + 1));
+                Console.Write($"({row}, {col + 1})");
+                states.Add(State<Position>.StatePool.GetState(new Position(row, col + 1)));
             }
 
             return states;

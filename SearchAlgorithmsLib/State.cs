@@ -9,14 +9,12 @@ namespace SearchAlgorithmsLib
     public class State<T>
     {
         public T TState { get; set; } // the state representation
-        public double Cost { get; set; } // cost to reach this state (set by a setter)
-        public State<T> CameFrom { get; set; } // the state we came from to this state (setter)
+        //public double Cost { get; set; } // cost to reach this state (set by a setter)
+        //public State<T> CameFrom { get; set; } // the state we came from to this state (setter)
 
-        public State(T state, State<T> cameFrom = null, double cost = 0) // CTOR
+        private State(T state) // CTOR
         {
             TState = state;
-            CameFrom = cameFrom;
-            Cost = cost;
         }
 
         public bool Equals(State<T> s) // we overload Object's Equals method
@@ -32,6 +30,25 @@ namespace SearchAlgorithmsLib
         public override bool Equals(object obj)
         {
             return Equals(obj as State<T>);
+        }
+
+        public static class StatePool
+        {
+            private static Dictionary<T, State<T>> pool = new Dictionary<T, State<T>>();
+
+            public static State<T> GetState(T t)
+            {
+                if (!pool.Keys.Contains(t))
+                {
+                    pool[t] = new State<T>(t);
+                    Console.WriteLine(" created");
+                }
+                else
+                {
+                    Console.WriteLine(" found");
+                }
+                return pool[t];
+            }
         }
     }
 }

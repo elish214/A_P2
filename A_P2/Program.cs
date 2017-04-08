@@ -22,7 +22,7 @@ namespace A_P2
 
         static void CompareSolvers()
         {
-            const int ROWS = 7, COLS = 7; //params
+            const int ROWS = 10, COLS = 10; //params
 
             //maze set up
             IMazeGenerator generator = new DFSMazeGenerator();
@@ -32,7 +32,7 @@ namespace A_P2
             //search
             SearchableMaze smaze = new SearchableMaze(maze);
 
-            BFS<Position> bfs = new BFS<Position>();
+            BFS<Position, int> bfs = new BFS<Position, int>((s1, s2) => 1, (i, j) => i + j);
             Solution<Position> bfsSol = bfs.Search(smaze);
             Console.WriteLine($"BFS had: {bfs.GetNumberOfNodesEvaluated()}");
 

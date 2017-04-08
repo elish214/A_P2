@@ -24,6 +24,7 @@ namespace SearchAlgorithmsLib.searchers
                 {
                     Solution<T> solution = BackTrace(n);
                     solution.NodesEvaluated = GetNumberOfNodesEvaluated();
+                    Clear();
                     return solution;
                 }
 
@@ -33,11 +34,13 @@ namespace SearchAlgorithmsLib.searchers
                 {
                     if (!discovered.Contains(s))
                     {
+                        CameFrom[s] = n;
                         open.Push(s);
                     }
                 }
             }
 
+            Clear();
             return null;
         }
     }

@@ -7,19 +7,27 @@ using System.Threading.Tasks;
 
 namespace SearchAlgorithmsLib.searchers
 {
-    public abstract class PrioritySearcher<T> : Searcher<T>, ISearcher<T>
+    public abstract class PrioritySearcher<T, S> : Searcher<T>, ISearcher<T> where S : IComparable<S>
     {
-        private SimplePriorityQueue<State<T>> openList;
-        //private GenericPriorityQueue<State<T, S>, > openList;
+        public delegate S Weight(State<T> s1, State<T> s2);
+        public delegate S Addition(S cost1, S cost2);
 
-        public PrioritySearcher()
+        private SimplePriorityQueue<State<T>, S> openList;
+        protected Dictionary<State<T>, S> Cost { get; }
+        protected Weight W { get; }
+        protected Addition Add { get; }
+
+        public PrioritySearcher(Weight w, Addition add)
         {
-            openList = new SimplePriorityQueue<State<T>>();
+            openList = new SimplePriorityQueue<State<T>, S>();
+            Cost = new Dictionary<State<T>, S>();
+            W = w;
+            Add = add;
         }
 
         protected void AddToOpenList(State<T> s)
         {
-            openList.Enqueue(s, (float)s.Cost);
+            openList.Enqueue(s, Cost[s]);
         }
 
         protected State<T> PopOpenList()
@@ -45,13 +53,21 @@ namespace SearchAlgorithmsLib.searchers
         }
 
         protected void UpdatePriority(State<T> s)
-        {   //UPDATED
-            openList.UpdatePriority(s, (float) s.Cost);
+        {
+            openList.UpdatePriority(s, Cost[s]);
+        }
 
-            State<T> state = openList.Where(elem => elem.Equals(s)).ToList().ElementAt(0);
+        protected void Update(State<T> s, State<T> n)
+        {
+            CameFrom[s] = n;
+            Cost[s] = Add(Cost[n], W(n, s));
+        }
 
-            state.Cost = s.Cost;
-            state.CameFrom = s.CameFrom;
+        protected override void Clear()
+        {
+            openList.Clear();
+            Cost.Clear();
+            base.Clear();
         }
 
         public abstract override Solution<T> Search(ISearchable<T> searchable);

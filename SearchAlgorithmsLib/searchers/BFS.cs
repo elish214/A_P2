@@ -8,22 +8,29 @@ using SearchAlgorithmsLib;
 
 namespace SearchAlgorithmsLib.searchers
 {
-    public class BFS<T> : PrioritySearcher<T>, ISearcher<T>
+    public class BFS<T, S> : PrioritySearcher<T, S>, ISearcher<T> where S : IComparable<S>
     {
+        public BFS(Weight w, Addition add) : base(w, add)
+        {
+        }
+
         public override Solution<T> Search(ISearchable<T> searchable)
         { // Searcher's abstract method overriding
-            AddToOpenList(searchable.GetInitialState()); // inherited from Searcher
-            HashSet<State<T>> closed = new HashSet<State<T>>();
+            State<T> state = searchable.GetInitialState();
+            //HashSet<State<T>> closed = new HashSet<State<T>>();
+            Cost[state] = default(S);
+            AddToOpenList(state); // inherited from Searcher
 
             while (OpenListSize > 0)
             {
                 State<T> n = PopOpenList(); // inherited from Searcher, removes the best state
-                closed.Add(n);
+                Closed.Add(n);
 
                 if (n.Equals(searchable.GetGoalState()))
                 {
                     Solution<T> solution = BackTrace(n);
                     solution.NodesEvaluated = GetNumberOfNodesEvaluated();
+                    Clear();
                     return solution; // private method, back traces through the parents
                 }                         // calling the delegated method, returns a list of states with n as a parent
 
@@ -31,18 +38,20 @@ namespace SearchAlgorithmsLib.searchers
 
                 foreach (State<T> s in succerssors)
                 {
-                    if (!closed.Contains(s) && !OpenContains(s))
+                    if (!Closed.Contains(s) && !OpenContains(s))
                     {
-                        // s.setCameFrom(n); // already done by getSuccessors
+                        Update(s, n);
                         AddToOpenList(s);
                     }
-                    else if (OpenContains(s) && GetOpenElem(s).Cost > s.Cost)
+                    else if (OpenContains(s) && Cost[GetOpenElem(s)].CompareTo(Cost[s]) > 0)
                     {
+                        Update(s, n);
                         UpdatePriority(s);
                     }
                 }
             }
 
+            Clear();
             return null;
         }
     }

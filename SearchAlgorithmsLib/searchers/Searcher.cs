@@ -9,10 +9,14 @@ namespace SearchAlgorithmsLib.searchers
     public abstract class Searcher<T> : ISearcher<T>
     {
         private int evaluatedNodes;
+        public HashSet<State<T>> Closed { get; }
+        public Dictionary<State<T>, State<T>> CameFrom { get; }
 
         public Searcher()
         {
             evaluatedNodes = 0;
+            Closed = new HashSet<State<T>>();
+            CameFrom = new Dictionary<State<T>, State<T>>();
         }
 
         public void Increase()
@@ -30,13 +34,19 @@ namespace SearchAlgorithmsLib.searchers
         {
             Solution<T> solution = new Solution<T>();           
 
-            while (s != null)
+            while (CameFrom.Keys.Contains(s))
             {
                 solution.Add(s);
-                s = s.CameFrom;
+                s = CameFrom[s];
             }
 
             return solution;
+        }
+
+        protected virtual void Clear()
+        {
+            CameFrom.Clear();
+            Closed.Clear();
         }
 
         public abstract Solution<T> Search(ISearchable<T> searchable);
