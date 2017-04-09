@@ -40,6 +40,8 @@ namespace SearchAlgorithmsLib.searchers
                 s = CameFrom[s];
             }
 
+            solution.Add(s);
+
             return solution;
         }
 
