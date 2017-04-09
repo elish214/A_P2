@@ -21,7 +21,7 @@ namespace MazeComp
 
         static void CompareSolvers()
         {
-            const int ROWS = 50, COLS = 50; //params
+            const int ROWS = 2, COLS = 3; //params
 
             //maze set up
             IMazeGenerator generator = new DFSMazeGenerator();
@@ -49,7 +49,7 @@ namespace MazeComp
             str = ms.ToJSON();
             Console.WriteLine(str);
             Console.WriteLine();
-
+            
             Console.WriteLine(MazeSolution.FromJSON(str).Solution.ToString());
         
             Console.WriteLine();

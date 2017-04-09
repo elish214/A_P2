@@ -34,25 +34,25 @@ namespace MazeComp
                     {
                         if (colDiff == 1)
                         {
-                            MS.Solution += "0";
+                            MS.Solution = "0" + MS.Solution;
                         }
                         else if (colDiff == -1)
                         {
-                            MS.Solution += "1";
+                            MS.Solution = "1" + MS.Solution;
                         }
                     }
                     if (rowDiff == 1)
                     {
                         if (colDiff == 0)
                         {
-                            MS.Solution += "2";
+                            MS.Solution = "2" + MS.Solution;
                         }
                     }
                     if (rowDiff == -1)
                     {
                         if (colDiff == 0)
                         {
-                            MS.Solution += "3";
+                            MS.Solution = "3" + MS.Solution;
                         }
                     }
                 }
