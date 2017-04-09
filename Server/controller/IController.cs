@@ -9,6 +9,8 @@ namespace Server.controller
 {
     public interface IController
     {
-        string ExecuteCommand(string commandLine, TcpClient client);
+        Result ExecuteCommand(string commandLine, TcpClient client);
+
+        void Send(string s, TcpClient client);
     }
 }

@@ -1,4 +1,6 @@
-﻿using MazeLib;
+﻿using MazeComp;
+using MazeLib;
+using Server.controller;
 using Server.model;
 using System;
 using System.Collections.Generic;
@@ -18,11 +20,55 @@ namespace Server.commands
             this.model = model;
         }
 
-        public string Execute(string[] args, TcpClient client = null)
+        public Result Execute(string[] args, TcpClient client = null)
         {
             Enum.TryParse(args[0], out Direction direction);
-            model.Play(direction, client);
-            return "move played";
+
+            MazeGame game = model.Players[client];
+            Position currentPos = game.Players[client];
+            Position pos = new Position(currentPos.Row, currentPos.Col);
+
+            switch (direction)
+            {
+                case Direction.Up:
+                    pos.Col--;
+                    break;
+
+                case Direction.Down:
+                    pos.Col++;
+                    break;
+
+                case Direction.Left:
+                    pos.Row--;
+                    break;
+
+                case Direction.Right:
+                    pos.Row++;
+                    break;
+            }
+
+            if (0 <= pos.Row && 0 <= pos.Col &&
+                pos.Row < game.Maze.Rows && pos.Col < game.Maze.Cols &&
+                game.Maze[pos.Row, pos.Col] != CellType.Wall)
+            {
+                game.Players[client] = pos;
+                Move move = new Move()
+                {
+                    MazeName = game.Name,
+                    Direction = direction
+                };
+
+                string json = move.ToJSON();
+
+                //notify other player about pos change
+                foreach (TcpClient c in game.Players.Keys)
+                {
+                    if (c != client)
+                        model.Controller.Send(json, c);
+                }
+            }
+
+            return new Result(Status.Keep, "");
         }
     }
 }

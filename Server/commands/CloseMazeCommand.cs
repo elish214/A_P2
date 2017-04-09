@@ -1,4 +1,5 @@
-﻿using Server.model;
+﻿using Server.controller;
+using Server.model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +18,11 @@ namespace Server.commands
             this.model = model;
         }
 
-        public string Execute(string[] args, TcpClient client = null)
+        public Result Execute(string[] args, TcpClient client = null)
         {
             string name = args[0];
-            model.Close(name, client);
-            return " ";
+            //model.Close(name, client);
+            return new Result(Status.Close, " ");
         }
     }
 }

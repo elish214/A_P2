@@ -10,5 +10,7 @@ namespace Server.view
     public interface IClientHandler
     {
         void HandleClient(TcpClient client);
+
+        void SendClient(string s, TcpClient client);
     }
 }

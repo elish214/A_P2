@@ -1,4 +1,6 @@
-﻿using MazeLib;
+﻿using MazeGeneratorLib;
+using MazeLib;
+using Server.controller;
 using Server.model;
 using System;
 using System.Collections.Generic;
@@ -18,12 +20,25 @@ namespace Server.commands
             this.model = model;
         }
 
-        public string Execute(string[] args, TcpClient client = null)
+        public Result Execute(string[] args, TcpClient client = null)
         {
             string name = args[0];
             int rows = int.Parse(args[1]);
             int cols = int.Parse(args[2]);
-            return model.GenerateMaze(name, rows, cols, client).ToJSON();
+
+            MazeGame game = new MazeGame()
+            {
+                Name = name,
+                Maze = new DFSMazeGenerator().Generate(rows, cols),
+                NumOfPlayers = 1
+            };
+
+            game.Maze.Name = name;
+            game.Players[client] = game.Maze.InitialPos;
+            model.Players[client] = game;
+            model.Games[name] = game;
+            
+            return new Result(Status.Close, game.Maze.ToJSON());
         }
     }
 }

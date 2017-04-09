@@ -1,4 +1,5 @@
-﻿using Server.model;
+﻿using Server.controller;
+using Server.model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,11 @@ namespace Server.commands
             this.model = model;
         }
 
-        public string Execute(string[] args, TcpClient client = null)
+        public Result Execute(string[] args, TcpClient client = null)
         {
-           return model.GameList().Aggregate((result, next) => $"{result},{next}");
+            if (model.Games.Keys.Count == 0)
+                return new Result(Status.Keep, "");
+            return new Result(Status.Keep, model.Games.Keys.Aggregate((result, next) => $"{result},{next}"));
         }
     }
 }

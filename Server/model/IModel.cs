@@ -1,5 +1,6 @@
 ﻿using MazeComp;
 using MazeLib;
+using Server.controller;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,18 +12,10 @@ namespace Server.model
 {
     public interface IModel
     {
-        Maze GenerateMaze(string name, int rows, int cols, TcpClient client, int numOfPlayers = 1);
+        Controller Controller { get; }
 
-        MazeSolution SolveMaze(string name, int algo);
+        Dictionary<string, MazeGame> Games { get; }
 
-        Maze StartMaze(String name, int rows, int cols, TcpClient client, int numOfPlayers = 2);
-
-        List<string> GameList();
-
-        Maze Join(string name, TcpClient client);
-
-        void Play(Direction direction, TcpClient client);
-
-        void Close(string name, TcpClient client);
+        Dictionary<TcpClient, MazeGame> Players { get; }
     }
 }

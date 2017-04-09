@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Server.controller
 {
-    class Controller : IController
+    public class Controller : IController
     {
         public IModel Model { get; set; }
         public IClientHandler View { get; set; }
@@ -30,18 +30,23 @@ namespace Server.controller
                 };
         }
 
-        public string ExecuteCommand(string commandLine, TcpClient client)
+        public Result ExecuteCommand(string commandLine, TcpClient client)
         {
             string[] arr = commandLine.Split(' ');
             string commandKey = arr[0];
 
             if (!commands.ContainsKey(commandKey))
-                return "Command not found";
+                return new Result(Status.Keep, "Command not found");
 
             string[] args = arr.Skip(1).ToArray();
             ICommand command = commands[commandKey];
 
             return command.Execute(args, client);
+        }
+
+        public void Send(string s, TcpClient client)
+        {
+            View.SendClient(s, client);
         }
     }
 }

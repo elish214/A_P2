@@ -12,7 +12,10 @@ namespace Client
         {
             Client client = new Client();
 
-            client.Communicate(12345);
+            while (true)
+            {
+                client.Communicate(12345);
+            }
         }
     }
 }
