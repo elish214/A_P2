@@ -48,64 +48,57 @@ namespace Client
                     string command = Console.ReadLine();
                     writer.WriteLine(command);
 
-                    string first = command.Split(' ')[0];
-                    if (first == "start" || first == "join")
-                        running = true;
-                    else if (first == "close" || first == "generate")
-                        running = false;
-
                     do
                     {
                         Console.WriteLine(reader.ReadLine());
                     } while (reader.Peek() >= 0);
+
+                    string first = command.Split(' ')[0];
+                    if (first == "start" || first == "join")
+                        Multiplayer(client);
+                    //running = true;
+                    else if (first == "close" || first == "generate")
+                        running = false;
                 } while (running);
 
             }
 
             client.Close();
 
+        }
 
-
-
-            /*
-            IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
-            TcpClient client = new TcpClient();
-
-            client.Connect(ep);
-            Console.WriteLine("You are connected");
-
+        private void Multiplayer(TcpClient client)
+        {
             using (NetworkStream stream = client.GetStream())
             using (StreamReader reader = new StreamReader(stream))
             using (StreamWriter writer = new StreamWriter(stream))
             {
-                // listen to server
+                writer.AutoFlush = true;
+                bool running = true;
 
+                // Get result from server
                 Task task = new Task(() =>
                 {
-                    while (true)
+                    do
                     {
-                        string result = reader.ReadLine();
-                        if (result != null)
-                            Console.Write("Result = {0}\n- ", result);
-                    }
+                        Console.WriteLine(reader.ReadLine());
+                    } while (true);
+                    //} while (reader.Peek() >= 0);
                 });
-                //task.Start();
-
-                // send commands to server
-                //while (true)
-
-                Console.Write("- ");
-                writer.Flush();
-                writer.Write(Console.ReadLine() + "\n");
                 task.Start();
 
-                writer.Flush();
+                do
+                {
+                    // Send data to server
+                    Console.Write("COMMAND: ");
+                    string command = Console.ReadLine();
+                    writer.WriteLine(command);
 
-                while (true) ;
+                    string first = command.Split(' ')[0];
+                    if (first == "close")
+                        running = false;
+                } while (running);
             }
-            client.Close();
-            */
-
         }
     }
 }

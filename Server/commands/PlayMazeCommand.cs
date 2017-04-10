@@ -22,30 +22,38 @@ namespace Server.commands
 
         public Result Execute(string[] args, TcpClient client = null)
         {
-            Enum.TryParse(args[0], out Direction direction);
+            Enum.TryParse(args[0].First().ToString().ToUpper() + args[0].Substring(1), out Direction direction);
 
             MazeGame game = model.Players[client];
             Position currentPos = game.Players[client];
             Position pos = new Position(currentPos.Row, currentPos.Col);
 
+            Console.WriteLine($"({pos.Row}, {pos.Col}), {args[0]}");
+
             switch (direction)
             {
                 case Direction.Up:
-                    pos.Col--;
+                    pos.Row--;
+                    Console.WriteLine("Up");
                     break;
 
                 case Direction.Down:
-                    pos.Col++;
+                    pos.Row++;
+                    Console.WriteLine("Down");
                     break;
 
                 case Direction.Left:
-                    pos.Row--;
+                    pos.Col--;
+                    Console.WriteLine("Left");
                     break;
 
                 case Direction.Right:
-                    pos.Row++;
+                    pos.Col++;
+                    Console.WriteLine("Right");
                     break;
             }
+
+            Console.WriteLine($"({pos.Row}, {pos.Col})");
 
             if (0 <= pos.Row && 0 <= pos.Col &&
                 pos.Row < game.Maze.Rows && pos.Col < game.Maze.Cols &&
@@ -59,12 +67,16 @@ namespace Server.commands
                 };
 
                 string json = move.ToJSON();
-
+                Console.WriteLine("before send loop");
                 //notify other player about pos change
                 foreach (TcpClient c in game.Players.Keys)
                 {
+                    Console.WriteLine("trying send play...");
                     if (c != client)
+                    {
                         model.Controller.Send(json, c);
+                        Console.WriteLine("sent play");
+                    }
                 }
             }
 
