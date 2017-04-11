@@ -29,18 +29,6 @@ namespace Client
                 writer.AutoFlush = true;
                 bool running = false;
 
-                // Get result from server
-                Task task = new Task(() =>
-                {
-                    do
-                    {
-                        if (reader.Peek() >= 0)
-                            Console.WriteLine(reader.ReadLine());
-                    } while (true);
-                    //} while (reader.Peek() >= 0);
-                });
-                //task.Start();
-
                 do
                 {
                     // Send data to server
@@ -76,15 +64,24 @@ namespace Client
                 writer.AutoFlush = true;
                 bool running = true;
 
+                var ts = new CancellationTokenSource();
+                CancellationToken ct = ts.Token;
+                string result;
+
                 // Get result from server
                 Task task = new Task(() =>
                 {
                     do
                     {
-                        Console.WriteLine(reader.ReadLine());
+                        result = reader.ReadLine();
+                        Console.WriteLine(result);
+                        if(result == " ")
+                        {
+                            //close
+                        }
                     } while (true);
                     //} while (reader.Peek() >= 0);
-                });
+                }, ct);
                 task.Start();
 
                 do
@@ -98,6 +95,8 @@ namespace Client
                     if (first == "close")
                         running = false;
                 } while (running);
+
+                ts.Cancel();
             }
         }
     }

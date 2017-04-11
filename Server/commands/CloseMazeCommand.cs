@@ -21,7 +21,19 @@ namespace Server.commands
         public Result Execute(string[] args, TcpClient client = null)
         {
             string name = args[0];
-            //model.Close(name, client);
+            MazeGame game = model.Games[name];
+
+            //notify other player about pos change
+            foreach (TcpClient c in game.Players.Keys)
+            {
+                Console.WriteLine("trying send close...");
+                if (c != client)
+                {
+                    model.Controller.Send(" ", c);
+                    Console.WriteLine("sent close");
+                }
+            }
+
             return new Result(Status.Close, " ");
         }
     }
