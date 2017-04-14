@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client.view;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +13,16 @@ namespace Client
 {
     public class Client
     {
+        private int port;
+        private IHandler handler;
+
+        public Client() { }
+
+        public Client(int port, IHandler handler)
+        {
+            this.port = port;
+            this.handler = handler;
+        }
 
         public void Communicate(int port)
         {
@@ -50,7 +61,6 @@ namespace Client
                 } while (running);
 
             }
-
             client.Close();
 
         }
@@ -77,6 +87,8 @@ namespace Client
                         Console.WriteLine(result);
                         if(result == " ")
                         {
+                            Console.WriteLine("need to close");
+                            return;
                             //close
                         }
                     } while (true);
@@ -97,6 +109,18 @@ namespace Client
                 } while (running);
 
                 ts.Cancel();
+            }
+        }
+
+
+
+        public void Start()
+        {
+            Console.WriteLine("Welcome!");
+
+            while (true)
+            {
+                handler.Handle(port);
             }
         }
     }
