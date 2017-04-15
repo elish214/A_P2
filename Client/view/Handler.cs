@@ -24,7 +24,7 @@ namespace Client.view
             TcpClient client = new TcpClient();
 
             client.Connect(ep);
-            Controller.Client = client;
+            //Controller.Model.Client = client;
             Console.WriteLine("You are connected");
 
             using (NetworkStream stream = client.GetStream())
@@ -39,7 +39,7 @@ namespace Client.view
                     Console.Write("COMMAND: ");
                     string commandLine = Console.ReadLine();
 
-                    string result = Controller.ExecuteCommand(commandLine, ref running); //execute-command pattern by dict
+                    string result = Controller.ExecuteCommand(commandLine, ref running, client); //execute-command pattern by dict
                     writer.WriteLine(result);
                     Console.WriteLine($"answer sent, {result}, run: {running}");
 

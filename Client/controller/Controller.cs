@@ -12,7 +12,7 @@ namespace Client.controller
 {
     public class Controller : IController
     {
-        public TcpClient Client { get; set; }
+        //public TcpClient Client { get; set; }
         public IHandler View { get; set; }
         public IModel Model { get; set; } 
         private Dictionary<string, ICommand> commands;
@@ -31,7 +31,7 @@ namespace Client.controller
             };
         }
 
-        public string ExecuteCommand(string commandLine, ref bool running)
+        public string ExecuteCommand(string commandLine, ref bool running, TcpClient client)
         {
             string[] arr = commandLine.Split(' ');
             string commandKey = arr[0];
@@ -42,7 +42,7 @@ namespace Client.controller
             string[] args = arr.Skip(1).ToArray();
             ICommand command = commands[commandKey];
 
-            return command.Execute(commandLine, ref running);
+            return command.Execute(commandLine, ref running, client);
         }
     }
 }

@@ -9,6 +9,6 @@ namespace Client
 {
     public interface ICommand
     {
-        string Execute(string command, ref bool running);
+        string Execute(string command, ref bool running, TcpClient client);
     }
 }
