@@ -8,12 +8,27 @@ using SearchAlgorithmsLib;
 
 namespace SearchAlgorithmsLib.searchers
 {
+    /// <summary>
+    /// BFS class.
+    /// </summary>
+    /// <typeparam name="T"> a generic type to search on. </typeparam>
+    /// <typeparam name="S"> a generic type to compare with. </typeparam>
     public class BFS<T, S> : PrioritySearcher<T, S>, ISearcher<T> where S : IComparable<S>
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="w"> A weight function. </param>
+        /// <param name="add">  An addition function. </param>
         public BFS(Weight w, Addition add) : base(w, add)
         {
         }
 
+        /// <summary>
+        /// Searching method. uses BFS on the searchable.
+        /// </summary>
+        /// <param name="searchable"> search at the searchable </param>
+        /// <returns> Returns searchable's solution. </returns>
         public override Solution<T> Search(ISearchable<T> searchable)
         { // Searcher's abstract method overriding
             State<T> state = searchable.GetInitialState();

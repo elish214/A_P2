@@ -11,13 +11,31 @@ using System.Threading.Tasks;
 
 namespace Client
 {
+    /// <summary>
+    /// Client class.
+    /// </summary>
     public class Client
     {
+        /// <summary>
+        /// Holds the port it communicates through.
+        /// </summary>
         private int port;
+
+        /// <summary>
+        ///  Holds the handler it's assosiated with.
+        /// </summary>
         private IHandler handler;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public Client() { }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="port"> the port it communicates through. </param>
+        /// <param name="handler"> the handler it's assosiated with. </param>
         public Client(int port, IHandler handler)
         {
             this.port = port;
@@ -112,8 +130,9 @@ namespace Client
             }
         }
 
-
-
+        /// <summary>
+        /// Activate client.
+        /// </summary>
         public void Start()
         {
             Console.WriteLine("Welcome!");

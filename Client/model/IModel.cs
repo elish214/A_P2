@@ -8,14 +8,25 @@ using System.Threading.Tasks;
 
 namespace Client.model
 {
+    /// <summary>
+    /// Model interface.
+    /// </summary>
     public interface IModel
-    { 
-        TcpClient Client { get; set; } 
-
+    {
+        /// <summary>
+        /// Holds the controller it's assosiated with.
+        /// </summary>
         Controller Controller { get; }
 
+        /// <summary>
+        /// Hold a task to run when needed.
+        /// </summary>
         Task Task { get; }
 
+        /// <summary>
+        /// Initialize the task.
+        /// </summary>
+        /// <param name="client"> the client that the task is assosiated with. </param>
         void InitializeTask(TcpClient client);
     }
 }

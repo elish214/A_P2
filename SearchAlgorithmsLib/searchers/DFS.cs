@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace SearchAlgorithmsLib.searchers
 {
+    /// <summary>
+    /// DFS class.
+    /// </summary>
+    /// <typeparam name="T"> a generic type to search on. </typeparam>
     public class DFS<T> : Searcher<T>, ISearcher<T>
     {
+        /// <summary>
+        /// Searching method. uses the DFS on the searchable.
+        /// </summary>
+        /// <param name="searchable"> search at the searchable </param>
+        /// <returns> Returns searchable's solution. </returns>
         public override Solution<T> Search(ISearchable<T> searchable)
         {
             Stack<State<T>> open = new Stack<State<T>>();

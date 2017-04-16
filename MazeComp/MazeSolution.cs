@@ -9,12 +9,31 @@ using System.Threading.Tasks;
 
 namespace MazeComp
 {
+    /// <summary>
+    /// A specific solution type class.
+    /// </summary>
     public class MazeSolution
     {
+        /// <summary>
+        /// Maze's name.
+        /// </summary>
         public string MazeName { get; set; }
+
+        /// <summary>
+        /// Holds the number of nodes that been evaluated in that solution.
+        /// </summary>
         public int NodesEvaluated { get; set; }
+
+        /// <summary>
+        /// Holds a solution as a string.
+        /// </summary>
         public string Solution { get; set; }
 
+        /// <summary>
+        /// Static function to get a MazeSolution object from a Solution object.
+        /// </summary>
+        /// <param name="backTrace"> a solution of positions. </param>
+        /// <returns> a MazeSolution object. </returns>
         public static MazeSolution FromSolution(Solution<Position> backTrace)
         {
             MazeSolution MS = new MazeSolution();
@@ -61,6 +80,10 @@ namespace MazeComp
             return MS;
         }
 
+        /// <summary>
+        /// Convert MazeSolution object to a JSON.
+        /// </summary>
+        /// <returns> MazeSolution as a JSON. </returns>
         public string ToJSON()
         {
             JObject solutionObj = new JObject();
@@ -71,6 +94,11 @@ namespace MazeComp
             return solutionObj.ToString();
         }
 
+        /// <summary>
+        /// Static function to re-create a MazeSolution object from JSON.
+        /// </summary>
+        /// <param name="str"> a string. </param>
+        /// <returns> a MazeSolution object. </returns>
         public static MazeSolution FromJSON(string str)
         {
             MazeSolution mazeSolution = new MazeSolution();

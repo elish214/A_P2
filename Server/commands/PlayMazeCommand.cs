@@ -11,15 +11,31 @@ using System.Threading.Tasks;
 
 namespace Server.commands
 {
+    /// <summary>
+    /// Play maze command class.
+    /// </summary>
     class PlayMazeCommand : ICommand
     {
+        /// <summary>
+        /// Holds the model it's assosiated with.
+        /// </summary>
         private IModel model;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="model"> the model it's assosiated with. </param>
         public PlayMazeCommand(IModel model)
         {
             this.model = model;
         }
 
+        /// <summary>
+        /// Excute command. called by controller. play a move in maze.
+        /// </summary>
+        /// <param name="args"> arguments from console. </param>
+        /// <param name="client"> client to handle. </param>
+        /// <returns> a result to send back to client. </returns>
         public Result Execute(string[] args, TcpClient client = null)
         {
             Enum.TryParse(args[0].First().ToString().ToUpper() + args[0].Substring(1), out Direction direction);
@@ -67,7 +83,8 @@ namespace Server.commands
                 };
 
                 string json = move.ToJSON();
-                Console.WriteLine("before send loop");
+                Console.WriteLine($"before send, {game.Players.Count()}");
+
                 //notify other player about pos change
                 foreach (TcpClient c in game.Players.Keys)
                 {

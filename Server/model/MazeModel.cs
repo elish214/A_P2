@@ -14,12 +14,30 @@ using System.Threading.Tasks;
 
 namespace Server.model
 {
+    /// <summary>
+    /// Model class.
+    /// </summary>
     public class MazeModel : IModel
     {
+        /// <summary>
+        /// Holds the controller it's assosiated with.
+        /// </summary>
         public Controller Controller { get; }
+       
+        /// <summary>
+        /// Holds a dictionary of games' names to it's games.
+        /// </summary>
         public Dictionary<string, MazeGame> Games { get; }
+        
+        /// <summary>
+        /// Holds a dictionary of clients to it's games.
+        /// </summary>
         public Dictionary<TcpClient, MazeGame> Players { get; }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="controller"> a controller. </param>
         public MazeModel(Controller controller)
         {
             Controller = controller;

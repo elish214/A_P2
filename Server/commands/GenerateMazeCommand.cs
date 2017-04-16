@@ -11,15 +11,31 @@ using System.Threading.Tasks;
 
 namespace Server.commands
 {
+    /// <summary>
+    /// Generate maze command class.
+    /// </summary>
     public class GenerateMazeCommand : ICommand
     {
+        /// <summary>
+        /// Holds the model it's assosiated with.
+        /// </summary>
         private IModel model;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="model"> the model it's assosiated with. </param>
         public GenerateMazeCommand(IModel model)
         {
             this.model = model;
         }
 
+        /// <summary>
+        /// Excute command. called by controller. generates a maze.
+        /// </summary>
+        /// <param name="args"> arguments from console. </param>
+        /// <param name="client"> client to handle. </param>
+        /// <returns> a result to send back to client. </returns>
         public Result Execute(string[] args, TcpClient client = null)
         {
             string name = args[0];

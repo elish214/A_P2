@@ -9,22 +9,35 @@ using System.Threading.Tasks;
 
 namespace Client.view
 {
+    /// <summary>
+    /// Handler class.
+    /// </summary>
     public class Handler : IHandler
     {
+        /// <summary>
+        /// Holds the controller it's assosiated with.
+        /// </summary>
         private IController Controller;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="controller"> a controller. </param>
         public Handler(IController controller)
         {
             this.Controller = controller;
         }
 
+        /// <summary>
+        /// Handle the client.
+        /// </summary>
+        /// <param name="port"> the port it communicate through. </param>
         public void Handle(int port)
         {
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
             TcpClient client = new TcpClient();
 
             client.Connect(ep);
-            //Controller.Model.Client = client;
             Console.WriteLine("You are connected");
 
             using (NetworkStream stream = client.GetStream())
@@ -53,6 +66,5 @@ namespace Client.view
                 client.Close();
             }
         }
-    }
-    
+    }    
 }

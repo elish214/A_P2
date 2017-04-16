@@ -9,8 +9,15 @@ using System.Threading.Tasks;
 
 namespace Server
 {
+    /// <summary>
+    /// This is the entry point to the server-side.
+    /// </summary>
     class Program
     {
+        /// <summary>
+        /// Server's main method.
+        /// </summary>
+        /// <param name="args"> arguments from user. </param>
         static void Main(string[] args)
         {
             Controller controller = new Controller();

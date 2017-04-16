@@ -9,11 +9,19 @@ using System.Threading.Tasks;
 
 namespace Client
 {
+    /// <summary>
+    /// This is the entry point to the client-side.
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Client's main method.
+        /// </summary>
+        /// <param name="args"> arguments from user. </param>
         static void Main(string[] args)
         {
-        /*    Client client = new Client();
+            /*
+           Client client = new Client();
 
             while (true)
             {

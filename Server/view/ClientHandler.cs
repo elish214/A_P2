@@ -9,15 +9,29 @@ using Server.controller;
 
 namespace Server.view
 {
+    /// <summary>
+    /// Client handler class.
+    /// </summary>
     public class ClientHandler : IClientHandler
     {
+        /// <summary>
+        /// Holds the controller it's assosiated with.
+        /// </summary>
         private IController controller;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="controller"> a controller. </param>
         public ClientHandler(IController controller)
         {
             this.controller = controller;
         }
 
+        /// <summary>
+        /// Handling a client. recieve and send commands.
+        /// </summary>
+        /// <param name="client"> a client to communicate with. </param>
         public void HandleClient(TcpClient client)
         {
             new Task(() =>
@@ -49,6 +63,11 @@ namespace Server.view
             }).Start();
         }
 
+        /// <summary>
+        /// Single send to a specific client.
+        /// </summary>
+        /// <param name="s"> a message. </param>
+        /// <param name="client"> a specific client. </param>
         public void SendClient(string s, TcpClient client)
         {
             NetworkStream stream = client.GetStream();

@@ -8,27 +8,50 @@ using System.Threading.Tasks;
 
 namespace MazeComp
 {
+    /// <summary>
+    /// Searchable Maze class. adapter for a simple maze.
+    /// </summary>
     public class SearchableMaze : ISearchable<Position>
     {
+        /// <summary>
+        /// Holds a simple maze object.
+        /// </summary>
         public Maze Maze { get; set; }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="maze"> a simple maze object. </param>
         public SearchableMaze(Maze maze)
         {
             Maze = maze;
         }
 
+        /// <summary>
+        /// Returns maze's initial state.
+        /// </summary>
+        /// <returns> maze's initial state. </returns>
         public State<Position> GetInitialState()
         {
             Console.Write($"({Maze.InitialPos.Row}, {Maze.InitialPos.Col})");
             return State<Position>.StatePool.GetState(Maze.InitialPos);
         }
 
+        /// <summary>
+        /// Returns maze's goal state.
+        /// </summary>
+        /// <returns> maze's goal state. </returns>
         public State<Position> GetGoalState()
         {
             Console.Write($"({Maze.GoalPos.Row}, {Maze.GoalPos.Col})");
             return State<Position>.StatePool.GetState(Maze.GoalPos);
         }
 
+        /// <summary>
+        /// Returns a list of all possible states from specific state.
+        /// </summary>
+        /// <param name="s"> a specific state. </param>
+        /// <returns> a list of all possible states from specific state. </returns>
         public List<State<Position>> GetAllPossibleStates(State<Position> s)
         {
             List<State<Position>> states = new List<State<Position>>();

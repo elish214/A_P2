@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="commands\CloseGameCommand.cs" />
     <Compile Include="commands\GenerateCommand.cs" />
     <Compile Include="commands\JoinGameCommand.cs" />
     <Compile Include="commands\ListCommand.cs" />

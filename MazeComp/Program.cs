@@ -10,8 +10,15 @@ using SearchAlgorithmsLib.searchers;
 
 namespace MazeComp
 {
+    /// <summary>
+    /// This is the entry point to the demo.
+    /// </summary>
     class Program
     {
+        /// <summary>
+        /// Demo's main method.
+        /// </summary>
+        /// <param name="args"> arguments from user. </param>
         static void Main(string[] args)
         {
             CompareSolvers();
@@ -19,6 +26,9 @@ namespace MazeComp
             Console.ReadKey(); //REMOVE BEFORE SUBMISSION
         }
 
+        /// <summary>
+        /// Create a maze, print it, solve it with DFS and BFS and print how many nodes been evaluated.
+        /// </summary>
         static void CompareSolvers()
         {
             const int ROWS = 2, COLS = 3; //params
@@ -80,7 +90,6 @@ namespace MazeComp
                 Console.WriteLine($"({s.TState.Row}, {s.TState.Col})");
             }
             */
-
         }
 
     }
