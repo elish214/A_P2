@@ -36,30 +36,41 @@ namespace Server.view
         {
             new Task(() =>
             {
-                using (NetworkStream stream = client.GetStream())
-                using (StreamReader reader = new StreamReader(stream))
-                using (StreamWriter writer = new StreamWriter(stream))
+                try
                 {
-                    writer.AutoFlush = true;
-                    Status status = Status.Close;
-
-                    do
+                    using (NetworkStream stream = client.GetStream())
+                    using (StreamReader reader = new StreamReader(stream))
+                    using (StreamWriter writer = new StreamWriter(stream))
                     {
-                        Console.WriteLine("waiting for a command....");
-                        string commandLine = reader.ReadLine();
-                        Console.WriteLine("Got command: [{0}] - from {1}", commandLine, client);
-                        Result result = controller.ExecuteCommand(commandLine, client); //execute-command pattern by dict.
-                        if (result.Status != Status.Keep)
-                            status = result.Status;
+                        writer.AutoFlush = true;
+                        Status status = Status.Close;
 
-                        if (result.Response != "")
+                        do
                         {
-                            writer.WriteLine(result.Response);
-                            Console.WriteLine("answer sent, [{0}]\n {1}", status, result.Response);
-                        }
-                    } while (status != Status.Close);
+                            Console.WriteLine("waiting for a command....");
+                            string commandLine = reader.ReadLine();
+                            Console.WriteLine("Got command: [{0}] - from {1}", commandLine, client);
+                            Result result = controller.ExecuteCommand(commandLine, client); //execute-command pattern by dict.
+                            if (result.Status != Status.Keep)
+                                status = result.Status;
+
+                            if (result.Response != "")
+                            {
+                                writer.WriteLine(result.Response);
+                                Console.WriteLine("answer sent, [{0}]\n {1}", status, result.Response);
+                            }
+                        } while (status != Status.Close);
+                    }
                 }
-                client.Close();
+                catch (Exception e)
+                {
+                    e.GetBaseException();
+                    Console.WriteLine("other client closed the game");
+                }
+                finally
+                {
+                    client.Close();
+                }
             }).Start();
         }
 
@@ -71,10 +82,11 @@ namespace Server.view
         public void SendClient(string s, TcpClient client)
         {
             NetworkStream stream = client.GetStream();
-            StreamReader reader = new StreamReader(stream);
-            StreamWriter writer = new StreamWriter(stream);
+            StreamWriter writer = new StreamWriter(stream)
+            {
+                AutoFlush = true
+            };
 
-            writer.AutoFlush = true;
             writer.WriteLine(s);
             Console.WriteLine("answer sent");
         }

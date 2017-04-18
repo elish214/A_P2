@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Client.view
@@ -14,6 +15,8 @@ namespace Client.view
     /// </summary>
     public class Handler : IHandler
     {
+        private string commandLine;
+
         /// <summary>
         /// Holds the controller it's assosiated with.
         /// </summary>
@@ -25,8 +28,10 @@ namespace Client.view
         /// <param name="controller"> a controller. </param>
         public Handler(IController controller)
         {
-            this.Controller = controller;
+            Controller = controller;
+            commandLine = "";
         }
+
 
         /// <summary>
         /// Handle the client.
@@ -40,31 +45,45 @@ namespace Client.view
             client.Connect(ep);
             Console.WriteLine("You are connected");
 
-            using (NetworkStream stream = client.GetStream())
-            using (StreamReader reader = new StreamReader(stream))
-            using (StreamWriter writer = new StreamWriter(stream))
+            try
             {
-                writer.AutoFlush = true;
-                bool running = false;
-
-                do
+                using (NetworkStream stream = client.GetStream())
+                using (StreamReader reader = new StreamReader(stream))
+                using (StreamWriter writer = new StreamWriter(stream))
                 {
-                    Console.Write("COMMAND: ");
-                    string commandLine = Console.ReadLine();
-
-                    string result = Controller.ExecuteCommand(commandLine, ref running, client); //execute-command pattern by dict
-                    writer.WriteLine(result);
-                    Console.WriteLine($"answer sent, {result}, run: {running}");
+                    writer.AutoFlush = true;
+                    bool running = false;
 
                     do
                     {
-                        Console.WriteLine(reader.ReadLine());
-                    } while (reader.Peek() >= 0);
+                        Console.Write("COMMAND: ");
+                        if (commandLine == "")
+                            commandLine = Console.ReadLine();
 
-                } while (running);
+                        string result = Controller.ExecuteCommand(commandLine, ref running, client); //execute-command pattern by dict
+                        writer.WriteLine(result);
+                        Console.WriteLine($"answer sent, {result}, run: {running}");
 
+                        if (!running)
+                        {
+                            do
+                            {
+                                Console.WriteLine(reader.ReadLine());
+                            } while (reader.Peek() >= 0);
+                        }
+                        commandLine = "";
+                    } while (running);
+                }
+            }
+            catch (Exception e)
+            {
+                e.GetBaseException();
+            }
+            finally
+            {
+                Console.WriteLine("not running");
                 client.Close();
             }
         }
-    }    
+    }
 }

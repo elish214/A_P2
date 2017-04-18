@@ -39,7 +39,7 @@ namespace Client.commands
         {
             running = false;
 
-            model.Task.Wait(); // wait for to the task to get an empty JSON and break the loop.
+            //model.Task.Wait(); // wait for to the task to get an empty JSON and break the loop.
 
             return command;
         }

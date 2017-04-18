@@ -47,6 +47,7 @@ namespace Server.commands
                 {
                     model.Controller.Send(" ", c);
                     Console.WriteLine("sent close");
+                    c.Close();
                 }
             }
 

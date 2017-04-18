@@ -41,9 +41,9 @@ namespace Client.model
         /// <param name="client"> the client that the task is assosiated with. </param>
         public void InitializeTask(TcpClient client)
         {
-            Task = new Task(async () =>
+            Task = new Task(() =>
             {
-                // when to close those?
+                
                 NetworkStream stream = client.GetStream();
                 StreamReader reader = new StreamReader(stream);
                 StreamWriter writer = new StreamWriter(stream);
@@ -57,20 +57,26 @@ namespace Client.model
                 */
 
                 Console.WriteLine("started");
-                do
+                try
                 {
-                    result = await reader.ReadLineAsync();
-                    //result = reader.ReadLine();
-                    Console.WriteLine(result);
-                    if (result == " ")
+                    do
                     {
-                        Console.WriteLine("need to close");
-                        break;
-                        //close
-                    }
-                    //Console.WriteLine("still alive");
-                } while (true); //} while (reader.Peek() >= 0);             
-                Console.WriteLine("byebye");
+                        result = reader.ReadLine();
+                        //result = reader.ReadLine();
+                        Console.WriteLine(result);
+                        if (result == " ")
+                        {
+                            Console.WriteLine("need to close");
+                            break;
+                            //close
+                        }
+                        //Console.WriteLine("still alive");
+                    } while (true); //} while (reader.Peek() >= 0);    
+                }
+                finally
+                {
+                    Console.WriteLine("byebye");
+                }
             });
         }
     }
