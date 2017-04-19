@@ -48,29 +48,21 @@ namespace Server.commands
             string name = args[0];
             int algo = int.Parse(args[1]);
 
-            MazeGame game = model.Games[name];
-            SearchableMaze smaze = new SearchableMaze(game.Maze);
             ISearcher<Position> searcher = null;
             SearchAlgo search = (SearchAlgo)algo;
 
-            if (game.Solution == null)
+            switch (search)
             {
-                switch (search)
-                {
-                    case SearchAlgo.Bfs:
-                        searcher = new BFS<Position, int>((s1, s2) => 1, (i, j) => i + j);
-                        break;
+                case SearchAlgo.Bfs:
+                    searcher = new BFS<Position, int>((s1, s2) => 1, (i, j) => i + j);
+                    break;
 
-                    case SearchAlgo.Dfs:
-                        searcher = new DFS<Position>();
-                        break;
-                }
-
-                game.Solution = MazeSolution.FromSolution(searcher.Search(smaze));
-                game.Solution.MazeName = name;
+                case SearchAlgo.Dfs:
+                    searcher = new DFS<Position>();
+                    break;
             }
 
-            return new Result(Status.Keep, game.Solution.ToJSON());
+            return new Result(Status.Keep, model.Solve(name, searcher).ToJSON());
         }
     }
 }

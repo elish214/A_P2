@@ -1,5 +1,6 @@
 ﻿using MazeComp;
 using MazeLib;
+using SearchAlgorithmsLib;
 using Server.controller;
 using System;
 using System.Collections.Generic;
@@ -29,5 +30,19 @@ namespace Server.model
         /// Holds a dictionary of clients to it's games.
         /// </summary>
         Dictionary<TcpClient, MazeGame> Players { get; }
+
+        Maze Generate(String name, int rows, int cols, TcpClient client);
+
+        MazeSolution Solve(string name, ISearcher<Position> searcher);
+
+        void Start(String name, int rows, int cols, TcpClient client);
+
+        List<string> List();
+
+        Maze Join(String name, TcpClient client);
+
+        void Play(Direction direction, TcpClient client);
+
+        void Close(String name, TcpClient client);
     }
 }

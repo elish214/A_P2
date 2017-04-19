@@ -43,26 +43,7 @@ namespace Server.commands
             int rows = int.Parse(args[1]);
             int cols = int.Parse(args[2]);
 
-            MazeGame game = new MazeGame()
-            {
-                Name = name,
-                Maze = new DFSMazeGenerator().Generate(rows, cols),
-                NumOfPlayers = 2
-            };
-
-            game.Maze.Name = name;
-            game.Players[client] = game.Maze.InitialPos;
-            model.Players[client] = game;
-            model.Games[name] = game;
-
-            /*
-            while (!model.Games[name].ArePlayersReady())
-            {
-                Thread.Sleep(300);
-            }
-            
-            return new Result(Status.Open, game.Maze.ToJSON());
-            */
+            model.Start(name, rows, cols, client);
 
             return new Result(Status.Open, "");
 

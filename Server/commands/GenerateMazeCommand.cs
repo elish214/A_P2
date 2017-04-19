@@ -38,23 +38,18 @@ namespace Server.commands
         /// <returns> a result to send back to client. </returns>
         public Result Execute(string[] args, TcpClient client = null)
         {
-            string name = args[0];
-            int rows = int.Parse(args[1]);
-            int cols = int.Parse(args[2]);
-
-            MazeGame game = new MazeGame()
+            try
             {
-                Name = name,
-                Maze = new DFSMazeGenerator().Generate(rows, cols),
-                NumOfPlayers = 1
-            };
+                string name = args[0];
+                int rows = int.Parse(args[1]);
+                int cols = int.Parse(args[2]);
 
-            game.Maze.Name = name;
-            game.Players[client] = game.Maze.InitialPos;
-            model.Players[client] = game;
-            model.Games[name] = game;
-            
-            return new Result(Status.Close, game.Maze.ToJSON());
+                return new Result(Status.Close, model.Generate(name, rows, cols, client).ToJSON());
+            }
+            catch (Exception e)
+            {
+                return Result.Error;
+            }
         }
     }
 }

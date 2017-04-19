@@ -50,12 +50,7 @@ namespace Client.model
 
                 string result;
                 writer.AutoFlush = true;
-
-                /*
-                var ts = new CancellationTokenSource();
-                CancellationToken ct = ts.Token;
-                */
-
+                
                 Console.WriteLine("started");
                 try
                 {
@@ -68,10 +63,8 @@ namespace Client.model
                         {
                             Console.WriteLine("need to close");
                             break;
-                            //close
                         }
-                        //Console.WriteLine("still alive");
-                    } while (true); //} while (reader.Peek() >= 0);    
+                    } while (true); 
                 }
                 finally
                 {

@@ -36,9 +36,11 @@ namespace Server.commands
         /// <returns> a result to send back to client. </returns>
         public Result Execute(string[] args, TcpClient client = null)
         {
-            if (model.Games.Keys.Count == 0)
+            if (model.List().Count == 0)
+            {
                 return new Result(Status.Keep, "");
-            return new Result(Status.Keep, model.Games.Keys.Aggregate((result, next) => $"{result},{next}"));
+            }
+            return new Result(Status.Keep, model.List().Aggregate((result, next) => $"{result}\n{next}"));
         }
     }
 }

@@ -16,6 +16,20 @@ namespace Server.controller
     /// </summary>
     public class Result
     {
+        private static Result error;
+
+        public static Result Error
+        {
+            get
+            {
+                if (error == null)
+                {
+                    error = new Result(Status.Keep, "Command not found");
+                }
+                return error;
+            }
+        }
+
         /// <summary>
         /// Holds after result's status.
         /// </summary>

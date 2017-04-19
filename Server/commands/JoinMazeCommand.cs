@@ -39,23 +39,7 @@ namespace Server.commands
         {
             string name = args[0];
 
-            MazeGame game = model.Games[name];
-
-            game.Players[client] = game.Maze.InitialPos;
-            model.Players[client] = game;
-
-            /*
-            while (!model.Games[name].ArePlayersReady())
-            {
-                Thread.Sleep(300);
-            }
-            */
-
-            string json = game.Maze.ToJSON();
-
-            model.Controller.Send(json, game.Players.Keys.ToList()[0]);
-
-            return new Result(Status.Open, game.Maze.ToJSON());
+            return new Result(Status.Open, model.Join(name, client).ToJSON());
             
         }
     }

@@ -40,62 +40,7 @@ namespace Server.commands
         {
             Enum.TryParse(args[0].First().ToString().ToUpper() + args[0].Substring(1), out Direction direction);
 
-            MazeGame game = model.Players[client];
-            Position currentPos = game.Players[client];
-            Position pos = new Position(currentPos.Row, currentPos.Col);
-
-            Console.WriteLine($"({pos.Row}, {pos.Col}), {args[0]}");
-
-            switch (direction)
-            {
-                case Direction.Up:
-                    pos.Row--;
-                    Console.WriteLine("Up");
-                    break;
-
-                case Direction.Down:
-                    pos.Row++;
-                    Console.WriteLine("Down");
-                    break;
-
-                case Direction.Left:
-                    pos.Col--;
-                    Console.WriteLine("Left");
-                    break;
-
-                case Direction.Right:
-                    pos.Col++;
-                    Console.WriteLine("Right");
-                    break;
-            }
-
-            Console.WriteLine($"({pos.Row}, {pos.Col})");
-
-            if (0 <= pos.Row && 0 <= pos.Col &&
-                pos.Row < game.Maze.Rows && pos.Col < game.Maze.Cols &&
-                game.Maze[pos.Row, pos.Col] != CellType.Wall)
-            {
-                game.Players[client] = pos;
-                Move move = new Move()
-                {
-                    MazeName = game.Name,
-                    Direction = direction
-                };
-
-                string json = move.ToJSON();
-                Console.WriteLine($"before send, {game.Players.Count()}");
-
-                //notify other player about pos change
-                foreach (TcpClient c in game.Players.Keys)
-                {
-                    Console.WriteLine("trying send play...");
-                    if (c != client)
-                    {
-                        model.Controller.Send(json, c);
-                        Console.WriteLine("sent play");
-                    }
-                }
-            }
+            model.Play(direction, client);
 
             return new Result(Status.Keep, "");
         }
