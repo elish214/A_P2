@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace Client.view
 {
@@ -50,9 +51,9 @@ namespace Client.view
         /// Handle the client.
         /// </summary>
         /// <param name="port"> the port it communicate through. </param>
-        public void Handle(int port)
+        public void Handle(IPAddress IP, int port)
         {
-            IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
+            IPEndPoint ep = new IPEndPoint(IP, port);
             Client = new TcpClient();
 
             Client.Connect(ep);

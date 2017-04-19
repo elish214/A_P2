@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace Client.view
         /// Handle the client.
         /// </summary>
         /// <param name="port"> the port it communicate through. </param>
-        void Handle(int port);
+        void Handle(IPAddress IP, int port);
 
         /// <summary>
         /// Run task.

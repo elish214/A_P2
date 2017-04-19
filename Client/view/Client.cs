@@ -17,6 +17,11 @@ namespace Client
     public class Client
     {
         /// <summary>
+        /// Holds it IP adress.
+        /// </summary>
+        private IPAddress IP;
+
+        /// <summary>
         /// Holds the port it communicates through.
         /// </summary>
         private int port;
@@ -36,10 +41,11 @@ namespace Client
         /// </summary>
         /// <param name="port"> the port it communicates through. </param>
         /// <param name="handler"> the handler it's assosiated with. </param>
-        public Client(int port, IServerHandler handler)
+        public Client(IPAddress ip, int port, IServerHandler handler)
         {
             this.port = port;
             this.handler = handler;
+            this.IP = ip;
         }
 
         /// <summary>
@@ -51,7 +57,7 @@ namespace Client
 
             while (true)
             {
-                handler.Handle(port);
+                handler.Handle(IP, port);
             }
         }
     }
