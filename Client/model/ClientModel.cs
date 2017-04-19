@@ -14,63 +14,29 @@ namespace Client.model
     /// <summary>
     /// Client model class.
     /// </summary>
-    public class ClientModel : IModel
+    public class ClientModel : IClientModel
     {
         /// <summary>
         /// Holds the controller it's assosiated with.
         /// </summary>
-        public Controller Controller { get; set; }
-
-        /// <summary>
-        /// Holds a Task.
-        /// </summary>
-        public Task Task { get; set; }
+        public IClientController Controller { get; set; }
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="controller"> the controller it's assosiated with. </param>
-        public ClientModel(Controller controller)
+        public ClientModel(IClientController controller)
         {
             Controller = controller;
         }
-
+       
         /// <summary>
-        /// Initialize the task.
+        /// Initialize and run task through controller.
         /// </summary>
-        /// <param name="client"> the client that the task is assosiated with. </param>
-        public void InitializeTask(TcpClient client)
+        public void RunTask()
         {
-            Task = new Task(() =>
-            {
-                
-                NetworkStream stream = client.GetStream();
-                StreamReader reader = new StreamReader(stream);
-                StreamWriter writer = new StreamWriter(stream);
-
-                string result;
-                writer.AutoFlush = true;
-                
-                Console.WriteLine("started");
-                try
-                {
-                    do
-                    {
-                        result = reader.ReadLine();
-                        //result = reader.ReadLine();
-                        Console.WriteLine(result);
-                        if (result == " ")
-                        {
-                            Console.WriteLine("need to close");
-                            break;
-                        }
-                    } while (true); 
-                }
-                finally
-                {
-                    Console.WriteLine("byebye");
-                }
-            });
+            Controller.RunTask();
         }
+
     }
 }

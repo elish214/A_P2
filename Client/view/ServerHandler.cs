@@ -13,20 +13,33 @@ namespace Client.view
     /// <summary>
     /// Handler class.
     /// </summary>
-    public class Handler : IHandler
+    public class ServerHandler : IServerHandler
     {
+        /// <summary>
+        /// A string.
+        /// </summary>
         private string commandLine;
+
+        /// <summary>
+        /// Holds a Task.
+        /// </summary>
+        public Task Task { get; set; }
+
+        /// <summary>
+        /// Holds it's handeled client.
+        /// </summary>
+        public TcpClient Client { get; set; }
 
         /// <summary>
         /// Holds the controller it's assosiated with.
         /// </summary>
-        private IController Controller;
+        private IClientController Controller;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="controller"> a controller. </param>
-        public Handler(IController controller)
+        public ServerHandler(IClientController controller)
         {
             Controller = controller;
             commandLine = "";
@@ -40,14 +53,14 @@ namespace Client.view
         public void Handle(int port)
         {
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
-            TcpClient client = new TcpClient();
+            Client = new TcpClient();
 
-            client.Connect(ep);
+            Client.Connect(ep);
             Console.WriteLine("You are connected");
 
             try
             {
-                using (NetworkStream stream = client.GetStream())
+                using (NetworkStream stream = Client.GetStream())
                 using (StreamReader reader = new StreamReader(stream))
                 using (StreamWriter writer = new StreamWriter(stream))
                 {
@@ -60,7 +73,7 @@ namespace Client.view
                         if (commandLine == "")
                             commandLine = Console.ReadLine();
 
-                        string result = Controller.ExecuteCommand(commandLine, ref running, client); //execute-command pattern by dict
+                        string result = Controller.ExecuteCommand(commandLine, ref running); //execute-command pattern by dict
                         writer.WriteLine(result);
                         Console.WriteLine($"answer sent, {result}, run: {running}");
 
@@ -82,8 +95,47 @@ namespace Client.view
             finally
             {
                 Console.WriteLine("not running");
-                client.Close();
+                Client.Close();
             }
+        }
+
+        /// <summary>
+        /// Run task.
+        /// </summary>
+        /// <param name="client"> the client that the task is assosiated with. </param>
+        public void RunTask()
+        {
+            Task = new Task(() =>
+            {
+
+                NetworkStream stream = Client.GetStream();
+                StreamReader reader = new StreamReader(stream);
+                StreamWriter writer = new StreamWriter(stream);
+
+                string result;
+                writer.AutoFlush = true;
+
+                Console.WriteLine("started");
+                try
+                {
+                    do
+                    {
+                        result = reader.ReadLine();
+                        //result = reader.ReadLine();
+                        Console.WriteLine(result);
+                        if (result == " ")
+                        {
+                            Console.WriteLine("need to close");
+                            break;
+                        }
+                    } while (true);
+                }
+                finally
+                {
+                    Console.WriteLine("byebye");
+                }
+            });
+            Task.Start();
         }
     }
 }

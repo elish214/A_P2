@@ -11,18 +11,18 @@ namespace Client.commands
     /// <summary>
     /// Play a move command class.
     /// </summary>
-    public class PlayCommand : ICommand
+    public class PlayCommand : IClientCommand
     {
         /// <summary>
         /// Holds the model it's assosiated with.
         /// </summary>
-        private IModel model;
+        private IClientModel model;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="model"> the model it's assosiated with. </param>
-        public PlayCommand(IModel model)
+        public PlayCommand(IClientModel model)
         {
             this.model = model;
         }
@@ -34,7 +34,7 @@ namespace Client.commands
         /// <param name="running"> a boolean whether to stay connected. </param>
         /// <param name="client"> the client it's assosiated with. </param>
         /// <returns> a string to send back. </returns>
-        public string Execute(string command, ref bool running, TcpClient client)
+        public string Execute(string command, ref bool running)
         {
             running = true;
 

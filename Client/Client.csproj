@@ -52,16 +52,16 @@
     <Compile Include="commands\PlayCommand.cs" />
     <Compile Include="commands\SolveCommand.cs" />
     <Compile Include="commands\StartGameCommand.cs" />
-    <Compile Include="controller\Controller.cs" />
+    <Compile Include="controller\ClientController.cs" />
     <Compile Include="model\ClientModel.cs" />
-    <Compile Include="model\IModel.cs" />
+    <Compile Include="model\IClientModel.cs" />
     <Compile Include="view\Client.cs" />
-    <Compile Include="commands\ICommand.cs" />
-    <Compile Include="controller\IController.cs" />
+    <Compile Include="commands\IClientCommand.cs" />
+    <Compile Include="controller\IClientController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="view\Handler.cs" />
-    <Compile Include="view\IHandler.cs" />
+    <Compile Include="view\ServerHandler.cs" />
+    <Compile Include="view\IServerHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -11,18 +11,18 @@ namespace Client.commands
     /// <summary>
     /// Solve maze command class.
     /// </summary>
-    public class SolveCommand : ICommand
+    public class SolveCommand : IClientCommand
     {
         /// <summary>
         /// Holds the model it's assosiated with.
         /// </summary>
-        private IModel model;
+        private IClientModel model;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="model"> the model it's assosiated with. </param>
-        public SolveCommand(IModel model)
+        public SolveCommand(IClientModel model)
         {
             this.model = model;
         }
@@ -34,7 +34,7 @@ namespace Client.commands
         /// <param name="running"> a boolean whether to stay connected. </param>
         /// <param name="client"> the client it's assosiated with. </param>
         /// <returns> a string to send back. </returns>
-        public string Execute(string command, ref bool running, TcpClient client)
+        public string Execute(string command, ref bool running)
         {
             running = false;
             return command;

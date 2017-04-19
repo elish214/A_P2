@@ -11,18 +11,18 @@ namespace Client.commands
     /// <summary>
     /// Start game command class.
     /// </summary>
-    public class StartGameCommand : ICommand
+    public class StartGameCommand : IClientCommand
     {
         /// <summary>
         /// Holds the model it's assosiated with.
         /// </summary>
-        private IModel model;
+        private IClientModel model;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="model"> the model it's assosiated with. </param>
-        public StartGameCommand(IModel model)
+        public StartGameCommand(IClientModel model)
         {
             this.model = model;
         }
@@ -34,12 +34,11 @@ namespace Client.commands
         /// <param name="running"> a boolean whether to stay connected. </param>
         /// <param name="client"> the client it's assosiated with. </param>
         /// <returns> a string to send back. </returns>
-        public string Execute(string command, ref bool running, TcpClient client)
+        public string Execute(string command, ref bool running)
         {
             running = true;
             Console.WriteLine("waiting for another player...");
-            model.InitializeTask(client);
-            model.Task.Start();
+            model.RunTask();
 
             return command;
         }

@@ -20,18 +20,9 @@ namespace Client
         /// <param name="args"> arguments from user. </param>
         static void Main(string[] args)
         {
-            /*
-           Client client = new Client();
-
-            while (true)
-            {
-                client.Communicate(12345);
-            } 
-
-          */ 
-            Controller controller = new Controller(); 
-            IHandler handler = new Handler(controller);
-            IModel model = new ClientModel(controller);
+            ClientController controller = new ClientController(); 
+            IServerHandler handler = new ServerHandler(controller);
+            IClientModel model = new ClientModel(controller);
             Client client = new Client(12345, handler);
 
             controller.Model = model;

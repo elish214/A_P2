@@ -11,22 +11,16 @@ namespace Client.model
     /// <summary>
     /// Model interface.
     /// </summary>
-    public interface IModel
+    public interface IClientModel
     {
         /// <summary>
         /// Holds the controller it's assosiated with.
         /// </summary>
-        Controller Controller { get; }
+        IClientController Controller { get; }
 
         /// <summary>
-        /// Hold a task to run when needed.
+        /// Initialize and run task through controller.
         /// </summary>
-        Task Task { get; }
-
-        /// <summary>
-        /// Initialize the task.
-        /// </summary>
-        /// <param name="client"> the client that the task is assosiated with. </param>
-        void InitializeTask(TcpClient client);
+        void RunTask();
     }
 }

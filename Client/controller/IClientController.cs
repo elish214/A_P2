@@ -11,12 +11,12 @@ namespace Client
     /// <summary>
     /// Controller interface.
     /// </summary>
-    public interface IController
+    public interface IClientController
     {
         /// <summary>
         /// Holds the controller it's assosiated with.
         /// </summary>
-        IModel Model { get; set; }
+        IClientModel Model { get; set; }
 
         //TcpClient Client { get; set; }
 
@@ -27,6 +27,11 @@ namespace Client
         /// <param name="running"> a boolean whether to stay connected. </param>
         /// <param name="client"> the client it's assosiated with. </param>
         /// <returns> a string to send back. </returns>
-        string ExecuteCommand(string commandLine, ref bool running, TcpClient client);
+        string ExecuteCommand(string commandLine, ref bool running);
+
+        /// <summary>
+        /// Initialize and run task through view.
+        /// </summary>
+        void RunTask();
     } 
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace Server
 {
@@ -20,10 +21,12 @@ namespace Server
         /// <param name="args"> arguments from user. </param>
         static void Main(string[] args)
         {
+            int port = int.Parse(ConfigurationManager.AppSettings["port"]);
+
             Controller controller = new Controller();
             IModel model = new MazeModel(controller);
             IClientHandler handler = new ClientHandler(controller);
-            view.Server server = new view.Server(12345, handler);
+            view.Server server = new view.Server(port, handler);
 
             controller.Model = model;
             controller.View = handler;

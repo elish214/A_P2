@@ -10,7 +10,7 @@ namespace Client
     /// <summary>
     /// Commands' interface.
     /// </summary>
-    public interface ICommand
+    public interface IClientCommand
     {
         /// <summary>
         /// Excute command. called by controller.
@@ -19,6 +19,6 @@ namespace Client
         /// <param name="running"> a boolean whether to stay connected. </param>
         /// <param name="client"> the client it's assosiated with. </param>
         /// <returns> a string to send back. </returns>
-        string Execute(string command, ref bool running, TcpClient client);
+        string Execute(string command, ref bool running);
     }
 }

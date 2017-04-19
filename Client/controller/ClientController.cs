@@ -13,30 +13,30 @@ namespace Client.controller
     /// <summary>
     /// Controller class
     /// </summary>
-    public class Controller : IController
+    public class ClientController : IClientController
     {
         //public TcpClient Client { get; set; }
         /// <summary>
         /// Holds the view it's assosiated with.
         /// </summary>
-        public IHandler View { get; set; }
+        public IServerHandler View { get; set; }
 
         /// <summary>
         ///  Holds the model it's assosiated with.
         /// </summary>
-        public IModel Model { get; set; }
+        public IClientModel Model { get; set; }
 
         /// <summary>
         /// Holds a dictionary of commands.
         /// </summary>
-        private Dictionary<string, ICommand> commands;
+        private Dictionary<string, IClientCommand> commands;
 
         /// <summary>
         /// Constructor. initialize commands.
         /// </summary>
         public void BuildCommands()
         {
-            commands = new Dictionary<string, ICommand>
+            commands = new Dictionary<string, IClientCommand>
             {
                 {"generate", new GenerateCommand(Model) },
                 {"solve", new SolveCommand(Model) },
@@ -55,7 +55,7 @@ namespace Client.controller
         /// <param name="running"> a boolean whether to stay connected. </param>
         /// <param name="client"> the client it's assosiated with. </param>
         /// <returns> a string to send back. </returns>
-        public string ExecuteCommand(string commandLine, ref bool running, TcpClient client)
+        public string ExecuteCommand(string commandLine, ref bool running)
         {
             string[] arr = commandLine.Split(' ');
             string commandKey = arr[0];
@@ -64,9 +64,17 @@ namespace Client.controller
                 return "Command not found";
 
             string[] args = arr.Skip(1).ToArray();
-            ICommand command = commands[commandKey];
+            IClientCommand command = commands[commandKey];
 
-            return command.Execute(commandLine, ref running, client);
+            return command.Execute(commandLine, ref running);
+        }
+
+        /// <summary>
+        /// Initialize and run task through view.
+        /// </summary>
+        public void RunTask()
+        {
+            View.RunTask();
         }
     }
 }
