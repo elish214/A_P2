@@ -17,17 +17,27 @@ namespace Server.model
     /// <summary>
     /// Model class.
     /// </summary>
-    public class MazeModel : IModel
+    public class MazeModel : IServerModel
     {
         /// <summary>
         /// Holds the controller it's assosiated with.
         /// </summary>
-        public Controller Controller { get; }
+        public ServerController Controller { get; }
 
         /// <summary>
-        /// Holds a dictionary of games' names to it's games.
+        /// Holds a dictionary of multiplayer games' names to it's games.
         /// </summary>
-        public Dictionary<string, MazeGame> Games { get; }
+        public Dictionary<string, MazeGame> MultiGames { get; }
+
+        /// <summary>
+        /// Holds a dictionary of pending games' names to it's games.
+        /// </summary>
+        public Dictionary<string, MazeGame> PendingGames { get; }
+
+        /// <summary>
+        /// Holds a dictionary of single player games' names to it's games.
+        /// </summary>
+        public Dictionary<string, MazeGame> SingleGames { get; }
 
         /// <summary>
         /// Holds a dictionary of clients to it's games.
@@ -38,10 +48,14 @@ namespace Server.model
         /// Constructor.
         /// </summary>
         /// <param name="controller"> a controller. </param>
-        public MazeModel(Controller controller)
+        public MazeModel(ServerController controller)
         {
             Controller = controller;
-            Games = new Dictionary<string, MazeGame>();
+
+            MultiGames = new Dictionary<string, MazeGame>();
+            PendingGames = new Dictionary<string, MazeGame>();
+            SingleGames = new Dictionary<string, MazeGame>();
+
             Players = new Dictionary<TcpClient, MazeGame>();
         }
 
@@ -56,15 +70,16 @@ namespace Server.model
 
             game.Maze.Name = name;
             game.Players[client] = game.Maze.InitialPos;
-            Players[client] = game;
-            Games[name] = game;
+            //Players[client] = game;
+            SingleGames[name] = game;
 
             return game.Maze;
         }
 
-        public MazeSolution Solve(string name, ISearcher<Position> searcher)
+        public MazeSolution Solve(string name, ISearcher<Position> searcher, TcpClient client)
         {
-            MazeGame game = Games[name];
+            MazeGame game = Players.ContainsKey(client) ? Players[client] : SingleGames[name];
+
 
             if (game.Solution == null)
             {
@@ -88,20 +103,22 @@ namespace Server.model
             game.Maze.Name = name;
             game.Players[client] = game.Maze.InitialPos;
             Players[client] = game;
-            Games[name] = game;
+            PendingGames[name] = game;
         }
 
         public List<string> List()
         {
-            return Games.Keys.ToList();
+            return PendingGames.Keys.ToList();
         }
 
         public Maze Join(string name, TcpClient client)
         {
-            MazeGame game = Games[name];
+            MazeGame game = PendingGames[name];
 
             game.Players[client] = game.Maze.InitialPos;
             Players[client] = game;
+            MultiGames[name] = game;
+            PendingGames.Remove(name);
 
             Controller.Send(game.Maze.ToJSON(), game.Players.Keys.ToList()[0]);
 
@@ -170,7 +187,7 @@ namespace Server.model
 
         public void Close(string name, TcpClient client)
         {
-            MazeGame game = Games[name];
+            MazeGame game = MultiGames[name];
 
             //notify other player about pos change
             foreach (TcpClient c in game.Players.Keys)
@@ -183,6 +200,8 @@ namespace Server.model
                     c.Close();
                 }
             }
+
+            MultiGames.Remove(name);
         }
     }
 }

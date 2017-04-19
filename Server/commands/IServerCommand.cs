@@ -11,7 +11,7 @@ namespace Server.commands
     /// <summary>
     /// Commands' interface.
     /// </summary>
-    public interface ICommand
+    public interface IServerCommand
     {
         /// <summary>
         /// Excute command. called by controller.

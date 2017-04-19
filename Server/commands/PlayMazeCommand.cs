@@ -14,18 +14,18 @@ namespace Server.commands
     /// <summary>
     /// Play maze command class.
     /// </summary>
-    class PlayMazeCommand : ICommand
+    class PlayMazeCommand : IServerCommand
     {
         /// <summary>
         /// Holds the model it's assosiated with.
         /// </summary>
-        private IModel model;
+        private IServerModel model;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="model"> the model it's assosiated with. </param>
-        public PlayMazeCommand(IModel model)
+        public PlayMazeCommand(IServerModel model)
         {
             this.model = model;
         }
@@ -38,11 +38,21 @@ namespace Server.commands
         /// <returns> a result to send back to client. </returns>
         public Result Execute(string[] args, TcpClient client = null)
         {
-            Enum.TryParse(args[0].First().ToString().ToUpper() + args[0].Substring(1), out Direction direction);
+            try
+            {
+                if(!Enum.TryParse(args[0].First().ToString().ToUpper() + args[0].Substring(1), out Direction direction))
+                {
+                    throw new FormatException();
+                }
 
-            model.Play(direction, client);
+                model.Play(direction, client);
 
-            return new Result(Status.Keep, "");
+                return new Result(Status.Keep, "");
+            }
+            catch (Exception e)
+            {
+                return Result.Error;
+            }
         }
     }
 }

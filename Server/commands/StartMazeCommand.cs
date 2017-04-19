@@ -15,18 +15,18 @@ namespace Server.commands
     /// <summary>
     /// Start maze command class.
     /// </summary>
-    public class StartMazeCommand : ICommand
+    public class StartMazeCommand : IServerCommand
     {
         /// <summary>
         /// Holds the model it's assosiated with.
         /// </summary>
-        private IModel model;
+        private IServerModel model;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="model"> the model it's assosiated with. </param>
-        public StartMazeCommand(IModel model)
+        public StartMazeCommand(IServerModel model)
         {
             this.model = model;
         }
@@ -39,14 +39,20 @@ namespace Server.commands
         /// <returns> a result to send back to client. </returns>
         public Result Execute(string[] args, TcpClient client = null)
         {
-            string name = args[0];
-            int rows = int.Parse(args[1]);
-            int cols = int.Parse(args[2]);
+            try
+            {
+                string name = args[0];
+                int rows = int.Parse(args[1]);
+                int cols = int.Parse(args[2]);
 
-            model.Start(name, rows, cols, client);
+                model.Start(name, rows, cols, client);
 
-            return new Result(Status.Open, "");
-
+                return new Result(Status.Open, "");
+            }
+            catch (Exception e)
+            {
+                return Result.Error;
+            }
         }
     }
 }

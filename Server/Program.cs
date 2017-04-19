@@ -20,8 +20,8 @@ namespace Server
         /// <param name="args"> arguments from user. </param>
         static void Main(string[] args)
         {
-            Controller controller = new Controller();
-            IModel model = new MazeModel(controller);
+            ServerController controller = new ServerController();
+            IServerModel model = new MazeModel(controller);
             IClientHandler handler = new ClientHandler(controller);
             view.Server server = new view.Server(12345, handler);
 

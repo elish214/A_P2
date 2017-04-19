@@ -12,18 +12,18 @@ namespace Server.commands
     /// <summary>
     /// Close maze command class.
     /// </summary>
-    public class CloseMazeCommand : ICommand
+    public class CloseMazeCommand : IServerCommand
     {
         /// <summary>
         /// Holds the model it's assosiated with.
         /// </summary>
-        private IModel model;
+        private IServerModel model;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="model"> the model it's assosiated with. </param>
-        public CloseMazeCommand(IModel model)
+        public CloseMazeCommand(IServerModel model)
         {
             this.model = model;
         }
@@ -36,11 +36,18 @@ namespace Server.commands
         /// <returns> a result to send back to client. </returns>
         public Result Execute(string[] args, TcpClient client = null)
         {
-            string name = args[0];
+            try
+            {
+                string name = args[0];
 
-            model.Close(name, client);
+                model.Close(name, client);
 
-            return new Result(Status.Close, " ");
+                return new Result(Status.Close, " ");
+            }
+            catch (Exception e)
+            {
+                return Result.Error;
+            }
         }
     }
 }

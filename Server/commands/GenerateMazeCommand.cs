@@ -14,18 +14,18 @@ namespace Server.commands
     /// <summary>
     /// Generate maze command class.
     /// </summary>
-    public class GenerateMazeCommand : ICommand
+    public class GenerateMazeCommand : IServerCommand
     {
         /// <summary>
         /// Holds the model it's assosiated with.
         /// </summary>
-        private IModel model;
+        private IServerModel model;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="model"> the model it's assosiated with. </param>
-        public GenerateMazeCommand(IModel model)
+        public GenerateMazeCommand(IServerModel model)
         {
             this.model = model;
         }

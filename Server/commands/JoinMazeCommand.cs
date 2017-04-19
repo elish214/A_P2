@@ -13,18 +13,18 @@ namespace Server.commands
     /// <summary>
     /// Join maze command class.
     /// </summary>
-    public class JoinMazeCommand : ICommand
+    public class JoinMazeCommand : IServerCommand
     {
         /// <summary>
         /// Holds the model it's assosiated with.
         /// </summary>
-        private IModel model;
+        private IServerModel model;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="model"> the model it's assosiated with.</param>
-        public JoinMazeCommand(IModel model)
+        public JoinMazeCommand(IServerModel model)
         {
             this.model = model;
         }
@@ -37,10 +37,16 @@ namespace Server.commands
         /// <returns> a result to send back to client. </returns>
         public Result Execute(string[] args, TcpClient client = null)
         {
-            string name = args[0];
+            try
+            {
+                string name = args[0];
 
-            return new Result(Status.Open, model.Join(name, client).ToJSON());
-            
+                return new Result(Status.Open, model.Join(name, client).ToJSON());
+            }
+            catch (Exception e)
+            {
+                return Result.Error;
+            }
         }
     }
 }

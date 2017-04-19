@@ -13,12 +13,12 @@ namespace Server.controller
     /// <summary>
     /// Controller's class.
     /// </summary>
-    public class Controller : IController
+    public class ServerController : IServerController
     {
         /// <summary>
         /// Holds the model it's assosiated with.
         /// </summary>
-        public IModel Model { get; set; }
+        public IServerModel Model { get; set; }
         
         /// <summary>
         /// Holds the view it's assosiated with.
@@ -28,14 +28,14 @@ namespace Server.controller
         /// <summary>
         /// Holds a dictionary of commands.
         /// </summary>
-        private Dictionary<string, ICommand> commands;
+        private Dictionary<string, IServerCommand> commands;
 
         /// <summary>
         /// Constructor. initialize commands.
         /// </summary>
         public void BuildCommands()
         {
-            commands = new Dictionary<string, ICommand>
+            commands = new Dictionary<string, IServerCommand>
                 {
                     { "generate", new GenerateMazeCommand(Model) },
                     { "solve", new SolveMazeCommand(Model) },
@@ -62,7 +62,7 @@ namespace Server.controller
                 return Result.Error;
 
             string[] args = arr.Skip(1).ToArray();
-            ICommand command = commands[commandKey];
+            IServerCommand command = commands[commandKey];
 
             return command.Execute(args, client);
         }

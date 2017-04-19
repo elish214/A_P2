@@ -16,7 +16,7 @@ namespace Server.commands
     /// <summary>
     /// Solve maze command class.
     /// </summary>
-    public class SolveMazeCommand : ICommand
+    public class SolveMazeCommand : IServerCommand
     {
         /// <summary>
         /// An enum for clearer code.
@@ -26,13 +26,13 @@ namespace Server.commands
         /// <summary>
         /// Holds the model it's assosiated with.
         /// </summary>
-        private IModel model;
+        private IServerModel model;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="model"> the model it's assosiated with. </param>
-        public SolveMazeCommand(IModel model)
+        public SolveMazeCommand(IServerModel model)
         {
             this.model = model;
         }
@@ -45,24 +45,34 @@ namespace Server.commands
         /// <returns> a result to send back to client. </returns>
         public Result Execute(string[] args, TcpClient client = null)
         {
-            string name = args[0];
-            int algo = int.Parse(args[1]);
-
-            ISearcher<Position> searcher = null;
-            SearchAlgo search = (SearchAlgo)algo;
-
-            switch (search)
+            try
             {
-                case SearchAlgo.Bfs:
-                    searcher = new BFS<Position, int>((s1, s2) => 1, (i, j) => i + j);
-                    break;
+                string name = args[0];
+                int algo = int.Parse(args[1]);
 
-                case SearchAlgo.Dfs:
-                    searcher = new DFS<Position>();
-                    break;
+                ISearcher<Position> searcher = null;
+                SearchAlgo search = (SearchAlgo)algo;
+
+                switch (search)
+                {
+                    case SearchAlgo.Bfs:
+                        searcher = new BFS<Position, int>((s1, s2) => 1, (i, j) => i + j);
+                        break;
+
+                    case SearchAlgo.Dfs:
+                        searcher = new DFS<Position>();
+                        break;
+
+                    default:
+                        throw new FormatException();
+                }
+
+                return new Result(Status.Keep, model.Solve(name, searcher, client).ToJSON());
             }
-
-            return new Result(Status.Keep, model.Solve(name, searcher).ToJSON());
+            catch (Exception e)
+            {
+                return Result.Error;
+            }
         }
     }
 }
