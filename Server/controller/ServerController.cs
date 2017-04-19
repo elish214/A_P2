@@ -59,7 +59,7 @@ namespace Server.controller
             string commandKey = arr[0];
 
             if (!commands.ContainsKey(commandKey))
-                return Result.Error;
+                return Result.SyntaxError;
 
             string[] args = arr.Skip(1).ToArray();
             IServerCommand command = commands[commandKey];
