@@ -17,32 +17,59 @@ namespace Server.model
     public interface IServerModel
     {
         /// <summary>
-        /// Holds the controller it's assosiated with.
+        /// Generates single player maze game.
         /// </summary>
-        IServerController Controller { get; }
-
-        /// <summary>
-        /// Holds a dictionary of games' names to it's games.
-        /// </summary>
-        Dictionary<string, MazeGame> MultiGames { get; }
-
-        /// <summary>
-        /// Holds a dictionary of clients to it's games.
-        /// </summary>
-        Dictionary<TcpClient, MazeGame> Players { get; }
-
+        /// <param name="name">maze name</param>
+        /// <param name="rows">maze rows</param>
+        /// <param name="cols">maze cols</param>
+        /// <param name="client">maze player</param>
+        /// <returns>new maze</returns>
         Maze Generate(String name, int rows, int cols, TcpClient client);
 
+        /// <summary>
+        /// Solves maze.
+        /// </summary>
+        /// <param name="name">maze name</param>
+        /// <param name="searcher">searcher to use</param>
+        /// <param name="client">maze player</param>
+        /// <returns>solution</returns>
         MazeSolution Solve(string name, ISearcher<Position> searcher, TcpClient client);
 
+        /// <summary>
+        /// Starts multiplayer maze game.
+        /// </summary>
+        /// <param name="name">maze name</param>
+        /// <param name="rows">maze rows</param>
+        /// <param name="cols">maze cols</param>
+        /// <param name="client">maze player</param>
         void Start(String name, int rows, int cols, TcpClient client);
 
+        /// <summary>
+        /// Gets list of pending games.
+        /// </summary>
+        /// <returns>list of pending games</returns>
         List<string> List();
 
+        /// <summary>
+        /// Joins a pending game.
+        /// </summary>
+        /// <param name="name">game name</param>
+        /// <param name="client">player</param>
+        /// <returns>new maze</returns>
         Maze Join(String name, TcpClient client);
 
+        /// <summary>
+        /// Play a single move.
+        /// </summary>
+        /// <param name="direction">move dircection</param>
+        /// <param name="client">player played</param>
         void Play(Direction direction, TcpClient client);
 
+        /// <summary>
+        /// Closes multiplayer game.
+        /// </summary>
+        /// <param name="name">game name</param>
+        /// <param name="client">player</param>
         void Close(String name, TcpClient client);
     }
 }

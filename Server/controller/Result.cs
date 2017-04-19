@@ -16,17 +16,43 @@ namespace Server.controller
     /// </summary>
     public class Result
     {
-        private static Result error;
+        /// <summary>
+        /// Holds syntax error singleton.
+        /// </summary>
+        private static Result syntaxError;
 
-        public static Result Error
+        /// <summary>
+        /// syntax error singleton propery.
+        /// </summary>
+        public static Result SyntaxError
         {
             get
             {
-                if (error == null)
+                if (syntaxError == null)
                 {
-                    error = new Result(Status.Keep, "Command not found");
+                    syntaxError = new Result(Status.Keep, "Command not found");
                 }
-                return error;
+                return syntaxError;
+            }
+        }
+
+        /// <summary>
+        /// Holds connection error.
+        /// </summary>
+        private static Result connectionError;
+
+        /// <summary>
+        /// Connection error singleton propery.
+        /// </summary>
+        public static Result ConnectionError
+        {
+            get
+            {
+                if (connectionError == null)
+                {
+                    connectionError = new Result(Status.Close, "Connection failed");
+                }
+                return connectionError;
             }
         }
 

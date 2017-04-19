@@ -46,7 +46,7 @@ namespace Server.commands
             }
             catch (Exception e)
             {
-                return Result.Error;
+                return Result.SyntaxError;
             }
         }
     }

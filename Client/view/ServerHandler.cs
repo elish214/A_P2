@@ -129,6 +129,11 @@ namespace Client.view
                             Console.WriteLine("need to close");
                             break;
                         }
+                        if(result == "Connection failed")
+                        {
+                            //Console.WriteLine("Connection failed");
+                            break;
+                        }
                     } while (true);
                 }
                 finally

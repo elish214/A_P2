@@ -59,6 +59,14 @@ namespace Server.model
             Players = new Dictionary<TcpClient, MazeGame>();
         }
 
+        /// <summary>
+        /// Generates single player maze game.
+        /// </summary>
+        /// <param name="name">maze name</param>
+        /// <param name="rows">maze rows</param>
+        /// <param name="cols">maze cols</param>
+        /// <param name="client">maze player</param>
+        /// <returns>new maze</returns>
         public Maze Generate(string name, int rows, int cols, TcpClient client)
         {
             MazeGame game = new MazeGame()
@@ -76,6 +84,13 @@ namespace Server.model
             return game.Maze;
         }
 
+        /// <summary>
+        /// Solves maze.
+        /// </summary>
+        /// <param name="name">maze name</param>
+        /// <param name="searcher">searcher to use</param>
+        /// <param name="client">maze player</param>
+        /// <returns>solution</returns>
         public MazeSolution Solve(string name, ISearcher<Position> searcher, TcpClient client)
         {
             MazeGame game = Players.ContainsKey(client) ? Players[client] : SingleGames[name];
@@ -91,6 +106,13 @@ namespace Server.model
             return game.Solution;
         }
 
+        /// <summary>
+        /// Starts multiplayer maze game.
+        /// </summary>
+        /// <param name="name">maze name</param>
+        /// <param name="rows">maze rows</param>
+        /// <param name="cols">maze cols</param>
+        /// <param name="client">maze player</param>
         public void Start(string name, int rows, int cols, TcpClient client)
         {
             MazeGame game = new MazeGame()
@@ -106,11 +128,21 @@ namespace Server.model
             PendingGames[name] = game;
         }
 
+        /// <summary>
+        /// Gets list of pending games.
+        /// </summary>
+        /// <returns>list of pending games</returns>
         public List<string> List()
         {
             return PendingGames.Keys.ToList();
         }
 
+        /// <summary>
+        /// Joins a pending game.
+        /// </summary>
+        /// <param name="name">game name</param>
+        /// <param name="client">player</param>
+        /// <returns>new maze</returns>
         public Maze Join(string name, TcpClient client)
         {
             MazeGame game = PendingGames[name];
@@ -125,6 +157,11 @@ namespace Server.model
             return game.Maze;
         }
 
+        /// <summary>
+        /// Play a single move.
+        /// </summary>
+        /// <param name="direction">move dircection</param>
+        /// <param name="client">player played</param>
         public void Play(Direction direction, TcpClient client)
         {
             MazeGame game = Players[client];
@@ -185,6 +222,11 @@ namespace Server.model
             }
         }
 
+        /// <summary>
+        /// Closes multiplayer game.
+        /// </summary>
+        /// <param name="name">game name</param>
+        /// <param name="client">player</param>
         public void Close(string name, TcpClient client)
         {
             MazeGame game = MultiGames[name];
@@ -193,12 +235,10 @@ namespace Server.model
             foreach (TcpClient c in game.Players.Keys)
             {
                 Console.WriteLine("trying send close...");
-                if (c != client)
-                {
-                    Controller.Send(" ", c);
-                    Console.WriteLine("sent close");
-                    c.Close();
-                }
+                Controller.Send(" ", c);
+                Console.WriteLine("sent close");
+                c.Close();
+
             }
 
             MultiGames.Remove(name);
