@@ -11,12 +11,12 @@ namespace Server.controller
     /// <summary>
     /// Controllers' interface.
     /// </summary>
-    public interface IController
+    public interface IServerController
     {
         /// <summary>
         /// Holds the model it's assosiated with.
         /// </summary>
-        IModel Model { get; }
+        IServerModel Model { get; }
 
         /// <summary>
         /// Excution command. parsing and excuting recieved commands.

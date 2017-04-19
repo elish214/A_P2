@@ -17,13 +17,13 @@ namespace Server.view
         /// <summary>
         /// Holds the controller it's assosiated with.
         /// </summary>
-        private IController controller;
+        private IServerController controller;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="controller"> a controller. </param>
-        public ClientHandler(IController controller)
+        public ClientHandler(IServerController controller)
         {
             this.controller = controller;
         }

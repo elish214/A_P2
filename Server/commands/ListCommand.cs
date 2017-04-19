@@ -12,18 +12,18 @@ namespace Server.commands
     /// <summary>
     /// List command class.
     /// </summary>
-    public class ListCommand : ICommand
+    public class ListCommand : IServerCommand
     {
         /// <summary>
         /// Holds the model it's assosiated with.
         /// </summary>
-        private IModel model;
+        private IServerModel model;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="model"> the model it's assosiated with. </param>
-        public ListCommand(IModel model)
+        public ListCommand(IServerModel model)
         {
             this.model = model;
         }
@@ -36,11 +36,18 @@ namespace Server.commands
         /// <returns> a result to send back to client. </returns>
         public Result Execute(string[] args, TcpClient client = null)
         {
-            if (model.List().Count == 0)
+            try
             {
-                return new Result(Status.Keep, "");
+                if (model.List().Count == 0)
+                {
+                    return new Result(Status.Keep, "");
+                }
+                return new Result(Status.Keep, model.List().Aggregate((result, next) => $"{result}\n{next}"));
             }
-            return new Result(Status.Keep, model.List().Aggregate((result, next) => $"{result}\n{next}"));
+            catch (Exception e)
+            {
+                return Result.Error;
+            }
         }
     }
 }

@@ -14,17 +14,17 @@ namespace Server.model
     /// <summary>
     /// Model interface.
     /// </summary>
-    public interface IModel
+    public interface IServerModel
     {
         /// <summary>
         /// Holds the controller it's assosiated with.
         /// </summary>
-        Controller Controller { get; }
+        ServerController Controller { get; }
 
         /// <summary>
         /// Holds a dictionary of games' names to it's games.
         /// </summary>
-        Dictionary<string, MazeGame> Games { get; }
+        Dictionary<string, MazeGame> MultiGames { get; }
 
         /// <summary>
         /// Holds a dictionary of clients to it's games.
@@ -33,7 +33,7 @@ namespace Server.model
 
         Maze Generate(String name, int rows, int cols, TcpClient client);
 
-        MazeSolution Solve(string name, ISearcher<Position> searcher);
+        MazeSolution Solve(string name, ISearcher<Position> searcher, TcpClient client);
 
         void Start(String name, int rows, int cols, TcpClient client);
 

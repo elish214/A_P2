@@ -58,11 +58,11 @@
     <Compile Include="commands\PlayMazeCommand.cs" />
     <Compile Include="commands\SolveMazeCommand.cs" />
     <Compile Include="commands\StartMazeCommand.cs" />
-    <Compile Include="controller\Controller.cs" />
+    <Compile Include="controller\ServerController.cs" />
     <Compile Include="view\IClientHandler.cs" />
-    <Compile Include="commands\ICommand.cs" />
-    <Compile Include="controller\IController.cs" />
-    <Compile Include="model\IModel.cs" />
+    <Compile Include="commands\IServerCommand.cs" />
+    <Compile Include="controller\IServerController.cs" />
+    <Compile Include="model\IServerModel.cs" />
     <Compile Include="model\MazeGame.cs" />
     <Compile Include="model\MazeModel.cs" />
     <Compile Include="Program.cs" />
