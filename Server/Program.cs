@@ -23,8 +23,8 @@ namespace Server
         {
             int port = int.Parse(ConfigurationManager.AppSettings["port"]);
 
-            Controller controller = new Controller();
-            IModel model = new MazeModel(controller);
+            ServerController controller = new ServerController();
+            IServerModel model = new MazeModel(controller);
             IClientHandler handler = new ClientHandler(controller);
             view.Server server = new view.Server(port, handler);
 

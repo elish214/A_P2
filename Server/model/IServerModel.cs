@@ -19,7 +19,7 @@ namespace Server.model
         /// <summary>
         /// Holds the controller it's assosiated with.
         /// </summary>
-        ServerController Controller { get; }
+        IServerController Controller { get; }
 
         /// <summary>
         /// Holds a dictionary of games' names to it's games.

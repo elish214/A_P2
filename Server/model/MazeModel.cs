@@ -22,7 +22,7 @@ namespace Server.model
         /// <summary>
         /// Holds the controller it's assosiated with.
         /// </summary>
-        public ServerController Controller { get; }
+        public IServerController Controller { get; }
 
         /// <summary>
         /// Holds a dictionary of multiplayer games' names to it's games.
@@ -48,7 +48,7 @@ namespace Server.model
         /// Constructor.
         /// </summary>
         /// <param name="controller"> a controller. </param>
-        public MazeModel(ServerController controller)
+        public MazeModel(IServerController controller)
         {
             Controller = controller;
 
