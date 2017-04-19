@@ -17,7 +17,7 @@ namespace Client
     public class Client
     {
         /// <summary>
-        /// Holds it IP adress.
+        /// Holds it IP address.
         /// </summary>
         private IPAddress IP;
 
