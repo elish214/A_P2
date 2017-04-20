@@ -32,7 +32,6 @@ namespace Client.commands
         /// </summary>
         /// <param name="command"> input command line. </param>
         /// <param name="running"> a boolean whether to stay connected. </param>
-        /// <param name="client"> the client it's assosiated with. </param>
         /// <returns> a string to send back. </returns>
         public string Execute(string command, ref bool running)
         {

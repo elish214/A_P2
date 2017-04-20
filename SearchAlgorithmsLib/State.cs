@@ -16,9 +16,7 @@ namespace SearchAlgorithmsLib
         /// Holds the specific type of state it is.
         /// </summary>
         public T TState { get; set; } // the state representation
-        //public double Cost { get; set; } // cost to reach this state (set by a setter)
-        //public State<T> CameFrom { get; set; } // the state we came from to this state (setter)
-
+        
         /// <summary>
         /// Constructor. 
         /// </summary>
@@ -77,12 +75,8 @@ namespace SearchAlgorithmsLib
                 if (!pool.ContainsKey(t))
                 {
                     pool[t] = new State<T>(t);
-                    Console.WriteLine(" created");
                 }
-                else
-                {
-                    Console.WriteLine(" found");
-                }
+              
                 return pool[t];
             }
         }

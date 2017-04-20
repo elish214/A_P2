@@ -17,7 +17,7 @@ namespace Client.view
     public class ServerHandler : IServerHandler
     {
         /// <summary>
-        /// A string.
+        /// Holds a string for commands.
         /// </summary>
         private string commandLine;
 
@@ -64,6 +64,7 @@ namespace Client.view
         /// <summary>
         /// Handle the client.
         /// </summary>
+        /// <param name="IP"> the IP address of client. </param>
         /// <param name="port"> the port it communicate through. </param>
         public void Handle(IPAddress IP, int port)
         {
@@ -122,7 +123,6 @@ namespace Client.view
         /// <summary>
         /// Run task.
         /// </summary>
-        /// <param name="client"> the client that the task is assosiated with. </param>
         public void RunTask()
         {
             Task = new Task(() =>

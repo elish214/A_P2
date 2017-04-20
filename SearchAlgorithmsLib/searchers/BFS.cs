@@ -32,7 +32,7 @@ namespace SearchAlgorithmsLib.searchers
         public override Solution<T> Search(ISearchable<T> searchable)
         { // Searcher's abstract method overriding
             State<T> state = searchable.GetInitialState();
-            //HashSet<State<T>> closed = new HashSet<State<T>>();
+           
             Cost[state] = default(S);
             AddToOpenList(state); // inherited from Searcher
 
