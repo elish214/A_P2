@@ -41,6 +41,11 @@ namespace Server.commands
         {
             try
             {
+                if(args.Count() > 3)
+                {
+                    throw new FormatException();
+                }
+
                 string name = args[0];
                 int rows = int.Parse(args[1]);
                 int cols = int.Parse(args[2]);

@@ -40,7 +40,12 @@ namespace Server.commands
         {
             try
             {
-                if(!Enum.TryParse(args[0].First().ToString().ToUpper() + args[0].Substring(1), out Direction direction))
+                if (args.Count() > 1)
+                {
+                    throw new FormatException();
+                }
+
+                if (!Enum.TryParse(args[0].First().ToString().ToUpper() + args[0].Substring(1), out Direction direction))
                 {
                     throw new FormatException();
                 }

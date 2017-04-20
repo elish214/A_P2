@@ -39,6 +39,11 @@ namespace Server.commands
         {
             try
             {
+                if (args.Count() > 1)
+                {
+                    throw new FormatException();
+                }
+
                 string name = args[0];
 
                 return new Result(Status.Open, model.Join(name, client).ToJSON());

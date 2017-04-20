@@ -21,6 +21,10 @@ namespace Client.view
         /// </summary>
         private string commandLine;
 
+        private string result;
+
+        private bool running;
+
         /// <summary>
         /// Holds a Task.
         /// </summary>
@@ -44,8 +48,18 @@ namespace Client.view
         {
             Controller = controller;
             commandLine = "";
+            result = "";
+            running = false;
         }
 
+        private void ExecuteCommand()
+        {
+            if (!result.Equals("Command not found") && !result.Equals("Connection failed"))
+            {
+                Controller.ExecuteCommand(commandLine, ref running); //execute-command pattern by dict
+                //Console.WriteLine("EXECUTE COMMAND");
+            }
+        }
 
         /// <summary>
         /// Handle the client.
@@ -66,36 +80,41 @@ namespace Client.view
                 using (StreamWriter writer = new StreamWriter(stream))
                 {
                     writer.AutoFlush = true;
-                    bool running = false;
 
                     do
                     {
                         Console.Write("COMMAND: ");
                         if (commandLine == "")
+                        {
                             commandLine = Console.ReadLine();
+                        }
 
-                        string result = Controller.ExecuteCommand(commandLine, ref running); //execute-command pattern by dict
-                        writer.WriteLine(result);
-                        Console.WriteLine($"answer sent, {result}, run: {running}");
+                        writer.WriteLine(commandLine);
+                        //Console.WriteLine($"answer sent, {commandLine}, run: {running}");
 
                         if (!running)
                         {
                             do
                             {
-                                Console.WriteLine(reader.ReadLine());
+                                result = reader.ReadLine();
+                                Console.WriteLine(result);
                             } while (reader.Peek() >= 0);
+
+                            ExecuteCommand();
+                            //Console.WriteLine("EXECUTE MAIN THREAD");
                         }
+
                         commandLine = "";
                     } while (running);
                 }
             }
             catch (Exception e)
             {
-                e.GetBaseException();
+                //Console.WriteLine("THREAD EXCEPTION");
             }
             finally
             {
-                Console.WriteLine("not running");
+                //Console.WriteLine("not running");
                 Client.Close();
             }
         }
@@ -111,34 +130,46 @@ namespace Client.view
 
                 NetworkStream stream = Client.GetStream();
                 StreamReader reader = new StreamReader(stream);
-                StreamWriter writer = new StreamWriter(stream);
-
-                string result;
-                writer.AutoFlush = true;
+                StreamWriter writer = new StreamWriter(stream)
+                {
+                    AutoFlush = true
+                };
 
                 Console.WriteLine("started");
                 try
                 {
                     do
                     {
-                        result = reader.ReadLine();
-                        //result = reader.ReadLine();
-                        Console.WriteLine(result);
-                        if (result == " ")
+                        do
                         {
-                            Console.WriteLine("need to close");
-                            break;
-                        }
-                        if(result == "Connection failed")
-                        {
-                            //Console.WriteLine("Connection failed");
-                            break;
-                        }
+                            result = reader.ReadLine();
+                            //result = reader.ReadLine();
+                            Console.WriteLine(result);
+                            if (result == " ")
+                            {
+                                //Console.WriteLine("need to close");
+                                break;
+                            }
+                            if (result == "Connection failed")
+                            {
+                                //Console.WriteLine("Connection failed");
+                                break;
+                            }
+                        } while (reader.Peek() > 0);
+
+                        ExecuteCommand();
+                        //Console.WriteLine("EXECUTE TASK");
+
                     } while (true);
+                }
+                catch (Exception e)
+                {
+                    //Console.WriteLine("TASK EXCEPTION");
                 }
                 finally
                 {
-                    Console.WriteLine("byebye");
+                    //Console.WriteLine("byebye");
+                    running = false;
                 }
             });
             Task.Start();

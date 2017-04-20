@@ -93,8 +93,7 @@ namespace Server.model
         /// <returns>solution</returns>
         public MazeSolution Solve(string name, ISearcher<Position> searcher, TcpClient client)
         {
-            MazeGame game = Players.ContainsKey(client) ? Players[client] : SingleGames[name];
-
+            MazeGame game = MultiGames.ContainsKey(name) ? MultiGames[name] : SingleGames[name];
 
             if (game.Solution == null)
             {

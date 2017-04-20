@@ -38,9 +38,14 @@ namespace Server.commands
         {
             try
             {
+                if (args.Count() > 0)
+                {
+                    throw new FormatException();
+                }
+
                 if (model.List().Count == 0)
                 {
-                    return new Result(Status.Keep, "");
+                    return new Result(Status.Keep, " - NO GAMES AVAILABLE! - ");
                 }
                 return new Result(Status.Keep, model.List().Aggregate((result, next) => $"{result}\n{next}"));
             }

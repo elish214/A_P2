@@ -47,6 +47,11 @@ namespace Server.commands
         {
             try
             {
+                if (args.Count() > 2)
+                {
+                    throw new FormatException();
+                }
+
                 string name = args[0];
                 int algo = int.Parse(args[1]);
 

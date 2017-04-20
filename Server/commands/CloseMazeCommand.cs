@@ -38,6 +38,11 @@ namespace Server.commands
         {
             try
             {
+                if (args.Count() > 1)
+                {
+                    throw new FormatException();
+                }
+
                 string name = args[0];
 
                 model.Close(name, client);
@@ -46,6 +51,7 @@ namespace Server.commands
             }
             catch (Exception e)
             {
+                //Console.WriteLine("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                 return Result.SyntaxError;
             }
         }
