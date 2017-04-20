@@ -21,8 +21,14 @@ namespace Client.view
         /// </summary>
         private string commandLine;
 
+        /// <summary>
+        /// Holds a string for result.
+        /// </summary>
         private string result;
 
+        /// <summary>
+        /// Holds a boolean to know whether to run or not.
+        /// </summary>
         private bool running;
 
         /// <summary>
@@ -60,7 +66,7 @@ namespace Client.view
                 //Console.WriteLine("EXECUTE COMMAND");
             }
         }
-
+        
         /// <summary>
         /// Handle the client.
         /// </summary>
