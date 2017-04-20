@@ -21,13 +21,13 @@ namespace Client.view
         /// <summary>
         /// Handle the client.
         /// </summary>
+        /// <param name="IP"> the IP address of client. </param>
         /// <param name="port"> the port it communicate through. </param>
         void Handle(IPAddress IP, int port);
 
         /// <summary>
         /// Run task.
         /// </summary>
-        /// <param name="client"> the client that the task is assosiated with. </param>
         void RunTask();
     }
 }

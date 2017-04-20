@@ -23,7 +23,7 @@ namespace MazeComp
         {
             CompareSolvers();
 
-            Console.ReadKey(); //REMOVE BEFORE SUBMISSION
+            //Console.ReadKey(); 
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace MazeComp
         /// </summary>
         static void CompareSolvers()
         {
-            const int ROWS = 2, COLS = 3; //params
+            const int ROWS = 100, COLS = 100; //params
 
             //maze set up
             IMazeGenerator generator = new DFSMazeGenerator();
@@ -47,49 +47,8 @@ namespace MazeComp
 
             DFS<Position> dfs = new DFS<Position>();
             Solution<Position> dfsSol = dfs.Search(smaze);
-            Console.WriteLine($"DFS had: {dfs.GetNumberOfNodesEvaluated()}");
-
-            /*
-            Console.WriteLine();
-            MazeSolution ms = MazeSolution.FromSolution(dfsSol);
-            string str = MazeSolution.FromSolution(dfsSol).Solution.ToString();
-            Console.WriteLine(str);
-            Console.WriteLine();
-
-            str = ms.ToJSON();
-            Console.WriteLine(str);
-            Console.WriteLine();
-            
-            Console.WriteLine(MazeSolution.FromJSON(str).Solution.ToString());
-        
-            Console.WriteLine();
-            Move move = new Move();
-            move.MazeName = "BLA bla";
-            move.Direction = Direction.Right;           
-            Console.WriteLine();
-
-            string stri = move.ToJSON();
-            Console.WriteLine(stri);
-            Console.WriteLine();
-
-            Console.WriteLine(Move.FromJSON(stri).MazeName);
-            Console.WriteLine((int)Move.FromJSON(stri).Direction);
-            */
-
-
-            //print
-            /*
-            foreach (State<Position> s in bfsSol)
-            {
-                Console.WriteLine($"({s.TState.Row}, {s.TState.Col})");
-            }
-            
-            Console.WriteLine();
-            foreach (State<Position> s in dfsSol)
-            {
-                Console.WriteLine($"({s.TState.Row}, {s.TState.Col})");
-            }
-            */
+            Console.WriteLine($"DFS had: {dfs.GetNumberOfNodesEvaluated()}");       
+          
         }
 
     }
