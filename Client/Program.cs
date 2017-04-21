@@ -34,7 +34,6 @@ namespace Client
             controller.View = handler;
             controller.BuildCommands();
             client.Start();
-           
         }
     }
 }

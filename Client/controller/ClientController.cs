@@ -15,7 +15,6 @@ namespace Client.controller
     /// </summary>
     public class ClientController : IClientController
     {
-        //public TcpClient Client { get; set; }
         /// <summary>
         /// Holds the view it's assosiated with.
         /// </summary>

@@ -58,6 +58,9 @@ namespace Client.view
             running = false;
         }
 
+        /// <summary>
+        /// Execute current command.
+        /// </summary>
         private void ExecuteCommand()
         {
             if (!result.Equals("Command not found") && !result.Equals("Connection failed"))

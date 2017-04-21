@@ -51,7 +51,7 @@ namespace Server.commands
             }
             catch (Exception e)
             {
-                //Console.WriteLine("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                //Console.WriteLine("AAAAA");
                 return Result.SyntaxError;
             }
         }

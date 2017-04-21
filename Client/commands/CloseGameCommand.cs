@@ -37,7 +37,7 @@ namespace Client.commands
         public string Execute(string command, ref bool running)
         {
             running = false;
-            Console.WriteLine("CLOSEEEEEEEEEEEEEEEEEEEEEEEEEE");
+            Console.WriteLine("CLOSE");
             return command;
         }
     }
