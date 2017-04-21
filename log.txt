@@ -1,0 +1,346 @@
+commit e6615753a5e35acf6f8a1e98c3ae283e808b4510
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Thu Apr 20 19:36:08 2017 +0300
+
+    info.txt added
+
+commit dc36d3a081e0ced2d79675b43931a5d7da56256b
+Merge: 200cbaf f7fdf59
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Thu Apr 20 19:10:45 2017 +0300
+
+    merged.
+
+commit f7fdf590c6972f6a2601f22ae84df9ad49bd1943
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Thu Apr 20 19:01:36 2017 +0300
+
+    mostly fixed comments.
+
+commit 200cbaffd9b5a30810354cd31e9325732ea42c52
+Author: Raz <raz.s121@gmail.com>
+Date:   Thu Apr 20 15:21:19 2017 +0300
+
+    Close command validation fix and additional validation fixes
+
+commit ce3e5f4173e51f6c7932dd55b671fedea5e45572
+Author: Raz <raz.s121@gmail.com>
+Date:   Wed Apr 19 20:46:02 2017 +0300
+
+    misspelled
+
+commit b0bc27e1ea4faabce76ab326071063d75c120365
+Merge: effeef5 fcbde0b
+Author: Raz <raz.s121@gmail.com>
+Date:   Wed Apr 19 20:43:59 2017 +0300
+
+    Merge branch 'raz'
+
+commit effeef5149c97bdc8d3c499713a644217b63dd91
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Wed Apr 19 20:41:58 2017 +0300
+
+    app.config set.
+
+commit fcbde0b509ff08d08b99921a99c8e4931067d0bc
+Author: Raz <raz.s121@gmail.com>
+Date:   Wed Apr 19 20:41:49 2017 +0300
+
+    Start, Join validtion
+    comments
+
+commit 76e8b3ba834233708bb95ca8090e561e5fd5b071
+Author: Raz <raz.s121@gmail.com>
+Date:   Wed Apr 19 19:47:38 2017 +0300
+
+    merge complete
+
+commit aee5d389da1a745b0713286dd7ea1476beff04be
+Merge: 8d85dc7 2761ba1
+Author: Raz <raz.s121@gmail.com>
+Date:   Wed Apr 19 19:34:12 2017 +0300
+
+    merge
+
+commit 8d85dc763178327569a2cbd93d11fc5b8f2f714d
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Wed Apr 19 19:29:29 2017 +0300
+
+    renamed classes.
+    update app.config of server.
+
+commit 2761ba187b81b80f6173090d41dae911f0d4468e
+Author: Raz <raz.s121@gmail.com>
+Date:   Wed Apr 19 19:29:07 2017 +0300
+
+    Validation, Server renames
+
+commit 18ff381fbc8c341d01376de3e6abe10b846d4559
+Author: Raz <raz.s121@gmail.com>
+Date:   Wed Apr 19 18:16:16 2017 +0300
+
+    Commands-Model fix, Result error singleton
+
+commit 3dfa614c59aa353620621a5e54b605189dc55cf2
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Tue Apr 18 21:44:04 2017 +0300
+
+    close works.
+    play works.
+    
+    still need to fix all the little things.
+
+commit 64a146db869996e916b3932907575809f2a1e481
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Sun Apr 16 18:13:03 2017 +0300
+
+    comments added to allllllllllllllllllllllllllll classes.
+    
+    close works.
+    play not yet. threads closing in the back...
+    some important TODOS:
+    *seperate between multi and single players.
+    *asking for new game that already exist should announce for "name already taken".
+    *erase alllll mid-comments and dead code(mostly client)
+    *handle unknown command so that the console won't fall...
+    *add port number to app.config of both client and server.
+
+commit 26bfa61aff11be796d2c266225f2116c7e6ec6eb
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Sat Apr 15 22:37:34 2017 +0300
+
+    problamtic version
+
+commit 4238bab7923845c3e350ae1c1828d662dd7ea2aa
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Fri Apr 14 18:31:51 2017 +0300
+
+    MVC for client in process.
+    play and close not work yet.
+
+commit fed2aa6ec183b05fa3672d2424587c5b6090aeb4
+Author: Raz <raz.s121@gmail.com>
+Date:   Tue Apr 11 17:52:47 2017 +0300
+
+    Close command not working yet
+
+commit a8c5e096924a60da1e78cc33fabb917c5300010b
+Author: Raz <raz.s121@gmail.com>
+Date:   Tue Apr 11 02:54:09 2017 +0300
+
+    Play command now WORKS!
+
+commit 0bc7677a15ee9e12f18744e59c8107643e2115e4
+Merge: 0961661 de3f17b
+Author: Raz <raz.s121@gmail.com>
+Date:   Sun Apr 9 22:21:51 2017 +0300
+
+    Merge branch 'master' of https://github.com/elish214/A_P2
+
+commit 096166162120bccbd726a829cfcca19630f29ac9
+Author: Raz <raz.s121@gmail.com>
+Date:   Sun Apr 9 22:20:44 2017 +0300
+
+    Smarter commands, dumer model
+    generate, solve, start, list are now working
+
+commit de3f17bcdfceb13eb15a2e77c18afc4bae365049
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Sun Apr 9 04:41:43 2017 +0300
+
+    solution fixed
+
+commit 225f7292c295dfa131021d5726a67f0cd170b9fc
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Sat Apr 8 23:47:44 2017 +0300
+
+    updated DFS
+
+commit 954b5f28639220fa2bc82f07da8c9206ec4ee0ec
+Author: Raz <raz.s121@gmail.com>
+Date:   Sat Apr 8 20:08:24 2017 +0300
+
+    Mission A - making MazeComp as console app
+
+commit 2e38e037fe237d4b1c089bd0d949520d27daa056
+Author: Raz <raz.s121@gmail.com>
+Date:   Sat Apr 8 19:48:53 2017 +0300
+
+    Mission B - Initial client server coms
+
+commit 6b9e2a6af627c0dcc1cef0ae4f3698e7b6c5effc
+Author: Raz <raz.s121@gmail.com>
+Date:   Sat Apr 8 14:49:11 2017 +0300
+
+    MazeComp name fix!
+
+commit 896927426e61d72487e5532f36661131bc320c65
+Author: Raz <raz.s121@gmail.com>
+Date:   Sat Apr 8 14:35:36 2017 +0300
+
+    Revert "Play command fix"
+    
+    This reverts commit 4ae2eff96f44fd9af721e7963d28811c260341bd.
+
+commit b542004fc61cd303c57eb454e1fc1e927a61ece9
+Author: Raz <raz.s121@gmail.com>
+Date:   Sat Apr 8 14:35:05 2017 +0300
+
+    temp
+
+commit aa79c87670e201f5c763b712e21021dcd192e463
+Author: Raz <raz.s121@gmail.com>
+Date:   Sat Apr 8 14:33:56 2017 +0300
+
+    temp
+
+commit 4ae2eff96f44fd9af721e7963d28811c260341bd
+Author: Raz <raz.s121@gmail.com>
+Date:   Sat Apr 8 14:25:51 2017 +0300
+
+    Play command fix
+
+commit 6cee7c2f928a92b381d1ca82943bd9defb3e08d5
+Author: Raz <raz.s121@gmail.com>
+Date:   Sat Apr 8 14:20:19 2017 +0300
+
+    Some Server rearrangements
+
+commit 7c0f2e83d9bc7216ae02ad54e1a6df1bef64b46f
+Author: Raz <raz.s121@gmail.com>
+Date:   Sat Apr 8 13:58:11 2017 +0300
+
+    Mission A recap - StatePool, Generic Cost, Generic Search
+    - moved CameFrom to Searcher
+    - moved Cost to PrioritySearcher
+    - moved Closed to Searcher
+    - PrioritySearcher now accepts Comparable generic Cost, Weight delegate and Addition delegate
+
+commit 832a8b236e613af3cfe18425a1c0455f64fd5143
+Merge: 93d6d46 67ec0c8
+Author: Raz <raz.s121@gmail.com>
+Date:   Sat Apr 8 02:35:18 2017 +0300
+
+    Mission B - mid merge
+
+commit 67ec0c826fe5fe3ac8488c44ed88eb39e17b5e2b
+Author: Raz <raz.s121@gmail.com>
+Date:   Sat Apr 8 02:31:44 2017 +0300
+
+    Mission B - controller, server updates
+
+commit 93d6d467536c20e821c90f5a0e0268828fe3e5d9
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Fri Apr 7 16:44:36 2017 +0300
+
+    no harm done :)
+
+commit 5267b3a451931799bd3b3b57709916a71af765cf
+Author: Raz <raz.s121@gmail.com>
+Date:   Fri Apr 7 15:51:23 2017 +0300
+
+    Mission B - commands, model, controller, game, handler
+
+commit 8c6c95442752809b44d37e90809679a24e288597
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Thu Apr 6 21:58:03 2017 +0300
+
+    JSON added to MazeSolution and Move.
+
+commit 9edef80c46c2b2da40eff525f01ffc3ee0f284ec
+Merge: 0dba9f3 eb24dbe
+Author: Raz <raz.s121@gmail.com>
+Date:   Wed Apr 5 21:00:07 2017 +0300
+
+    Mission B - first merge
+
+commit eb24dbe28d71e6b630608cb27f98edd08345ae61
+Author: Raz <raz.s121@gmail.com>
+Date:   Wed Apr 5 20:54:54 2017 +0300
+
+    Mission B - start of MVC
+
+commit 0dba9f31dade8da1a94f05ad8c04e2cc89de4aac
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Wed Apr 5 20:52:14 2017 +0300
+
+    maze solution as directions.
+    need to add JSON to some classes.
+
+commit 3724a1dffe81a49f46f87a9f15b469a3d86b8598
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Wed Apr 5 17:24:22 2017 +0300
+
+    mission B began
+
+commit 3d665116ba1ed50766ba6d3bcba74c5642bcac42
+Author: Raz <raz.s121@gmail.com>
+Date:   Tue Apr 4 20:23:30 2017 +0300
+
+    mission a completed
+
+commit 534a87cdaceb9460dcb2ae8c13567ac5c1e7dc23
+Author: Raz <raz.s121@gmail.com>
+Date:   Tue Apr 4 19:22:18 2017 +0300
+
+    Mission A - SLOW
+
+commit 6a66d00152c0a2f1057a77738d51b1f6fb08c34e
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Tue Apr 4 01:17:53 2017 +0300
+
+    Mission A completed :)
+
+commit 9f38a54f14086df58f5c07585e4a67e46949b35a
+Author: Raz <raz.s121@gmail.com>
+Date:   Mon Apr 3 20:29:24 2017 +0300
+
+    Generic search framework and bfs
+
+commit 74c3440ef2484822d5764df60b43fdef2a474eac
+Author: Raz <raz.s121@gmail.com>
+Date:   Mon Apr 3 20:28:31 2017 +0300
+
+    Generic search framework and bfs
+
+commit 9b80ad3c210bc0bb1e637f424d65ea0f7fc244ad
+Author: Raz <raz.s121@gmail.com>
+Date:   Mon Apr 3 13:22:03 2017 +0300
+
+    try2
+
+commit 337584bf9a051d415ee5b6cec078223e6443c851
+Author: Raz <raz.s121@gmail.com>
+Date:   Mon Apr 3 12:58:50 2017 +0300
+
+    try1
+
+commit 69a4d3d9f9e591e3ab949e10c63c7316513deae4
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Sun Apr 2 00:45:04 2017 +0300
+
+    class library added.
+
+commit 5b7f8ad159274cf024fa17031e76cec5b3c8c212
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Sat Apr 1 21:03:39 2017 +0300
+
+    add reference dll.
+
+commit e77e145a851f3bae54701b5d0c8f27a673f82bb4
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Sat Apr 1 20:48:26 2017 +0300
+
+    starting
+
+commit 0e232d67ab991139639335b0616f4b18a3177c7c
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Sat Apr 1 20:37:06 2017 +0300
+
+    Add project files.
+
+commit 79becac127573d20e45295d5487829054e32a084
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Sat Apr 1 20:37:04 2017 +0300
+
+    Add .gitignore and .gitattributes.
