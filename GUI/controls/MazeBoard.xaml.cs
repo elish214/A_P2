@@ -12,17 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MazeComp;
 
 namespace GUI.controls
 {
     /// <summary>
-    /// Interaction logic for MazeControl.xaml
+    /// Interaction logic for MazeBoard.xaml
     /// </summary>
-    public partial class MazeControl : UserControl
+    public partial class MazeBoard : UserControl
     {
-        public MazeControl()
+        SearchableMaze Maze;
+        int Rows, Cols; 
+
+        public MazeBoard(SearchableMaze maze)
         {
             InitializeComponent();
+
         }
     }
 }

@@ -54,7 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="controls\MazeControl.xaml">
+    <Page Include="controls\MazeBoard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -66,8 +66,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="controls\MazeControl.xaml.cs">
-      <DependentUpon>MazeControl.xaml</DependentUpon>
+    <Compile Include="controls\MazeBoard.xaml.cs">
+      <DependentUpon>MazeBoard.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -100,5 +100,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MazeComp\MazeComp.csproj">
+      <Project>{5f38e099-2387-4a2c-ad79-2df03996817d}</Project>
+      <Name>MazeComp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SearchAlgorithmsLib\SearchAlgorithmsLib.csproj">
+      <Project>{8d4b5be6-9801-4e2b-b517-6c70795da338}</Project>
+      <Name>SearchAlgorithmsLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
