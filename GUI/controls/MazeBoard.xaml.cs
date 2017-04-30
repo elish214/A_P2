@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MazeGeneratorLib;
+using MazeLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MazeComp;
+
 
 namespace GUI.controls
 {
@@ -21,13 +23,90 @@ namespace GUI.controls
     /// </summary>
     public partial class MazeBoard : UserControl
     {
-        SearchableMaze Maze;
-        int Rows, Cols; 
+        public Maze Maze
+        {
+            get { return (Maze)GetValue(MazeProperty); }
+            set { SetValue(MazeProperty, value); }
+        }
 
-        public MazeBoard(SearchableMaze maze)
+        // Using a DependencyProperty as the backing store for Maze.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MazeProperty =
+            DependencyProperty.Register("Maze", typeof(Maze), typeof(MazeBoard), new UIPropertyMetadata(mazeChanged));
+
+        private static void mazeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            MazeBoard board = (MazeBoard)d;
+            board.DrawMaze();
+        }
+
+        private void DrawMaze()
+        {
+            Label[,] grid = new Label[Maze.Rows, Maze.Cols];
+
+            for (int i = 0; i < Maze.Rows; i++)
+            {
+                for (int j = 0; j < Maze.Cols; j++)
+                {
+                    grid[i, j] = new Label();
+                    Grid.SetRow(grid[i, j], i);
+                    Grid.SetColumn(grid[i, j], j);
+                    mazeGrid.Children.Add(grid[i, j]);
+                }
+            }
+
+            string s = Maze.ToString();
+
+            for (int i = 0; i < Maze.Rows; i++)
+            {
+                for (int j = 0; j < Maze.Cols; j++)
+                {
+
+                    int num = Maze.Rows * Maze.Cols + j;
+                    switch (s[num])
+                    {
+                        case '0':
+                            grid[i, j].Background = Brushes.White;
+                            break;
+                        case '1':
+                            grid[i, j].Background = Brushes.Black;
+                            break;
+                        case '#':
+                            grid[i, j].Background = Brushes.Blue;//end
+                            break;
+                        case '*':
+                            grid[i, j].Background = Brushes.Red;//start
+                            break;
+                    }
+                }
+            }
+        }
+
+        public MazeBoard() { }
+
+        public MazeBoard(Maze maze)
         {
             InitializeComponent();
 
+            Maze = maze;
+            
+            mazeGrid = new Grid();
+
+            for (int i = 0; i < Maze.Rows; i++)
+            {
+                RowDefinition row = new RowDefinition();
+                
+                mazeGrid.RowDefinitions.Add(row);
+            }
+
+            for (int j = 0; j < Maze.Cols; j++)
+            {
+                ColumnDefinition col = new ColumnDefinition();
+                mazeGrid.ColumnDefinitions.Add(col);
+            }
+
         }
+
+        //public function for any move.
+
     }
 }

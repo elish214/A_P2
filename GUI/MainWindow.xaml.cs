@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MazeGeneratorLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,9 @@ namespace GUI
         public MainWindow()
         {
             InitializeComponent();
+
+            this.mainControl.Content = new controls.MazeBoard(new DFSMazeGenerator().Generate(8, 8));
         }
+
     }
 }
