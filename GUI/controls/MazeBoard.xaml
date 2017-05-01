@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Viewbox>
         <Border BorderBrush="Black" BorderThickness="3">
-            <Grid x:Name="mazeGrid" Width="300" Height="300">
+            <Grid x:Name="mazeGrid" Width="300" Height="300" ShowGridLines="True">
 
             </Grid>
         </Border>

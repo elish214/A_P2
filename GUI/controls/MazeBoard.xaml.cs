@@ -81,29 +81,25 @@ namespace GUI.controls
             }
         }
 
-        public MazeBoard() { }
+        public MazeBoard()
+        {
+        }
 
         public MazeBoard(Maze maze)
         {
             InitializeComponent();
 
             Maze = maze;
-            
-            mazeGrid = new Grid();
 
-            for (int i = 0; i < Maze.Rows; i++)
+            for (int i = 0; i < maze.Cols; i++)
             {
-                RowDefinition row = new RowDefinition();
-                
-                mazeGrid.RowDefinitions.Add(row);
+                mazeGrid.ColumnDefinitions.Add(new ColumnDefinition());
             }
 
-            for (int j = 0; j < Maze.Cols; j++)
+            for (int i = 0; i < maze.Cols; i++)
             {
-                ColumnDefinition col = new ColumnDefinition();
-                mazeGrid.ColumnDefinitions.Add(col);
+                mazeGrid.RowDefinitions.Add(new RowDefinition());
             }
-
         }
 
         //public function for any move.
