@@ -96,7 +96,7 @@ namespace GUI.controls
                 mazeGrid.ColumnDefinitions.Add(new ColumnDefinition());
             }
 
-            for (int i = 0; i < maze.Cols; i++)
+            for (int i = 0; i < maze.Rows; i++)
             {
                 mazeGrid.RowDefinitions.Add(new RowDefinition());
             }
