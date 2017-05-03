@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -62,12 +63,15 @@
     </ApplicationDefinition>
     <Compile Include="model\IMPMenuModel.cs" />
     <Compile Include="model\ISettingsModel.cs" />
+    <Compile Include="model\ISinglePlayerModel.cs" />
     <Compile Include="model\ISPMenuModel.cs" />
     <Compile Include="model\MPMenuModel.cs" />
     <Compile Include="model\SettingsModel.cs" />
+    <Compile Include="model\SinglePlayerModel.cs" />
     <Compile Include="model\SPMenuModel.cs" />
     <Compile Include="viewmodels\MPMenuViewModel.cs" />
     <Compile Include="viewmodels\SettingsViewModel.cs" />
+    <Compile Include="viewmodels\SinglePlayerViewModel.cs" />
     <Compile Include="viewmodels\SPMenuViewModel.cs" />
     <Compile Include="viewmodels\ViewModel.cs" />
     <Compile Include="windows\MainWindow.xaml.cs">
@@ -78,6 +82,9 @@
     </Compile>
     <Compile Include="windows\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\SinglePlayerWindow.xaml.cs">
+      <DependentUpon>SinglePlayerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\SPMenuWindow.xaml.cs">
       <DependentUpon>SPMenuWindow.xaml</DependentUpon>
@@ -102,6 +109,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="windows\SettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\SinglePlayerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -136,6 +147,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\20DOOR.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20MARIO.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -34,7 +34,7 @@ namespace GUI.windows
         {
             //vm.SaveSettings();
             //MainWindow win = (MainWindow)Application.Current.MainWindow;
-            new MainWindow().Show(); //should be sp window
+            new SinglePlayerWindow().Show(); 
             Close();
         }
 

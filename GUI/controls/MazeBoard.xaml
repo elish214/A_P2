@@ -6,11 +6,15 @@
              xmlns:local="clr-namespace:GUI.controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Viewbox>
-        <Border BorderBrush="Black" BorderThickness="3">
-            <Grid x:Name="mazeGrid" Width="300" Height="300" ShowGridLines="True">
-
-            </Grid>
-        </Border>
-    </Viewbox>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions/>
+        <Viewbox Grid.Row="0" Grid.Column="0">
+            <Canvas x:Name="MazeCanvas" Width="163" Height="190">
+                <Border BorderBrush="Purple" BorderThickness="3"/>
+            </Canvas>
+        </Viewbox>
+    </Grid>
 </UserControl>

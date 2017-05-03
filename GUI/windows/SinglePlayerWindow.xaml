@@ -1,0 +1,34 @@
+﻿<Window x:Class="GUI.windows.SinglePlayerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:GUI.controls"
+        xmlns:local="clr-namespace:GUI.windows"
+        mc:Ignorable="d"
+        Title="{Binding MazeName}" Height="300" Width="300">
+    <Grid x:Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="restartGame" Content="Restart Game" Grid.Column="0" Width="80" Height="20" Click="restartGame_Click"/>
+            <Button x:Name="solve" Content="Solve Maze" Grid.Column="1" Width="70" Height="20" Click="solve_Click"/>
+            <Button x:Name="mainMenu" Content="Main Menu" Grid.Column="2" Width="70" Height="20" Click="mainMenu_Click"/>
+        </Grid>
+
+        <StackPanel Grid.Row="1">
+            <controls:MazeBoard/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -39,42 +39,53 @@ namespace GUI.controls
             board.DrawMaze();
         }
 
+        //add dependency property for position.
+
         private void DrawMaze()
         {
-            Label[,] grid = new Label[Maze.Rows, Maze.Cols];
+            Rectangle[,] grid = new Rectangle[Maze.Rows, Maze.Cols];
 
             for (int i = 0; i < Maze.Rows; i++)
             {
                 for (int j = 0; j < Maze.Cols; j++)
                 {
-                    grid[i, j] = new Label();
-                    Grid.SetRow(grid[i, j], i);
-                    Grid.SetColumn(grid[i, j], j);
-                    mazeGrid.Children.Add(grid[i, j]);
+                    grid[i, j] = new Rectangle();
+                    grid[i, j].Height = 20;
+                    grid[i, j].Width = 20;
+                    MazeCanvas.Children.Add(grid[i, j]);
+                    Canvas.SetLeft(grid[i, j], j*20);
+                    Canvas.SetTop(grid[i, j], i*20);
                 }
             }
 
-            string s = Maze.ToString();
-
-            for (int i = 0; i < Maze.Rows; i++)
+            string str = Maze.ToString();
+            string s = "";
+            foreach(char c in str)
             {
-                for (int j = 0; j < Maze.Cols; j++)
+                if (c != '\r' && c != '\n')
+                    s += c;
+            }
+            Console.WriteLine(s);
+
+            for (int k = 0; k < Maze.Rows; k++)
+            {
+                for (int t = 0; t < Maze.Cols; t++)
                 {
 
-                    int num = Maze.Rows * Maze.Cols + j;
+                    int num = k * Maze.Cols + t;
                     switch (s[num])
                     {
                         case '0':
-                            grid[i, j].Background = Brushes.White;
+                            grid[k, t].Fill = Brushes.Pink;
                             break;
                         case '1':
-                            grid[i, j].Background = Brushes.Black;
+                            grid[k, t].Fill = Brushes.Black;
                             break;
                         case '#':
-                            grid[i, j].Background = Brushes.Blue;//end
+                            grid[k, t].Fill = Brushes.Blue;//end
                             break;
                         case '*':
-                            grid[i, j].Background = Brushes.Red;//start
+                            grid[k, t].Fill = Brushes.Red;//start
                             break;
                     }
                 }
@@ -83,26 +94,16 @@ namespace GUI.controls
 
         public MazeBoard()
         {
-        }
-
-        public MazeBoard(Maze maze)
-        {
             InitializeComponent();
 
-            Maze = maze;
+            ///need to get a maze from someone.
+            ///Maze = 
+            Maze = new DFSMazeGenerator().Generate(8, 8);
 
-            for (int i = 0; i < maze.Cols; i++)
-            {
-                mazeGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            }
-
-            for (int i = 0; i < maze.Rows; i++)
-            {
-                mazeGrid.RowDefinitions.Add(new RowDefinition());
-            }
         }
 
-        //public function for any move.
+        //4 public function for any move.
 
     }
 }
+
