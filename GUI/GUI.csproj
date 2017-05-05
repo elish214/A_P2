@@ -61,14 +61,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="controls\MazeCreationMenu.xaml.cs">
+      <DependentUpon>MazeCreationMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="model\IMCMenuModel.cs" />
     <Compile Include="model\IMPMenuModel.cs" />
     <Compile Include="model\ISettingsModel.cs" />
     <Compile Include="model\ISinglePlayerModel.cs" />
     <Compile Include="model\ISPMenuModel.cs" />
+    <Compile Include="model\MCMenuModel.cs" />
     <Compile Include="model\MPMenuModel.cs" />
     <Compile Include="model\SettingsModel.cs" />
     <Compile Include="model\SinglePlayerModel.cs" />
     <Compile Include="model\SPMenuModel.cs" />
+    <Compile Include="viewmodels\MCMenuViewModel.cs" />
     <Compile Include="viewmodels\MPMenuViewModel.cs" />
     <Compile Include="viewmodels\SettingsViewModel.cs" />
     <Compile Include="viewmodels\SinglePlayerViewModel.cs" />
@@ -100,6 +106,10 @@
     <Compile Include="controls\MazeBoard.xaml.cs">
       <DependentUpon>MazeBoard.xaml</DependentUpon>
     </Compile>
+    <Page Include="controls\MazeCreationMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="windows\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

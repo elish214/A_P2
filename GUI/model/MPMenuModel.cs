@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace GUI.model
 {
-    class MPMenuModel : IMPMenuModel
+    public class MPMenuModel : MCMenuModel, IMPMenuModel
     {
         public int ChosenGame { get; set; }
-        public string MazeName { get; set; }
-        public int MazeRows { get; set; }
-        public int MazeCols { get; set; }
+        //public string MazeName { get; set; }
+        //public int MazeRows { get; set; }
+        //public int MazeCols { get; set; }
     }
 }

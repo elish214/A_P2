@@ -7,18 +7,15 @@ using System.Threading.Tasks;
 
 namespace GUI.viewmodels
 {
-    public class SPMenuViewModel : MCMenuViewModel
+    public class MCMenuViewModel : ViewModel
     {
-        public SPMenuViewModel(IMCMenuModel model) : base(model)
-        {
-        }
+        protected IMCMenuModel model;
 
-        /*
-        public SPMenuViewModel(ISPMenuModel model)
+        public MCMenuViewModel(IMCMenuModel model)
         {
             this.model = model;
         }
-        
+
         public string MazeName
         {
             get { return model.MazeName; }
@@ -48,6 +45,5 @@ namespace GUI.viewmodels
                 NotifyPropertyChanged("MazeCols");
             }
         }
-        */
     }
 }
