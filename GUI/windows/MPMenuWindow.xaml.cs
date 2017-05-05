@@ -28,6 +28,8 @@ namespace GUI.windows
             InitializeComponent();
             vm = new MPMenuViewModel(new MPMenuModel());
             DataContext = vm;
+
+            mcm.VM = vm;
         }
 
         private void btnJoin_Click(object sender, RoutedEventArgs e)

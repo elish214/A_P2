@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace GUI.model
 {
-    public interface IMPMenuModel : IMCMenuModel
+    public interface IMCMenuModel
     {
-        int ChosenGame { get; set; }
+        string MazeName { get; set; }
+        int MazeRows { get; set; }
+        int MazeCols { get; set; }
     }
 }

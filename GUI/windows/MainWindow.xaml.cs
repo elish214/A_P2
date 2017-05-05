@@ -19,6 +19,8 @@ namespace GUI.windows
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
         public MainWindow()
         {
             InitializeComponent();

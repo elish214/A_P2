@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GUI.viewmodels
 {
-    class SettingsViewModel : ViewModel
+    public class SettingsViewModel : ViewModel
     {
         private ISettingsModel model;
 
@@ -69,6 +69,7 @@ namespace GUI.viewmodels
         public void SaveSettings()
         {
             model.SaveSettings();
-        }
+        }
+
     }
 }

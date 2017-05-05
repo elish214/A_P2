@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GUI.viewmodels
 {
-    class ViewModel : INotifyPropertyChanged
+    public class ViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

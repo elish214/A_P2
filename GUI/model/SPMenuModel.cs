@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace GUI.model
 {
-    class SPMenuModel : ISPMenuModel
+    public class SPMenuModel : MCMenuModel, ISPMenuModel
     {
-        public string MazeName { get; set; }
-        public int MazeRows { get; set; }
-        public int MazeCols { get; set; }
+        //public string MazeName { get; set; }
+        //public int MazeRows { get; set; }
+        //public int MazeCols { get; set; }
     }
 }

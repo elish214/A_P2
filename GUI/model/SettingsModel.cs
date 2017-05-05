@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GUI.model
 {
-    class SettingsModel : ISettingsModel
+    public class SettingsModel : ISettingsModel
     {
         public string ServerIP { get; set; }
         public int ServerPort { get; set; }

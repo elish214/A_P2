@@ -28,6 +28,8 @@ namespace GUI.windows
             InitializeComponent();
             vm = new SPMenuViewModel(new SPMenuModel());
             DataContext = vm;
+
+            mcm.VM = vm; 
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
