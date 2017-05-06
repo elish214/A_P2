@@ -8,20 +8,34 @@ namespace GUI.model
 {
     public class SettingsModel : ISettingsModel
     {
+        public SettingsModel()
+        {
+            ServerIP = Properties.Settings.Default.ServerIP;
+            ServerPort = Properties.Settings.Default.ServerPort;
+            MazeRows = Properties.Settings.Default.MazeRows;
+            MazeCols = Properties.Settings.Default.MazeCols;
+            SearchAlgorithm = Properties.Settings.Default.SearchAlgorithm;
+        }
+
         public string ServerIP { get; set; }
+
         public int ServerPort { get; set; }
+
         public int MazeRows { get; set; }
+
         public int MazeCols { get; set; }
+
         public int SearchAlgorithm { get; set; }
 
         public void SaveSettings()
         {
-            Console.WriteLine("SETTINGS:");
-            Console.WriteLine("\t" + ServerIP);
-            Console.WriteLine("\t" + ServerPort);
-            Console.WriteLine("\t" + MazeRows);
-            Console.WriteLine("\t" + MazeCols);
-            Console.WriteLine("\t" + SearchAlgorithm);
+            Properties.Settings.Default.ServerIP = ServerIP;
+            Properties.Settings.Default.ServerPort = ServerPort;
+            Properties.Settings.Default.MazeRows = MazeRows;
+            Properties.Settings.Default.MazeCols = MazeCols;
+            Properties.Settings.Default.SearchAlgorithm = SearchAlgorithm;
+
+            Properties.Settings.Default.Save();
         }
     }
 }

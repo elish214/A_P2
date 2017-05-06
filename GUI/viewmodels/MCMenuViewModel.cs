@@ -9,7 +9,7 @@ namespace GUI.viewmodels
 {
     public class MCMenuViewModel : ViewModel
     {
-        protected IMCMenuModel model;
+        private IMCMenuModel model;
 
         public MCMenuViewModel(IMCMenuModel model)
         {

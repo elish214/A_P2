@@ -63,9 +63,9 @@ namespace GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _20DOOR {
+        internal static System.Drawing.Bitmap door {
             get {
-                object obj = ResourceManager.GetObject("_20DOOR", resourceCulture);
+                object obj = ResourceManager.GetObject("door", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _20MARIO {
+        internal static System.Drawing.Bitmap mario {
             get {
-                object obj = ResourceManager.GetObject("_20MARIO", resourceCulture);
+                object obj = ResourceManager.GetObject("mario", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

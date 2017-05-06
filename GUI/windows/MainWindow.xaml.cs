@@ -25,8 +25,6 @@ namespace GUI.windows
         {
             InitializeComponent();
 
-            //this.mainControl.Content = new controls.MazeBoard(new DFSMazeGenerator().Generate(8, 8));
-
         }
 
         private void btnSingle_Click(object sender, RoutedEventArgs e)

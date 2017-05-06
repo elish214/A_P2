@@ -1,4 +1,6 @@
 ﻿using GUI.model;
+using GUI.windows;
+using MazeLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,45 +11,18 @@ namespace GUI.viewmodels
 {
     public class SPMenuViewModel : MCMenuViewModel
     {
-        public SPMenuViewModel(IMCMenuModel model) : base(model)
-        {
-        }
+        private ISPMenuModel model;
 
-        /*
-        public SPMenuViewModel(ISPMenuModel model)
+        public SPMenuViewModel(ISPMenuModel model) : base(model)
         {
             this.model = model;
         }
-        
-        public string MazeName
-        {
-            get { return model.MazeName; }
-            set
-            {
-                model.MazeName = value;
-                NotifyPropertyChanged("MazeName");
-            }
-        }
 
-        public int MazeRows
+        public void Generate()
         {
-            get { return model.MazeRows; }
-            set
-            {
-                model.MazeRows = value;
-                NotifyPropertyChanged("MazeRows");
-            }
-        }
+            Maze maze = model.Generate();
 
-        public int MazeCols
-        {
-            get { return model.MazeCols; }
-            set
-            {
-                model.MazeCols = value;
-                NotifyPropertyChanged("MazeCols");
-            }
+            new SinglePlayerWindow(maze).Show();
         }
-        */
     }
 }

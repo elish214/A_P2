@@ -34,15 +34,12 @@ namespace GUI.windows
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            //vm.SaveSettings();
-            //MainWindow win = (MainWindow)Application.Current.MainWindow;
-            new SinglePlayerWindow().Show(); 
+            vm.Generate();
             Close();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            //MainWindow win = (MainWindow)Application.Current.MainWindow;
             new MainWindow().Show();
             Close();
         }

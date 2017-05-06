@@ -29,9 +29,34 @@ namespace GUI.controls
             set { SetValue(MazeProperty, value); }
         }
 
+        public Position PlayerPos
+        {
+            get { return playerPos; }
+            set
+            {
+                playerPos = value;
+                DrawPlayer();
+            }
+        }
+        private Position playerPos;
+
+        public delegate void PlayerMoved(Position pos, Direction d);
+        public event PlayerMoved Moved;
+
+        public delegate void PlayerWin();
+        public event PlayerWin Win;
+
         // Using a DependencyProperty as the backing store for Maze.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MazeProperty =
             DependencyProperty.Register("Maze", typeof(Maze), typeof(MazeBoard), new UIPropertyMetadata(mazeChanged));
+
+        private int width;
+        private int height;
+
+        public MazeBoard()
+        {
+            InitializeComponent();
+        }
 
         private static void mazeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -39,28 +64,32 @@ namespace GUI.controls
             board.DrawMaze();
         }
 
-        //add dependency property for position.
-
         private void DrawMaze()
         {
+            height = 300 / Maze.Rows;
+            width = 300 / Maze.Cols;
+
             Rectangle[,] grid = new Rectangle[Maze.Rows, Maze.Cols];
 
             for (int i = 0; i < Maze.Rows; i++)
             {
                 for (int j = 0; j < Maze.Cols; j++)
                 {
-                    grid[i, j] = new Rectangle();
-                    grid[i, j].Height = 20;
-                    grid[i, j].Width = 20;
+                    grid[i, j] = new Rectangle()
+                    {
+                        Height = 20,
+                        Width = 20
+                    };
                     MazeCanvas.Children.Add(grid[i, j]);
-                    Canvas.SetLeft(grid[i, j], j*20);
-                    Canvas.SetTop(grid[i, j], i*20);
+                    Panel.SetZIndex(grid[i, j], 0);
+                    Canvas.SetLeft(grid[i, j], j * width);
+                    Canvas.SetTop(grid[i, j], i * height);
                 }
             }
 
             string str = Maze.ToString();
             string s = "";
-            foreach(char c in str)
+            foreach (char c in str)
             {
                 if (c != '\r' && c != '\n')
                     s += c;
@@ -90,20 +119,62 @@ namespace GUI.controls
                     }
                 }
             }
+
+            PlayerPos = Maze.InitialPos;
         }
 
-        public MazeBoard()
+        public void DrawPlayer()
         {
-            InitializeComponent();
+            player.Height = height;
+            player.Width = width;
 
-            ///need to get a maze from someone.
-            ///Maze = 
-            Maze = new DFSMazeGenerator().Generate(8, 8);
-
+            Canvas.SetTop(player, PlayerPos.Row * height);
+            Canvas.SetLeft(player, PlayerPos.Col * width);
         }
 
-        //4 public function for any move.
+        public Boolean Move(Direction d)
+        {
+            Position pos = new Position(PlayerPos.Row, PlayerPos.Col);
 
+            switch (d)
+            {
+                case Direction.Up:
+                    pos.Row--;
+                    break;
+
+                case Direction.Down:
+                    pos.Row++;
+                    break;
+
+                case Direction.Left:
+                    pos.Col--;
+                    break;
+
+                case Direction.Right:
+                    pos.Col++;
+                    break;
+            }
+
+            if (0 <= pos.Row && 0 <= pos.Col &&
+                pos.Row < Maze.Rows && pos.Col < Maze.Cols &&
+                Maze[pos.Row, pos.Col] != CellType.Wall)
+            {
+                PlayerPos = pos;
+                Moved?.Invoke(pos, d);
+                if(pos.Row == Maze.GoalPos.Row && pos.Col == Maze.GoalPos.Col)
+                {
+                    Win?.Invoke();
+                }
+                return true;
+            }
+
+            return false;
+        }
+
+        public void Restart()
+        {
+            PlayerPos = Maze.InitialPos;
+        }
     }
 }
 

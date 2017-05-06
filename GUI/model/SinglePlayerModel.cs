@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Client;
+using GUI.utils;
+using MazeComp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +11,15 @@ namespace GUI.model
 {
     class SinglePlayerModel : ISinglePlayerModel
     {
-        //public TcpClient Client { get; set; }
         public string MazeName { get; set; }
         public int MazeRows { get; set; }
         public int MazeCols { get; set; }
+
+        public MazeSolution Solve(string name)
+        {
+            string result = Singleton<ClientMain>.Instance.Send($"solve {name} 0");
+
+            return MazeSolution.FromJSON(result);
+        }
     }
 }

@@ -6,29 +6,20 @@
         xmlns:controls="clr-namespace:GUI.controls"
         xmlns:local="clr-namespace:GUI.windows"
         mc:Ignorable="d"
-        Title="{Binding MazeName}" Height="300" Width="300">
-    <Grid x:Name="mainGrid">
+        Title="{Binding MazeName}" Height="438.566" Width="377.892">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Button x:Name="restartGame" Content="Restart Game" Grid.Column="0" Width="80" Height="20" Click="restartGame_Click"/>
-            <Button x:Name="solve" Content="Solve Maze" Grid.Column="1" Width="70" Height="20" Click="solve_Click"/>
-            <Button x:Name="mainMenu" Content="Main Menu" Grid.Column="2" Width="70" Height="20" Click="mainMenu_Click"/>
-        </Grid>
-
-        <StackPanel Grid.Row="1">
-            <controls:MazeBoard/>
-        </StackPanel>
+        <Button x:Name="restartGame" Content="Restart Game" Grid.Row="0" Grid.Column="0" Width="80" Height="20" Click="restartGame_Click"/>
+        <Button x:Name="solve" Content="Solve Maze" Grid.Row="0" Grid.Column="1" Width="70" Height="20" Click="solve_Click"/>
+        <Button x:Name="mainMenu" Content="Main Menu" Grid.Row="0" Grid.Column="2" Width="70" Height="20" Click="mainMenu_Click"/>
+        <controls:MazeBoard x:Name="mzbMaze" Grid.Row="1" Grid.ColumnSpan="3"/>
     </Grid>
 </Window>

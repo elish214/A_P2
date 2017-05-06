@@ -60,5 +60,10 @@ namespace Client
                 handler.Handle(IP, port);
             }
         }
+
+        public string Send(string message)
+        {
+            return handler.Send(message, IP, port);
+        }
     }
 }

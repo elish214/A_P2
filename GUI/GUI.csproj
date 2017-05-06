@@ -40,6 +40,9 @@
     <Reference Include="MazeLib">
       <HintPath>..\SearchAlgorithmsLib\bin\Debug\MazeLib.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -74,6 +77,14 @@
     <Compile Include="model\SettingsModel.cs" />
     <Compile Include="model\SinglePlayerModel.cs" />
     <Compile Include="model\SPMenuModel.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="utils\MazeBoardKeyHandler.cs" />
+    <Compile Include="utils\Singleton.cs" />
+    <Compile Include="utils\YouWinMsg.cs" />
     <Compile Include="viewmodels\MCMenuViewModel.cs" />
     <Compile Include="viewmodels\MPMenuViewModel.cs" />
     <Compile Include="viewmodels\SettingsViewModel.cs" />
@@ -135,11 +146,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -149,6 +155,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -158,10 +165,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\20DOOR.jpg" />
+    <ProjectReference Include="..\Client\Client.csproj">
+      <Project>{a27be8b7-fdd5-4654-bbb0-64c2800c87a0}</Project>
+      <Name>Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MazeComp\MazeComp.csproj">
+      <Project>{5F38E099-2387-4A2C-AD79-2DF03996817D}</Project>
+      <Name>MazeComp</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\20MARIO.jpg" />
+    <None Include="Resources\door.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\mario.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

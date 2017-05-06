@@ -46,6 +46,9 @@ namespace GUI.viewmodels
             }
         }
 
-
+        public string Solve(string name)
+        {
+            return model.Solve(name).Solution;
+        }
     }
 }

@@ -69,7 +69,7 @@ namespace Client.view
                 //Console.WriteLine("EXECUTE COMMAND");
             }
         }
-        
+
         /// <summary>
         /// Handle the client.
         /// </summary>
@@ -127,6 +127,64 @@ namespace Client.view
                 //Console.WriteLine("not running");
                 Client.Close();
             }
+        }
+
+        public string Send(string message, IPAddress IP, int port)
+        {
+            IPEndPoint ep = new IPEndPoint(IP, port);
+            Client = new TcpClient();
+            string answer = "";
+
+            Client.Connect(ep);
+            Console.WriteLine("You are connected");
+
+            try
+            {
+                using (NetworkStream stream = Client.GetStream())
+                using (StreamReader reader = new StreamReader(stream))
+                using (StreamWriter writer = new StreamWriter(stream))
+                {
+                    writer.AutoFlush = true;
+
+                    do
+                    {
+                        Console.Write("COMMAND: " + message);
+                        if (commandLine == "")
+                        {
+                            commandLine = message + "\n";
+                        }
+
+                        writer.WriteLine(commandLine);
+                        //Console.WriteLine($"answer sent, {commandLine}, run: {running}");
+
+                        if (!running)
+                        {
+                            do
+                            {
+                                result = reader.ReadLine();
+                                answer += result;
+                                Console.WriteLine(result);
+                            } while (reader.Peek() >= 0);
+
+                            ExecuteCommand();
+                            //Console.WriteLine("EXECUTE MAIN THREAD");
+                        }
+
+                        commandLine = "";
+                    } while (running);
+                }
+            }
+            catch (Exception e)
+            {
+                //Console.WriteLine("THREAD EXCEPTION");
+            }
+            finally
+            {
+                //Console.WriteLine("not running");
+                Client.Close();
+            }
+
+            return answer;
         }
 
         /// <summary>

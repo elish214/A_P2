@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Client;
+using GUI.utils;
+using GUI.windows;
+using MazeLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +12,13 @@ namespace GUI.model
 {
     public class SPMenuModel : MCMenuModel, ISPMenuModel
     {
-        //public string MazeName { get; set; }
-        //public int MazeRows { get; set; }
-        //public int MazeCols { get; set; }
+        public Maze Generate()
+        {
+            string result = Singleton<ClientMain>.Instance.Send($"generate {MazeName} {MazeRows} {MazeCols}");
+
+            Maze maze = Maze.FromJSON(result);
+
+            return maze;
+        }
     }
 }

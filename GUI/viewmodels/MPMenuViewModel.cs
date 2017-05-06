@@ -9,19 +9,19 @@ namespace GUI.viewmodels
 {
     public class MPMenuViewModel : MCMenuViewModel
     {
-        private IMPMenuModel _model;
+        private IMPMenuModel model;
 
         public MPMenuViewModel(IMPMenuModel model) : base(model)
         {
-            _model = model;
+            this.model = model;
         }
 
         public int ChosenGame
         {
-            get { return _model.ChosenGame; }
+            get { return model.ChosenGame; }
             set
             {
-                _model.ChosenGame = value;
+                model.ChosenGame = value;
                 NotifyPropertyChanged("ChosenGame");
             }
         }
