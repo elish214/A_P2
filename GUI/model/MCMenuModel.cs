@@ -11,5 +11,11 @@ namespace GUI.model
         public string MazeName { get; set; }
         public int MazeRows { get; set; }
         public int MazeCols { get; set; }
+
+        public MCMenuModel()
+        {
+            MazeRows = Properties.Settings.Default.MazeRows;
+            MazeCols = Properties.Settings.Default.MazeCols;
+        }
     }
 }

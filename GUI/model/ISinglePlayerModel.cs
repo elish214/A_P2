@@ -1,6 +1,8 @@
 ﻿using MazeComp;
+using MazeLib;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,10 +11,12 @@ namespace GUI.model
 {
     interface ISinglePlayerModel
     {
-        string MazeName { get; set; }
-        int MazeRows { get; set; }
-        int MazeCols { get; set; }
+        event PropertyChangedEventHandler PropertyChanged;
 
-        MazeSolution Solve(string name);
+        Maze Maze { get; set; }
+
+        MazeSolution Solution { get; set; }
+
+        void Solve();
     }
 }

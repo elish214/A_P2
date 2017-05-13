@@ -1,6 +1,7 @@
 ﻿using Client;
 using GUI.utils;
 using MazeComp;
+using MazeLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,38 @@ using System.Threading.Tasks;
 
 namespace GUI.model
 {
-    class SinglePlayerModel : ISinglePlayerModel
+    class SinglePlayerModel : Model, ISinglePlayerModel
     {
-        public string MazeName { get; set; }
-        public int MazeRows { get; set; }
-        public int MazeCols { get; set; }
-
-        public MazeSolution Solve(string name)
+        private Maze maze;
+        public Maze Maze
         {
-            string result = Singleton<ClientMain>.Instance.Send($"solve {name} 0");
+            get { return maze; }
+            set
+            {
+                maze = value;
+                NotifyPropertyChanged("Maze");
+            }
+        }
 
-            return MazeSolution.FromJSON(result);
+        private MazeSolution solution;
+        public MazeSolution Solution
+        {
+            get
+            {
+                return solution;
+            }
+            set
+            {
+                solution = value;
+                NotifyPropertyChanged("Solution");
+            }
+        }
+
+        public void Solve()
+        {
+            string result = client.Client.Instance.WriteRead($"solve {maze.Name} {Properties.Settings.Default.SearchAlgorithm}");
+
+            Solution = MazeSolution.FromJSON(result);
         }
     }
 }

@@ -77,8 +77,8 @@ namespace GUI.controls
                 {
                     grid[i, j] = new Rectangle()
                     {
-                        Height = 20,
-                        Width = 20
+                        Height = height,
+                        Width = width
                     };
                     MazeCanvas.Children.Add(grid[i, j]);
                     Panel.SetZIndex(grid[i, j], 0);

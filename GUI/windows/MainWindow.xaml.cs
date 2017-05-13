@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,12 +20,13 @@ namespace GUI.windows
     /// </summary>
     public partial class MainWindow : Window
     {
-
-
         public MainWindow()
         {
             InitializeComponent();
 
+            model.client.Client.Instance.EndPoint = new IPEndPoint(
+                IPAddress.Parse(Properties.Settings.Default.ServerIP),
+                Properties.Settings.Default.ServerPort);
         }
 
         private void btnSingle_Click(object sender, RoutedEventArgs e)

@@ -1,6 +1,7 @@
 ﻿using GUI.model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,46 +10,26 @@ namespace GUI.viewmodels
 {
     class SinglePlayerViewModel : ViewModel
     {
-        private ISinglePlayerModel model;
+        public ISinglePlayerModel Model { get; }
 
-        public SinglePlayerViewModel(ISinglePlayerModel model)
+        public SinglePlayerViewModel(SinglePlayerModel model)
         {
-            this.model = model;
+            Model = model;
+            Model.PropertyChanged +=
+                delegate (Object sender, PropertyChangedEventArgs e)
+                {
+                    NotifyPropertyChanged(e.PropertyName);
+                };
         }
 
-        public string MazeName
+        public void Solve()
         {
-            get { return model.MazeName; }
-            set
-            {
-                model.MazeName = value;
-                NotifyPropertyChanged("MazeName");
-            }
+            Model.Solve();
         }
 
-        public int MazeRows
+        public string GetSolution()
         {
-            get { return model.MazeRows; }
-            set
-            {
-                model.MazeRows = value;
-                NotifyPropertyChanged("MazeRows");
-            }
-        }
-
-        public int MazeCols
-        {
-            get { return model.MazeCols; }
-            set
-            {
-                model.MazeCols = value;
-                NotifyPropertyChanged("MazeCols");
-            }
-        }
-
-        public string Solve(string name)
-        {
-            return model.Solve(name).Solution;
+            return Model.Solution.Solution;
         }
     }
 }

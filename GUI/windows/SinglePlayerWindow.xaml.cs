@@ -5,6 +5,7 @@ using GUI.viewmodels;
 using MazeLib;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -33,6 +34,14 @@ namespace GUI.windows
             vm = new SinglePlayerViewModel(new SinglePlayerModel());
             DataContext = vm;
 
+            vm.PropertyChanged +=
+                delegate (Object sender, PropertyChangedEventArgs e)
+                {
+                    if (e.PropertyName == "Solution")
+                    {
+                        SolveMaze(vm.GetSolution());
+                    }
+                };
             KeyDown += new KeyEventHandler(new MazeBoardKeyHandler(mzbMaze).KeyDown);
             mzbMaze.Win += new YouWinMsg().YouWin;
         }
@@ -40,7 +49,18 @@ namespace GUI.windows
         public SinglePlayerWindow(Maze maze) : this()
         {
             mzbMaze.Maze = maze;
+            vm.Model.Maze = maze;
             Title = maze.Name;
+        }
+
+        private async void SolveMaze(String sol)
+        {
+            mzbMaze.Restart();
+            for (int i = 0; i < sol.Length; i++)
+            {
+                await Task.Delay(100);
+                mzbMaze.Move((Direction)Char.GetNumericValue(sol[i]));
+            }
         }
 
         private void mainMenu_Click(object sender, RoutedEventArgs e)
@@ -49,16 +69,9 @@ namespace GUI.windows
             Close();
         }
 
-        private async void solve_Click(object sender, RoutedEventArgs e)
+        private void solve_Click(object sender, RoutedEventArgs e)
         {
-            string sol = vm.Solve(Title);
-
-            mzbMaze.Restart();
-            for (int i = 0; i < sol.Length; i++)
-            {
-                await Task.Delay(100);
-                mzbMaze.Move((Direction)Char.GetNumericValue(sol[i]));
-            }
+            vm.Solve();
         }
 
         private void restartGame_Click(object sender, RoutedEventArgs e)

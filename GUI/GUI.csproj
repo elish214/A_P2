@@ -67,12 +67,14 @@
     <Compile Include="controls\MazeCreationMenu.xaml.cs">
       <DependentUpon>MazeCreationMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="model\client\Client.cs" />
     <Compile Include="model\IMCMenuModel.cs" />
     <Compile Include="model\IMPMenuModel.cs" />
     <Compile Include="model\ISettingsModel.cs" />
     <Compile Include="model\ISinglePlayerModel.cs" />
     <Compile Include="model\ISPMenuModel.cs" />
     <Compile Include="model\MCMenuModel.cs" />
+    <Compile Include="model\Model.cs" />
     <Compile Include="model\MPMenuModel.cs" />
     <Compile Include="model\SettingsModel.cs" />
     <Compile Include="model\SinglePlayerModel.cs" />
