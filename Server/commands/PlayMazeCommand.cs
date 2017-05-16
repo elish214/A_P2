@@ -38,6 +38,7 @@ namespace Server.commands
         /// <returns> a result to send back to client. </returns>
         public Result Execute(string[] args, TcpClient client = null)
         {
+            Direction direction;
             try
             {
                 if (args.Count() > 1)
@@ -45,7 +46,7 @@ namespace Server.commands
                     throw new FormatException();
                 }
 
-                if (!Enum.TryParse(args[0].First().ToString().ToUpper() + args[0].Substring(1), out Direction direction))
+                if (!Enum.TryParse(args[0].First().ToString().ToUpper() + args[0].Substring(1), out direction))
                 {
                     throw new FormatException();
                 }

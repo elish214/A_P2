@@ -27,8 +27,8 @@ namespace GUI.windows
             try
             {
                 model.client.Client.Instance.EndPoint = new IPEndPoint(
-                                IPAddress.Parse(Properties.Settings.Default.ServerIP),
-                                Properties.Settings.Default.ServerPort);
+                   IPAddress.Parse(Properties.Settings.Default.ServerIP),
+                   Properties.Settings.Default.ServerPort);
             }
             catch (Exception e) { }
 
