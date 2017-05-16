@@ -24,9 +24,14 @@ namespace GUI.windows
         {
             InitializeComponent();
 
-            model.client.Client.Instance.EndPoint = new IPEndPoint(
-                IPAddress.Parse(Properties.Settings.Default.ServerIP),
-                Properties.Settings.Default.ServerPort);
+            try
+            {
+                model.client.Client.Instance.EndPoint = new IPEndPoint(
+                   IPAddress.Parse(Properties.Settings.Default.ServerIP),
+                   Properties.Settings.Default.ServerPort);
+            }
+            catch (Exception e) { }
+
         }
 
         private void btnSingle_Click(object sender, RoutedEventArgs e)

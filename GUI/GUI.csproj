@@ -35,10 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MazeGeneratorLib">
-      <HintPath>..\SearchAlgorithmsLib\bin\Debug\MazeGeneratorLib.dll</HintPath>
+      <HintPath>..\MazeComp\lib\MazeGeneratorLib.dll</HintPath>
     </Reference>
     <Reference Include="MazeLib">
-      <HintPath>..\SearchAlgorithmsLib\bin\Debug\MazeLib.dll</HintPath>
+      <HintPath>..\MazeComp\lib\MazeLib.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -172,7 +172,7 @@
       <Name>Client</Name>
     </ProjectReference>
     <ProjectReference Include="..\MazeComp\MazeComp.csproj">
-      <Project>{5F38E099-2387-4A2C-AD79-2DF03996817D}</Project>
+      <Project>{5f38e099-2387-4a2c-ad79-2df03996817d}</Project>
       <Name>MazeComp</Name>
     </ProjectReference>
   </ItemGroup>
