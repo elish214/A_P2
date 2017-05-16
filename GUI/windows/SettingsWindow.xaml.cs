@@ -21,7 +21,8 @@ namespace GUI.windows
     /// </summary>
     public partial class SettingsWindow : Window
     {
-        private SettingsViewModel vm;
+        private SettingsViewModel vm;
+
         public SettingsWindow()
         {
             InitializeComponent();
