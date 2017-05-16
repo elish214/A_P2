@@ -3,6 +3,7 @@ using GUI.viewmodels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -33,6 +34,15 @@ namespace GUI.windows
         {
             vm.SaveSettings();
             //MainWindow win = (MainWindow)Application.Current.MainWindow;
+
+            try
+            {
+                model.client.Client.Instance.EndPoint = new IPEndPoint(
+                                IPAddress.Parse(Properties.Settings.Default.ServerIP),
+                                Properties.Settings.Default.ServerPort);
+            }
+            catch (Exception e1) { }
+
             new MainWindow().Show();
             Close();
         }
