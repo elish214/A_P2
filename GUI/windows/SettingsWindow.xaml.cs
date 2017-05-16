@@ -42,7 +42,10 @@ namespace GUI.windows
                                 IPAddress.Parse(Properties.Settings.Default.ServerIP),
                                 Properties.Settings.Default.ServerPort);
             }
-            catch (Exception e1) { }
+            catch (Exception e1)
+            {
+                e1.GetHashCode();
+            }
 
             new MainWindow().Show();
             Close();

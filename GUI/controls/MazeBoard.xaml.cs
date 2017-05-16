@@ -29,6 +29,10 @@ namespace GUI.controls
             set { SetValue(MazeProperty, value); }
         }
 
+        // Using a DependencyProperty as the backing store for Maze.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MazeProperty =
+            DependencyProperty.Register("Maze", typeof(Maze), typeof(MazeBoard), new UIPropertyMetadata(mazeChanged));
+
         public Position PlayerPos
         {
             get { return playerPos; }
@@ -45,10 +49,6 @@ namespace GUI.controls
 
         public delegate void PlayerWin();
         public event PlayerWin Win;
-
-        // Using a DependencyProperty as the backing store for Maze.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty MazeProperty =
-            DependencyProperty.Register("Maze", typeof(Maze), typeof(MazeBoard), new UIPropertyMetadata(mazeChanged));
 
         private int width;
         private int height;
