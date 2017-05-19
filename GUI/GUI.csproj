@@ -70,12 +70,14 @@
     <Compile Include="model\client\Client.cs" />
     <Compile Include="model\IMCMenuModel.cs" />
     <Compile Include="model\IMPMenuModel.cs" />
+    <Compile Include="model\IMultiPlayerModel.cs" />
     <Compile Include="model\ISettingsModel.cs" />
     <Compile Include="model\ISinglePlayerModel.cs" />
     <Compile Include="model\ISPMenuModel.cs" />
     <Compile Include="model\MCMenuModel.cs" />
     <Compile Include="model\Model.cs" />
     <Compile Include="model\MPMenuModel.cs" />
+    <Compile Include="model\MultiPlayerModel.cs" />
     <Compile Include="model\SettingsModel.cs" />
     <Compile Include="model\SinglePlayerModel.cs" />
     <Compile Include="model\SPMenuModel.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="utils\YouWinMsg.cs" />
     <Compile Include="viewmodels\MCMenuViewModel.cs" />
     <Compile Include="viewmodels\MPMenuViewModel.cs" />
+    <Compile Include="viewmodels\MultiPlayerViewModel.cs" />
     <Compile Include="viewmodels\SettingsViewModel.cs" />
     <Compile Include="viewmodels\SinglePlayerViewModel.cs" />
     <Compile Include="viewmodels\SPMenuViewModel.cs" />
@@ -97,6 +100,9 @@
     </Compile>
     <Compile Include="windows\MPMenuWindow.xaml.cs">
       <DependentUpon>MPMenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\MultiPlayerWindow.xaml.cs">
+      <DependentUpon>MultiPlayerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
@@ -127,6 +133,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="windows\MPMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\MultiPlayerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -25,6 +25,7 @@ namespace GUI.model.client
         private static Client instance;
 
         public IPEndPoint EndPoint { get; set; }
+        public Action Act { get; set; }
 
         private TcpClient tcpClient;
         private NetworkStream stream;
@@ -77,13 +78,14 @@ namespace GUI.model.client
             do
             {
                 result += reader.ReadLine();
+                result += '\n';
                 //Console.WriteLine(result);
             } while (reader.Peek() >= 0);
 
             return result;
         }
 
-        public void ASyncRead(Action act)
+        public void ASyncRead()
         {
             new Task(() =>
             {
@@ -94,7 +96,7 @@ namespace GUI.model.client
                     do
                     {
                         result = Instance.Read();
-                        act(result);
+                        Act(result);
                     } while (true);
                 }
                 catch (Exception e) { }

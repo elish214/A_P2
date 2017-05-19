@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GUI.model
 {
-    public class MCMenuModel : IMCMenuModel
+    public class MCMenuModel : Model, IMCMenuModel
     {
         public string MazeName { get; set; }
         public int MazeRows { get; set; }
