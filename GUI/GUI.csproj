@@ -87,6 +87,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="utils\MazeBoardKeyHandler.cs" />
+    <Compile Include="utils\MultiPlayerMBKeyHandler.cs" />
     <Compile Include="utils\YouWinMsg.cs" />
     <Compile Include="viewmodels\MCMenuViewModel.cs" />
     <Compile Include="viewmodels\MPMenuViewModel.cs" />

@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:GUI.windows"
         xmlns:controls="clr-namespace:GUI.controls" x:Class="GUI.windows.MultiPlayerWindow"
         mc:Ignorable="d"
-        Height="300" Width="300">
+        Height="300" Width="300"
+        Title="{Binding Path=Maze.Name}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

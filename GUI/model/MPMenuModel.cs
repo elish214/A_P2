@@ -1,4 +1,5 @@
 ﻿using GUI.windows;
+using MazeComp;
 using MazeLib;
 using System;
 using System.Collections.Generic;
@@ -52,15 +53,28 @@ namespace GUI.model
 
         public Boolean Start()
         {
+            string mazeJ = "";
+
             client.Client.Instance.Connect();
             
-            client.Client.Instance.Act = delegate(string result)
-            {
-                Maze = Maze.FromJSON(result);
-                new MultiPlayerWindow(Maze).Show();
-            };
-
             client.Client.Instance.Write($"start {MazeName} {MazeRows} {MazeCols}");
+
+          //  new Task(() =>
+          //  {
+               // do
+               // {
+                    
+               // } while (mazeJ == "");
+
+           // });
+            /*
+            client.Client.Instance.Act = delegate (string result)
+            {
+                mazeJ = client.Client.Instance.Read();
+                Maze maze = Maze.FromJSON(mazeJ);
+                new MultiPlayerWindow(maze).Show();
+                Move Move = Move.FromJSON(result);
+            };*/
 
             client.Client.Instance.ASyncRead();
 
@@ -71,15 +85,19 @@ namespace GUI.model
         {
             client.Client.Instance.Connect();
 
-            client.Client.Instance.Act = delegate (string result)
-            {
-                Maze = Maze.FromJSON(result);
-                new MultiPlayerWindow(Maze).Show();
-            };
             MazeName = GamesList[ChosenGame];
 
             client.Client.Instance.Write($"join {MazeName}");
 
+            string mazeJ = client.Client.Instance.Read();
+
+            Maze = Maze.FromJSON(mazeJ);
+            new MultiPlayerWindow(Maze).Show();
+
+            client.Client.Instance.Act = delegate (string result)
+           {
+               Move Move = Move.FromJSON(result);
+           };
             client.Client.Instance.ASyncRead();
 
             return true; // need to validate answer.

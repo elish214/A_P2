@@ -14,6 +14,8 @@ namespace GUI.model
 
         Maze Maze { get; set; }
 
+        void Moved(string move);
+
         void CloseGame();
 
     }

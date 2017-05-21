@@ -13,16 +13,17 @@ namespace GUI.model
 
         public Maze Maze
         {
-            get
-            {
-                return maze;
-            }
-
+            get { return maze; }
             set
             {
                 maze = value;
                 NotifyPropertyChanged("Maze");
             }
+        }
+
+        public void Moved(string move)
+        {
+            client.Client.Instance.Write($"move {move}");
         }
 
         public void CloseGame()

@@ -31,8 +31,10 @@ namespace GUI.windows
             vm = new MultiPlayerViewModel(new MultiPlayerModel());
             DataContext = vm;
 
-            KeyDown += new KeyEventHandler(new MazeBoardKeyHandler(myBoard).KeyDown);
-            KeyDown += new KeyEventHandler(new MazeBoardKeyHandler(otherBoard).KeyDown);
+            KeyDown += new KeyEventHandler(new MultiPlayerMBKeyHandler(myBoard, vm).KeyDown);
+            //add somehow vm.Moved(string move);
+            //KeyDown += new KeyEventHandler(); // to send my move, to get other's move.
+            //KeyDown += new KeyEventHandler(new MazeBoardKeyHandler(otherBoard).KeyDown);
 
             myBoard.Win += new YouWinMsg().YouWin;
         }

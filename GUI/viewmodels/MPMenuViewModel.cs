@@ -73,7 +73,6 @@ namespace GUI.viewmodels
         {
             // need to verify that game exist.
             model.Join();
-            new MultiPlayerWindow().Show();
         }
 
         public void Close()
