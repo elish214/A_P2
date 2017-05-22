@@ -37,7 +37,7 @@ namespace GUI.windows
         private void btnJoin_Click(object sender, RoutedEventArgs e)
         {
             vm.Join();
-            Close();
+            //Close();
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
@@ -45,7 +45,7 @@ namespace GUI.windows
             // wait until get a maze
             waiting.Visibility = Visibility.Visible;
             vm.Start();
-            Close();
+            //Close();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

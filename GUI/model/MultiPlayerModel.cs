@@ -15,10 +15,7 @@ namespace GUI.model
 
         public MultiPlayerModel()
         {
-            client.Client.Instance.Act = delegate (string result)
-            {
-                //initiallize that would listen to moves from server?...
-            };
+
         }
 
         public Maze Maze
@@ -43,7 +40,7 @@ namespace GUI.model
 
         public void Moved(string move)
         {
-            client.Client.Instance.Write($"move {move}");
+            client.Client.Instance.Write($"play {move}");
         }
 
         public void CloseGame()

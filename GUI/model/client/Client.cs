@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace GUI.model.client
 {
@@ -31,6 +32,8 @@ namespace GUI.model.client
         private NetworkStream stream;
         private StreamReader reader;
         private StreamWriter writer;
+
+        private bool running;
 
         public delegate void Action(string result);
 
@@ -60,6 +63,7 @@ namespace GUI.model.client
 
         public void Disconnect()
         {
+            running = false;
             reader.Close();
             writer.Close();
             stream.Close();
@@ -81,25 +85,27 @@ namespace GUI.model.client
                 result += '\n';
                 //Console.WriteLine(result);
             } while (reader.Peek() >= 0);
-
+            //MessageBox.Show(result);
             return result;
         }
 
         public void ASyncRead()
         {
+            running = true;
             new Task(() =>
             {
                 string result;
 
-                try
+                do
                 {
-                    do
+                    try
                     {
                         result = Instance.Read();
+                        //MessageBox.Show(result);
                         Act(result);
-                    } while (true);
-                }
-                catch (Exception e) { }
+                    }
+                    catch (Exception e) { }
+                } while (running);
             }).Start();
         }
     }
