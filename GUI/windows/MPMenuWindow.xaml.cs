@@ -45,6 +45,7 @@ namespace GUI.windows
             // wait until get a maze
             waiting.Visibility = Visibility.Visible;
             vm.Start();
+            Close();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

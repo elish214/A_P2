@@ -6,10 +6,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace GUI.model
 {
+
+
     public class MPMenuModel : MCMenuModel, IMPMenuModel
     {
         private Maze maze;
@@ -35,7 +38,7 @@ namespace GUI.model
             }
         }
 
-        public int ChosenGame { get; set;}
+        public int ChosenGame { get; set; }
 
         public void Load()
         {
@@ -46,37 +49,27 @@ namespace GUI.model
 
             foreach (string g in games)
             {
-                GamesList.Add(g);                
+                GamesList.Add(g);
             }
             NotifyPropertyChanged("GamesList");
         }
 
         public Boolean Start()
         {
-            string mazeJ = "";
+            //do
+            //{
+                string mazeJ = client.Client.Instance.WriteRead($"start {MazeName} {MazeRows} {MazeCols}");
+                Maze maze = Maze.FromJSON(mazeJ);
+            //} while (maze.Name != MazeName ); // make sure I get my game...
+            Maze = maze;
+            new MultiPlayerWindow(Maze).Show();
 
             client.Client.Instance.Connect();
-            
-            client.Client.Instance.Write($"start {MazeName} {MazeRows} {MazeCols}");
 
-          //  new Task(() =>
-          //  {
-               // do
-               // {
-                    
-               // } while (mazeJ == "");
-
-           // });
-            /*
             client.Client.Instance.Act = delegate (string result)
             {
-                mazeJ = client.Client.Instance.Read();
-                Maze maze = Maze.FromJSON(mazeJ);
-                new MultiPlayerWindow(maze).Show();
                 Move Move = Move.FromJSON(result);
-            };*/
-
-            client.Client.Instance.ASyncRead();
+            };
 
             return true; // need to validate answer.
         }
@@ -90,22 +83,25 @@ namespace GUI.model
             client.Client.Instance.Write($"join {MazeName}");
 
             string mazeJ = client.Client.Instance.Read();
+            if (mazeJ == "Error") { } // Error? return false.
 
             Maze = Maze.FromJSON(mazeJ);
             new MultiPlayerWindow(Maze).Show();
 
             client.Client.Instance.Act = delegate (string result)
            {
+               //parse it to move/close.
                Move Move = Move.FromJSON(result);
            };
             client.Client.Instance.ASyncRead();
 
             return true; // need to validate answer.
-            
+
         }
 
         public void Close()
         {
+            client.Client.Instance.Write($"close {MazeName}");
             client.Client.Instance.Disconnect();
         }
 
