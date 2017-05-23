@@ -11,6 +11,8 @@ namespace GUI.model
     interface IMultiPlayerModel
     {
         event PropertyChangedEventHandler PropertyChanged;
+        
+        Position OppPos { get; set; }
 
         Maze Maze { get; set; }
 

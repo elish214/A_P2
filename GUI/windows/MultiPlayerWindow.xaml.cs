@@ -4,6 +4,7 @@ using GUI.viewmodels;
 using MazeLib;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,15 @@ namespace GUI.windows
             InitializeComponent();
             vm = new MultiPlayerViewModel(new MultiPlayerModel());
             DataContext = vm;
+
+            vm.PropertyChanged +=
+                delegate (Object sender, PropertyChangedEventArgs e)
+                {
+                    if (e.PropertyName == "OppPos")
+                    {
+                        otherBoard.PlayerPos = vm.Model.OppPos;
+                    }
+                };
 
             KeyDown += new KeyEventHandler(new MultiPlayerMBKeyHandler(myBoard, vm).KeyDown);
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MazeLib;
 using MazeComp;
+using System.Windows;
 
 namespace GUI.model
 {
@@ -12,10 +13,63 @@ namespace GUI.model
     {
         private Maze maze;
         private Move move;
+        private Position myPos;
+        private Position oppPos;
 
         public MultiPlayerModel()
         {
+            client.Client.Instance.Act = delegate (string result)
+            {
+                Move move = Move.FromJSON(result);
+                Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
+                (Action)(() =>
+                {
+                    Position pos = OppPos;
 
+                    switch (move.Direction)
+                    {
+                        case Direction.Up:
+                            pos.Row--;
+                            break;
+
+                        case Direction.Down:
+                            pos.Row++;
+                            break;
+
+                        case Direction.Left:
+                            pos.Col--;
+                            break;
+
+                        case Direction.Right:
+                            pos.Col++;
+                            break;
+                    }
+
+                    OppPos = pos;
+                    
+                }
+                ));
+            };
+        }
+
+        public Position MyPos
+        {
+            get { return myPos; }
+            set
+            {
+                myPos = value;
+                NotifyPropertyChanged("MyPos");
+            }
+        }
+
+        public Position OppPos
+        {
+            get { return oppPos; }
+            set
+            {
+                oppPos = value;
+                NotifyPropertyChanged("OppPos");
+            }
         }
 
         public Maze Maze

@@ -67,32 +67,11 @@ namespace GUI.model
                 }
                 ));
 
-                client.Client.Instance.Act = delegate (string r)
-                {
-                    Move move = Move.FromJSON(r);
-                    Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
-                    (Action)(() =>
-                    {
-                        MessageBox.Show($"Got {move.Direction}!");
-                    }
-                    ));
-                };
             };
+
             client.Client.Instance.Connect();
             client.Client.Instance.ASyncRead();
             client.Client.Instance.Write($"start {MazeName} {MazeRows} {MazeCols}");
-            //string mazeJ = 
-            //    Maze maze = Maze.FromJSON(mazeJ);
-            //
-            //Maze = maze;
-            //new MultiPlayerWindow(Maze).Show();
-            //
-            //client.Client.Instance.Connect();
-            //
-            //client.Client.Instance.Act = delegate (string result)
-            //{
-            //    Move Move = Move.FromJSON(result);
-            //};
 
             return true; // need to validate answer.
         }
@@ -108,42 +87,12 @@ namespace GUI.model
                     new MultiPlayerWindow(Maze).Show();
                 }
                 ));
-
-                client.Client.Instance.Act = delegate (string r)
-                {
-                    Move move = Move.FromJSON(r);
-                    Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
-                    (Action)(() =>
-                    {
-                        MessageBox.Show($"Got {move.Direction}!");
-                    }
-                    ));
-                };
             };
+
             client.Client.Instance.Connect();
             client.Client.Instance.ASyncRead();
             MazeName = GamesList[ChosenGame];
             client.Client.Instance.Write($"join {MazeName}");
-
-
-            //client.Client.Instance.Connect();
-            //
-            //MazeName = GamesList[ChosenGame];
-            //
-            //client.Client.Instance.Write($"join {MazeName}");
-            //
-            //string mazeJ = client.Client.Instance.Read();
-            //if (mazeJ == "Error") { } // Error? return false.
-            //
-            //Maze = Maze.FromJSON(mazeJ);
-            //new MultiPlayerWindow(Maze).Show();
-            //
-            //client.Client.Instance.Act = delegate (string result)
-            //{
-            //    //parse it to move/close.
-            //    Move Move = Move.FromJSON(result);
-            //};
-            //client.Client.Instance.ASyncRead();
 
             return true; // need to validate answer.
 
