@@ -13,12 +13,12 @@ namespace GUI.viewmodels
 {
     public class MPMenuViewModel : MCMenuViewModel
     {
-        private IMPMenuModel model;
-        private Maze maze;
+        public IMPMenuModel Model { get; }
+        //private Maze maze;
 
         public MPMenuViewModel(IMPMenuModel model) : base(model)
         {
-            this.model = model;
+            Model = model;
 
             model.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
@@ -30,54 +30,54 @@ namespace GUI.viewmodels
 
         public Maze Maze
         {
-            get { return maze; }
+            get { return Model.Maze; }
             set
             {
-                maze = value;
+                Model.Maze = value;
                 NotifyPropertyChanged("Maze");
             }
         }
 
         public ObservableCollection<string> GamesList
         {
-            get { return model.GamesList; }
+            get { return Model.GamesList; }
             set
             {
-                model.GamesList = value;
+                Model.GamesList = value;
                 NotifyPropertyChanged("GamesList");
             }
         }
 
         public int ChosenGame
         {
-            get { return model.ChosenGame; }
+            get { return Model.ChosenGame; }
             set
             {
-                model.ChosenGame = value;
+                Model.ChosenGame = value;
                 NotifyPropertyChanged("ChosenGame");
             }
         }
 
         public void Load()
         {
-            model.Load();
+            Model.Load();
         }
 
         public void Start()
         {
             // add label of waiting for another.
-            model.Start();
+            Model.Start();
         }
 
         public void Join()
         {
             // need to verify that game exist.
-            model.Join();
+            Model.Join();
         }
 
         public void Close()
         {
-            model.Close();
+            Model.Close();
         }
     }
 }

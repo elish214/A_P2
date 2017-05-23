@@ -32,19 +32,26 @@ namespace GUI.windows
             vm = new MultiPlayerViewModel(new MultiPlayerModel());
             DataContext = vm;
 
-            vm.PropertyChanged +=
-                delegate (Object sender, PropertyChangedEventArgs e)
-                {
-                    if (e.PropertyName == "Move")
-                    {
-                        otherBoard.Move(vm.Model.Move.Direction);
-                    }
-                };
+            vm.PropertyChanged += Changed;
 
             KeyDown += new KeyEventHandler(new MultiPlayerMBKeyHandler(myBoard, vm).KeyDown);
 
             //get a move from server //new MultiPlayerMBKeyHandler(otherBoard, vm).KeyDown;
-            myBoard.Win += new YouWinMsg().YouWin; // different win
+            myBoard.Win += delegate ()
+            {
+                vm.CloseGame();
+                MessageBox.Show("You Win!");
+                new MainWindow().Show();
+                Close();
+            };
+
+            otherBoard.Win += delegate ()
+            {
+                vm.CloseGame();
+                MessageBox.Show("You Lose!");
+                new MainWindow().Show();
+                Close();
+            };
         }
 
         public MultiPlayerWindow(Maze maze) : this()
@@ -55,8 +62,25 @@ namespace GUI.windows
             Title = maze.Name;
         }
 
+        public void Changed(Object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Move")
+            {
+                otherBoard.Move(vm.Model.Move.Direction);
+            }
+            else if (e.PropertyName == "Close")
+            {
+                vm.PropertyChanged -= Changed;
+                vm.CloseGame();
+                MessageBox.Show("Other Player Closed Game!");
+                new MainWindow().Show();
+                Close();
+            }
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            vm.PropertyChanged -= Changed;
             vm.CloseGame();
             new MainWindow().Show();
             Close();

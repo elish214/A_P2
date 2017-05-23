@@ -2,6 +2,7 @@
 using GUI.viewmodels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,15 @@ namespace GUI.windows
             mcm.VM = vm;
             vm.Load();
             //cboGameList.ItemsSource = vm.GamesList;
+            vm.PropertyChanged +=
+                delegate (Object sender, PropertyChangedEventArgs e)
+                {
+                    if (e.PropertyName == "Maze")
+                    {
+                        new MultiPlayerWindow(vm.Model.Maze).Show();
+                        Close();
+                    }
+                };
         }
 
         private void btnJoin_Click(object sender, RoutedEventArgs e)
@@ -46,6 +56,11 @@ namespace GUI.windows
             waiting.Visibility = Visibility.Visible;
             vm.Start();
             //Close();
+
+            cboGameList.IsEnabled = false;
+            btnJoin.IsEnabled = false;
+            mcm.IsEnabled = false;
+            btnCancel.IsEnabled = false;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

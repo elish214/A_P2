@@ -10,8 +10,14 @@ using System.Windows;
 
 namespace GUI.model.client
 {
+    /// <summary>
+    /// player communicate class.
+    /// </summary>
     public class Client
     {
+        /// <summary>
+        /// singleton.
+        /// </summary>
         public static Client Instance
         {
             get
@@ -23,22 +29,63 @@ namespace GUI.model.client
                 return instance;
             }
         }
+
+        /// <summary>
+        /// private instance.
+        /// </summary>
         private static Client instance;
 
+        /// <summary>
+        /// Communicate End Point.
+        /// </summary>
         public IPEndPoint EndPoint { get; set; }
+
+        /// <summary>
+        /// An action.
+        /// </summary>
         public Action Act { get; set; }
 
+        /// <summary>
+        /// The client.
+        /// </summary>
         private TcpClient tcpClient;
+
+        /// <summary>
+        /// A network stream.
+        /// </summary>
         private NetworkStream stream;
+
+        /// <summary>
+        /// A stream reader.
+        /// </summary>
         private StreamReader reader;
+
+        /// <summary>
+        /// A stream writer.
+        /// </summary>
         private StreamWriter writer;
 
+        /// <summary>
+        /// A running boolean.
+        /// </summary>
         private bool running;
 
+        /// <summary>
+        /// A delegate for an action.
+        /// </summary>
+        /// <param name="result"> a string. </param>
         public delegate void Action(string result);
-
+    
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         private Client() { }
 
+        /// <summary>
+        /// A once connection function.
+        /// </summary>
+        /// <param name="msg"> a message to send.</param>
+        /// <returns> returns a message. </returns>
         public string WriteRead(string msg)
         {
             Connect();
@@ -49,6 +96,9 @@ namespace GUI.model.client
             return result;
         }
 
+        /// <summary>
+        /// Connect client to server.
+        /// </summary>
         public void Connect()
         {
             tcpClient = new TcpClient();
@@ -61,6 +111,9 @@ namespace GUI.model.client
             };
         }
 
+        /// <summary>
+        /// Disconnect client from server.
+        /// </summary>
         public void Disconnect()
         {
             running = false;
@@ -70,9 +123,17 @@ namespace GUI.model.client
             tcpClient.Close();
         }
 
+        /// <summary>
+        /// write to server.
+        /// </summary>
+        /// <param name="msg"></param>
         public void Write(string msg)
         {
-            writer.WriteLine(msg);
+            try
+            {
+                writer.WriteLine(msg);
+            }
+            catch (Exception e) { }
         }
 
         public string Read()
@@ -96,16 +157,19 @@ namespace GUI.model.client
             {
                 string result;
 
-                do
+                try
                 {
-                    try
+                    do
                     {
                         result = Instance.Read();
                         //MessageBox.Show(result);
                         Act(result);
-                    }
-                    catch (Exception e) { }
-                } while (running);
+                    } while (running);
+                }
+                catch (Exception e)
+                {
+                    Disconnect();
+                }
             }).Start();
         }
     }

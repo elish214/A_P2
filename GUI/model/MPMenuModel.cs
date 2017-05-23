@@ -59,11 +59,11 @@ namespace GUI.model
         {
             client.Client.Instance.Act = delegate (string result)
             {
-                Maze = Maze.FromJSON(result);
                 Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
                 (Action)(() =>
                 {
-                    new MultiPlayerWindow(Maze).Show();
+                    Maze = Maze.FromJSON(result);
+                    //new MultiPlayerWindow(Maze).Show();
                 }
                 ));
 
@@ -80,11 +80,11 @@ namespace GUI.model
         {
             client.Client.Instance.Act = delegate (string result)
             {
-                Maze = Maze.FromJSON(result);
                 Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
                 (Action)(() =>
                 {
-                    new MultiPlayerWindow(Maze).Show();
+                    Maze = Maze.FromJSON(result);
+                    //new MultiPlayerWindow(Maze).Show();
                 }
                 ));
             };

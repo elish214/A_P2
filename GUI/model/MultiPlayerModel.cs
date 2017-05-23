@@ -20,37 +20,24 @@ namespace GUI.model
         {
             client.Client.Instance.Act = delegate (string result)
             {
-                Move move = Move.FromJSON(result);
-                Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
-                (Action)(() =>
+                try
                 {
-                    //Position pos = OppPos;
-                    //
-                    //switch (move.Direction)
-                    //{
-                    //    case Direction.Up:
-                    //        pos.Row--;
-                    //        break;
-                    //
-                    //    case Direction.Down:
-                    //        pos.Row++;
-                    //        break;
-                    //
-                    //    case Direction.Left:
-                    //        pos.Col--;
-                    //        break;
-                    //
-                    //    case Direction.Right:
-                    //        pos.Col++;
-                    //        break;
-                    //}
-                    //
-                    //OppPos = pos;
-
-                    Move = move;
-                    
+                    Move move = Move.FromJSON(result);
+                    Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
+                    (Action)(() =>
+                    {
+                        Move = move;
+                    }
+                    ));
+                } catch(Exception e)
+                {
+                    Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
+                    (Action)(() =>
+                    {
+                        NotifyPropertyChanged("Close");
+                    }
+                    ));
                 }
-                ));
             };
         }
 
@@ -102,6 +89,7 @@ namespace GUI.model
         public void CloseGame()
         {
             client.Client.Instance.Write($"close {Maze.Name}");
+            client.Client.Instance.Disconnect();
         }
     }
 }

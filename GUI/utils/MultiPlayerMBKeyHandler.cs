@@ -23,6 +23,8 @@ namespace GUI.utils
 
         public void KeyDown(object sender, KeyEventArgs e)
         {
+            vm.Moved(e.Key.ToString());
+
             switch (e.Key)
             {
                 case Key.Up:
@@ -41,8 +43,6 @@ namespace GUI.utils
                     board.Move(Direction.Right);
                     break;
             }
-
-            vm.Moved(e.Key.ToString());
         }
     }
 }
