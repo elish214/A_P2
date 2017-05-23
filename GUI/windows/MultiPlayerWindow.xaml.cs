@@ -35,9 +35,9 @@ namespace GUI.windows
             vm.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
                 {
-                    if (e.PropertyName == "OppPos")
+                    if (e.PropertyName == "Move")
                     {
-                        otherBoard.PlayerPos = vm.Model.OppPos;
+                        otherBoard.Move(vm.Model.Move.Direction);
                     }
                 };
 

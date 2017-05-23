@@ -24,28 +24,30 @@ namespace GUI.model
                 Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
                 (Action)(() =>
                 {
-                    Position pos = OppPos;
+                    //Position pos = OppPos;
+                    //
+                    //switch (move.Direction)
+                    //{
+                    //    case Direction.Up:
+                    //        pos.Row--;
+                    //        break;
+                    //
+                    //    case Direction.Down:
+                    //        pos.Row++;
+                    //        break;
+                    //
+                    //    case Direction.Left:
+                    //        pos.Col--;
+                    //        break;
+                    //
+                    //    case Direction.Right:
+                    //        pos.Col++;
+                    //        break;
+                    //}
+                    //
+                    //OppPos = pos;
 
-                    switch (move.Direction)
-                    {
-                        case Direction.Up:
-                            pos.Row--;
-                            break;
-
-                        case Direction.Down:
-                            pos.Row++;
-                            break;
-
-                        case Direction.Left:
-                            pos.Col--;
-                            break;
-
-                        case Direction.Right:
-                            pos.Col++;
-                            break;
-                    }
-
-                    OppPos = pos;
+                    Move = move;
                     
                 }
                 ));
