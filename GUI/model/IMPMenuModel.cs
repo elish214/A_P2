@@ -16,6 +16,7 @@ namespace GUI.model
         ObservableCollection<string> GamesList { get; set; }
 
         int ChosenGame { get; set; }
+        Maze Maze { get; set; }
 
         void Load();
 
