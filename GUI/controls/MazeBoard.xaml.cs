@@ -105,16 +105,16 @@ namespace GUI.controls
                     switch (s[num])
                     {
                         case '0':
-                            grid[k, t].Fill = Brushes.Pink;
+                            grid[k, t].Fill = Brushes.White;
                             break;
                         case '1':
                             grid[k, t].Fill = Brushes.Black;
                             break;
                         case '#':
-                            grid[k, t].Fill = Brushes.Blue;//end
+                            grid[k, t].Fill = Brushes.Red;//end
                             break;
                         case '*':
-                            grid[k, t].Fill = Brushes.Red;//start
+                            grid[k, t].Fill = Brushes.White;//start
                             break;
                     }
                 }
