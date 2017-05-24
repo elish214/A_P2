@@ -24,8 +24,14 @@ namespace GUI.windows
     /// </summary>
     public partial class MultiPlayerWindow : Window
     {
+        /// <summary>
+        /// private view model member.
+        /// </summary>
         private MultiPlayerViewModel vm;
 
+        /// <summary>
+        /// default Constructor.
+        /// </summary>
         public MultiPlayerWindow()
         {
             InitializeComponent();
@@ -36,7 +42,6 @@ namespace GUI.windows
 
             KeyDown += new KeyEventHandler(new MultiPlayerMBKeyHandler(myBoard, vm).KeyDown);
 
-            //get a move from server //new MultiPlayerMBKeyHandler(otherBoard, vm).KeyDown;
             myBoard.Win += delegate ()
             {
                 vm.CloseGame();
@@ -54,6 +59,10 @@ namespace GUI.windows
             };
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="maze"> a maze. </param>
         public MultiPlayerWindow(Maze maze) : this()
         {
             myBoard.Maze = maze;
@@ -62,6 +71,11 @@ namespace GUI.windows
             Title = maze.Name;
         }
 
+        /// <summary>
+        /// changing event.
+        /// </summary>
+        /// <param name="sender"> a sender. </param>
+        /// <param name="e"> an event. </param>
         public void Changed(Object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "Move")
@@ -78,6 +92,11 @@ namespace GUI.windows
             }
         }
 
+        /// <summary>
+        /// click on restart button.
+        /// </summary>
+        /// <param name="sender"> a sender. </param>
+        /// <param name="e"> an event. </param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             vm.PropertyChanged -= Changed;

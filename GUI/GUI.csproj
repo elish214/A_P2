@@ -187,15 +187,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\door.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\mario.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Spiral.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Maze.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

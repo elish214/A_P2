@@ -23,6 +23,9 @@ namespace GUI.controls
     /// </summary>
     public partial class MazeBoard : UserControl
     {
+        /// <summary>
+        /// public maze dependency object.
+        /// </summary>
         public Maze Maze
         {
             get { return (Maze)GetValue(MazeProperty); }
@@ -33,6 +36,9 @@ namespace GUI.controls
         public static readonly DependencyProperty MazeProperty =
             DependencyProperty.Register("Maze", typeof(Maze), typeof(MazeBoard), new UIPropertyMetadata(mazeChanged));
 
+        /// <summary>
+        /// public player position dependency object.
+        /// </summary>
         public Position PlayerPos
         {
             get { return playerPos; }
@@ -42,28 +48,66 @@ namespace GUI.controls
                 DrawPlayer();
             }
         }
+
+        /// <summary>
+        /// private position member.
+        /// </summary>
         private Position playerPos;
 
+        /// <summary>
+        /// a moving delegate.
+        /// </summary>
+        /// <param name="pos"> a position. </param>
+        /// <param name="d"> a direction. </param>
         public delegate void PlayerMoved(Position pos, Direction d);
+
+        /// <summary>
+        /// a moving event.
+        /// </summary>
         public event PlayerMoved Moved;
 
+        /// <summary>
+        /// a winning delegate.
+        /// </summary>
         public delegate void PlayerWin();
+
+        /// <summary>
+        /// a winning event.
+        /// </summary>
         public event PlayerWin Win;
 
+        /// <summary>
+        /// width member.
+        /// </summary>
         private int width;
+
+        /// <summary>
+        /// height member.
+        /// </summary>
         private int height;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public MazeBoard()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// update maze when changed.
+        /// </summary>
+        /// <param name="d"> the dependency object. </param>
+        /// <param name="e"> an event. </param>
         private static void mazeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             MazeBoard board = (MazeBoard)d;
             board.DrawMaze();
         }
 
+        /// <summary>
+        /// Draw the maze.
+        /// </summary>
         private void DrawMaze()
         {
             height = 300 / Maze.Rows;
@@ -123,6 +167,9 @@ namespace GUI.controls
             PlayerPos = Maze.InitialPos;
         }
 
+        /// <summary>
+        /// Draw player on board.
+        /// </summary>
         public void DrawPlayer()
         {
             player.Height = height;
@@ -132,6 +179,11 @@ namespace GUI.controls
             Canvas.SetLeft(player, PlayerPos.Col * width);
         }
 
+        /// <summary>
+        /// move a player on his board.
+        /// </summary>
+        /// <param name="d"> a direction to move to. </param>
+        /// <returns> whether move is valid or not. </returns>
         public Boolean Move(Direction d)
         {
             Position pos = new Position(PlayerPos.Row, PlayerPos.Col);
@@ -171,6 +223,9 @@ namespace GUI.controls
             return false;
         }
 
+        /// <summary>
+        /// Restart game.
+        /// </summary>
         public void Restart()
         {
             PlayerPos = Maze.InitialPos;

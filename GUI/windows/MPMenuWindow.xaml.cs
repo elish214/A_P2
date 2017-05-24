@@ -22,8 +22,14 @@ namespace GUI.windows
     /// </summary>
     public partial class MPMenuWindow : Window
     {
+        /// <summary>
+        /// private view model member.
+        /// </summary>
         private MPMenuViewModel vm;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public MPMenuWindow()
         {
             InitializeComponent();
@@ -32,7 +38,7 @@ namespace GUI.windows
 
             mcm.VM = vm;
             vm.Load();
-            //cboGameList.ItemsSource = vm.GamesList;
+           
             vm.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
                 {
@@ -44,12 +50,22 @@ namespace GUI.windows
                 };
         }
 
+        /// <summary>
+        /// click on join button.
+        /// </summary>
+        /// <param name="sender"> a sender. </param>
+        /// <param name="e"> an event. </param>
         private void btnJoin_Click(object sender, RoutedEventArgs e)
         {
             vm.Join();
             //Close();
         }
 
+        /// <summary>
+        /// click on start button.
+        /// </summary>
+        /// <param name="sender"> a sender. </param>
+        /// <param name="e"> an event. </param>
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             // wait until get a maze
@@ -63,6 +79,11 @@ namespace GUI.windows
             btnCancel.IsEnabled = false;
         }
 
+        /// <summary>
+        /// click on cancel button.
+        /// </summary>
+        /// <param name="sender"> a sender. </param>
+        /// <param name="e"> an event. </param>
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             new MainWindow().Show();
@@ -72,8 +93,6 @@ namespace GUI.windows
 
         private void cboGameList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // is needed?
         }
-
     }
 }

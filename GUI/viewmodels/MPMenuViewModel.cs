@@ -11,11 +11,20 @@ using System.Threading.Tasks;
 
 namespace GUI.viewmodels
 {
+    /// <summary>
+    /// multi player menu View Model.
+    /// </summary>
     public class MPMenuViewModel : MCMenuViewModel
     {
+        /// <summary>
+        /// a model.
+        /// </summary>
         public IMPMenuModel Model { get; }
-        //private Maze maze;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="model"> a model.</param>
         public MPMenuViewModel(IMPMenuModel model) : base(model)
         {
             Model = model;
@@ -28,6 +37,9 @@ namespace GUI.viewmodels
 
         }
 
+        /// <summary>
+        /// public maze dependency object.
+        /// </summary>
         public Maze Maze
         {
             get { return Model.Maze; }
@@ -38,6 +50,9 @@ namespace GUI.viewmodels
             }
         }
 
+        /// <summary>
+        /// public list of games dependency object.
+        /// </summary>
         public ObservableCollection<string> GamesList
         {
             get { return Model.GamesList; }
@@ -48,6 +63,9 @@ namespace GUI.viewmodels
             }
         }
 
+        /// <summary>
+        /// public chosen game dependency object.
+        /// </summary>
         public int ChosenGame
         {
             get { return Model.ChosenGame; }
@@ -58,23 +76,33 @@ namespace GUI.viewmodels
             }
         }
 
+        /// <summary>
+        /// loading method.
+        /// </summary>
         public void Load()
         {
             Model.Load();
         }
 
+        /// <summary>
+        /// starting method.
+        /// </summary>
         public void Start()
         {
-            // add label of waiting for another.
             Model.Start();
         }
 
+        /// <summary>
+        /// joining method.
+        /// </summary>
         public void Join()
         {
-            // need to verify that game exist.
             Model.Join();
         }
 
+        /// <summary>
+        /// closing method.
+        /// </summary>
         public void Close()
         {
             Model.Close();

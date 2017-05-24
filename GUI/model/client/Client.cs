@@ -126,7 +126,7 @@ namespace GUI.model.client
         /// <summary>
         /// write to server.
         /// </summary>
-        /// <param name="msg"></param>
+        /// <param name="msg"> the message. </param>
         public void Write(string msg)
         {
             try
@@ -136,6 +136,10 @@ namespace GUI.model.client
             catch (Exception e) { }
         }
 
+        /// <summary>
+        /// read a message from server.
+        /// </summary>
+        /// <returns> the message. </returns>
         public string Read()
         {
             string result = "";
@@ -146,10 +150,13 @@ namespace GUI.model.client
                 result += '\n';
                 //Console.WriteLine(result);
             } while (reader.Peek() >= 0);
-            //MessageBox.Show(result);
+            
             return result;
         }
 
+        /// <summary>
+        /// a synchronic reading from server.
+        /// </summary>
         public void ASyncRead()
         {
             running = true;
@@ -162,7 +169,6 @@ namespace GUI.model.client
                     do
                     {
                         result = Instance.Read();
-                        //MessageBox.Show(result);
                         Act(result);
                     } while (running);
                 }

@@ -9,21 +9,49 @@ using System.Threading.Tasks;
 
 namespace GUI.model
 {
+    /// <summary>
+    /// multi player menu model interface.
+    /// </summary>
     public interface IMPMenuModel : IMCMenuModel
     {
+        /// <summary>
+        /// an event.
+        /// </summary>
         event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// observable game of list.
+        /// </summary>
         ObservableCollection<string> GamesList { get; set; }
 
+        /// <summary>
+        /// the chosen game.
+        /// </summary>
         int ChosenGame { get; set; }
+
+        /// <summary>
+        /// a maze.
+        /// </summary>
         Maze Maze { get; set; }
 
+        /// <summary>
+        /// a loading method.
+        /// </summary>
         void Load();
 
-        Boolean Start();
+        /// <summary>
+        /// a starting method.
+        /// </summary>
+        void Start();
 
-        Boolean Join();
+        /// <summary>
+        /// a joining method.
+        /// </summary>
+        void Join();
 
+        /// <summary>
+        /// a closing method.
+        /// </summary>
         void Close();
     }
 }

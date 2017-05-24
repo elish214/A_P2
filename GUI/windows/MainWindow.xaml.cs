@@ -20,6 +20,9 @@ namespace GUI.windows
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
@@ -34,18 +37,33 @@ namespace GUI.windows
 
         }
 
+        /// <summary>
+        /// click on sigle player button.
+        /// </summary>
+        /// <param name="sender"> a sender. </param>
+        /// <param name="e"> an event. </param>
         private void btnSingle_Click(object sender, RoutedEventArgs e)
         {
             new SPMenuWindow().Show();
             Close();
         }
 
+        /// <summary>
+        /// click on multi player button.
+        /// </summary>
+        /// <param name="sender"> a sender. </param>
+        /// <param name="e"> an event. </param>
         private void btnMulti_Click(object sender, RoutedEventArgs e)
         {
             new MPMenuWindow().Show();
             Close();
         }
 
+        /// <summary>
+        /// click on setting button.
+        /// </summary>
+        /// <param name="sender"> a sender. </param>
+        /// <param name="e"> an event. </param>
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
             new SettingsWindow().Show();

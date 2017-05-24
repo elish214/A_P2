@@ -10,14 +10,17 @@ using System.Threading.Tasks;
 
 namespace GUI.model
 {
+    /// <summary>
+    /// single player menu model.
+    /// </summary>
     public class SPMenuModel : MCMenuModel, ISPMenuModel
     {
-
-
+        /// <summary>
+        /// Generating game method.
+        /// </summary>
+        /// <returns></returns>
         public Maze Generate()
         {
-            //string result = Singleton<ClientMain>.Instance.Send($"generate {MazeName} {MazeRows} {MazeCols}");
-
             string result = client.Client.Instance.WriteRead($"generate {MazeName} {MazeRows} {MazeCols}");
 
             Maze maze = Maze.FromJSON(result);

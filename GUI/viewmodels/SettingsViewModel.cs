@@ -7,15 +7,28 @@ using System.Threading.Tasks;
 
 namespace GUI.viewmodels
 {
+    /// <summary>
+    /// setting View Model class.
+    /// </summary>
     public class SettingsViewModel : ViewModel
     {
+        /// <summary>
+        /// private model member.
+        /// </summary>
         private ISettingsModel model;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="model"> a model. </param>
         public SettingsViewModel(ISettingsModel model)
         {
             this.model = model;
         }
 
+        /// <summary>
+        /// public server IP dependency object.
+        /// </summary>
         public string ServerIP
         {
             get { return model.ServerIP; }
@@ -26,6 +39,9 @@ namespace GUI.viewmodels
             }
         }
 
+        /// <summary>
+        /// public server port dependency object.
+        /// </summary>
         public int ServerPort
         {
             get { return model.ServerPort; }
@@ -36,6 +52,9 @@ namespace GUI.viewmodels
             }
         }
 
+        /// <summary>
+        /// public maze rows dependency object.
+        /// </summary>
         public int MazeRows
         {
             get { return model.MazeRows; }
@@ -46,6 +65,9 @@ namespace GUI.viewmodels
             }
         }
 
+        /// <summary>
+        /// public maze collumns dependency object.
+        /// </summary>
         public int MazeCols
         {
             get { return model.MazeCols; }
@@ -56,6 +78,9 @@ namespace GUI.viewmodels
             }
         }
 
+        /// <summary>
+        /// public searching algorithm dependency object.
+        /// </summary>
         public int SearchAlgorithm
         {
             get { return model.SearchAlgorithm; }
@@ -66,10 +91,12 @@ namespace GUI.viewmodels
             }
         }
 
+        /// <summary>
+        /// saving setting method.
+        /// </summary>
         public void SaveSettings()
         {
             model.SaveSettings();
         }
-
     }
 }

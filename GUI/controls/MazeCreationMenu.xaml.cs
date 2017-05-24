@@ -22,7 +22,14 @@ namespace GUI.controls
     /// </summary>
     public partial class MazeCreationMenu : UserControl
     {
+        /// <summary>
+        /// private ViewModel member.
+        /// </summary>
         private MCMenuViewModel vm;
+
+        /// <summary>
+        /// public ViewModel Property.
+        /// </summary>
         public MCMenuViewModel VM
         {
             get
@@ -37,6 +44,9 @@ namespace GUI.controls
             }
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public MazeCreationMenu()
         {
             InitializeComponent();

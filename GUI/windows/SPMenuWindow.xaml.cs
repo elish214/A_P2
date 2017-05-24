@@ -21,8 +21,14 @@ namespace GUI.windows
     /// </summary>
     public partial class SPMenuWindow : Window
     {
+        /// <summary>
+        /// private view model member.
+        /// </summary>
         private SPMenuViewModel vm;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public SPMenuWindow()
         {
             InitializeComponent();
@@ -32,12 +38,22 @@ namespace GUI.windows
             mcm.VM = vm; 
         }
 
+        /// <summary>
+        /// click on OK button.
+        /// </summary>
+        /// <param name="sender"> a sender. </param>
+        /// <param name="e"> an event. </param>
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
             vm.Generate();
             Close();
         }
 
+        /// <summary>
+        /// click on cancel button.
+        /// </summary>
+        /// <param name="sender"> a sender. </param>
+        /// <param name="e"> an event. </param>
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             new MainWindow().Show();

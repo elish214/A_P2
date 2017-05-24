@@ -26,8 +26,14 @@ namespace GUI.windows
     /// </summary>
     public partial class SinglePlayerWindow : Window
     {
+        /// <summary>
+        /// private view model member.
+        /// </summary>
         private SinglePlayerViewModel vm;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public SinglePlayerWindow()
         {
             InitializeComponent();
@@ -46,6 +52,10 @@ namespace GUI.windows
             mzbMaze.Win += new YouWinMsg().YouWin;
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="maze"> a maze. </param>
         public SinglePlayerWindow(Maze maze) : this()
         {
             mzbMaze.Maze = maze;
@@ -53,6 +63,10 @@ namespace GUI.windows
             Title = maze.Name;
         }
 
+        /// <summary>
+        /// solvin maze a synchronic
+        /// </summary>
+        /// <param name="sol"> a solution. </param>
         private async void SolveMaze(String sol)
         {
             mzbMaze.Restart();
@@ -63,17 +77,32 @@ namespace GUI.windows
             }
         }
 
+        /// <summary>
+        /// click on main menu button.
+        /// </summary>
+        /// <param name="sender"> a sender. </param>
+        /// <param name="e"> an event. </param>
         private void mainMenu_Click(object sender, RoutedEventArgs e)
         {
             new MainWindow().Show();
             Close();
         }
 
+        /// <summary>
+        /// click on solve button.
+        /// </summary>
+        /// <param name="sender"> a sender. </param>
+        /// <param name="e"> an event. </param>
         private void solve_Click(object sender, RoutedEventArgs e)
         {
             vm.Solve();
         }
 
+        /// <summary>
+        /// click on restart button.
+        /// </summary>
+        /// <param name="sender"> a sender. </param>
+        /// <param name="e"> an event. </param>
         private void restartGame_Click(object sender, RoutedEventArgs e)
         {
             mzbMaze.Restart();

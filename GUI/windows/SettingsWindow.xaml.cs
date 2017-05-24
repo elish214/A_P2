@@ -22,8 +22,14 @@ namespace GUI.windows
     /// </summary>
     public partial class SettingsWindow : Window
     {
+        /// <summary>
+        /// private view model member.
+        /// </summary>
         private SettingsViewModel vm;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public SettingsWindow()
         {
             InitializeComponent();
@@ -31,6 +37,11 @@ namespace GUI.windows
             DataContext = vm;
         }
 
+        /// <summary>
+        /// click on OK button.
+        /// </summary>
+        /// <param name="sender"> a sender. </param>
+        /// <param name="e"> an event. </param>
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
             vm.SaveSettings();
@@ -51,6 +62,11 @@ namespace GUI.windows
             Close();
         }
 
+        /// <summary>
+        /// click on cancel button.
+        /// </summary>
+        /// <param name="sender"> a sender. </param>
+        /// <param name="e"> an event. </param>
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             //MainWindow win = (MainWindow)Application.Current.MainWindow;
