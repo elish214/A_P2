@@ -164,7 +164,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -192,10 +192,10 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Spiral.jpg" />
+    <Resource Include="Resources\Spiral.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Maze.jpg" />
+    <Resource Include="Resources\Maze.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
