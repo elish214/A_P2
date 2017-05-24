@@ -1,3 +1,201 @@
+commit dc682fe21c040499a67f076eb2af49c1e44ed40c
+Author: Raz <raz.s121@gmail.com>
+Date:   Wed May 24 18:49:32 2017 +0300
+
+    logo
+
+commit 88ff10f34a1fdedaf633cb2fd40bc2c141740128
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Wed May 24 17:18:52 2017 +0300
+
+    comments added.
+    logo need to be added.
+
+commit d2cd15df917b7200f9cf4eba1c558193f89a552e
+Merge: f00f864 eb4ad21
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Tue May 23 21:05:44 2017 +0300
+
+    Merge branch 'master' of https://github.com/elish214/A_P2.git
+
+commit f00f864b241fa3fbef0212cdbe09c6e246317906
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Tue May 23 21:04:25 2017 +0300
+
+    playeer image added
+
+commit eb4ad21cff9b011c4c488184faf039bd76084d66
+Author: Raz <raz.s121@gmail.com>
+Date:   Tue May 23 20:31:48 2017 +0300
+
+    handling with closed connections and start of comments
+
+commit 5fe7ee8116cc8301324279a29815d980c06c6ba4
+Author: Raz <raz.s121@gmail.com>
+Date:   Tue May 23 19:12:30 2017 +0300
+
+    MP works
+
+commit 80f239411269ac993667e113acb93983c2f8e776
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Tue May 23 18:55:01 2017 +0300
+
+    MultiPlayer in process
+
+commit bd9057e999335c257018612c51976cb74b624abc
+Author: Raz <raz.s121@gmail.com>
+Date:   Tue May 23 00:37:52 2017 +0300
+
+    btter coms in multiplayer
+
+commit 0153a104e5141ca308d7aa87a0f993d16edc1998
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Mon May 22 21:46:45 2017 +0300
+
+    multiplayer not working yet.
+    still need to fix start when other joins.
+    also  while playing, to listen to other's moves.
+
+commit 712cc5836164a47b9f1fe37b57a9a7e1a423b47c
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Sun May 21 03:19:57 2017 +0300
+
+    MultiPlayer in progress.
+    need to notify other player that someone joined it's game and notify each other's moves :)
+
+commit 88e4e4eed770c922f2b0de5e6078cd040c5e3d05
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Fri May 19 16:34:16 2017 +0300
+
+    Multi Player in progress.
+    multi-player window not good yet...
+
+commit c0ca67460b44ec249f9f87c808e1657c3987067e
+Author: Raz <raz.s121@gmail.com>
+Date:   Tue May 16 20:41:42 2017 +0300
+
+    mazeboard update
+
+commit 30d88ade4b5bd738a3a315bfcbc4320e55d34637
+Merge: 5094cd4 4eb8321
+Author: Raz <raz.s121@gmail.com>
+Date:   Tue May 16 19:54:08 2017 +0300
+
+    merge end
+
+commit 4eb83211febe16e30d746becdfa8b1ab248446d3
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Tue May 16 19:52:16 2017 +0300
+
+    updated
+
+commit 5094cd4b3d62dcb9f01998c0496bd5000f9f0537
+Merge: c837ce9 4ea6faa
+Author: Raz <raz.s121@gmail.com>
+Date:   Tue May 16 19:31:23 2017 +0300
+
+    Merge branch 'master' into raz
+
+commit 4ea6faa382e6279e753485473d3a1c62cb368c85
+Author: Raz <raz.s121@gmail.com>
+Date:   Tue May 16 19:30:03 2017 +0300
+
+    end merge
+
+commit a2577bfcb9b6f2549558a7ff10d35b94218143be
+Author: Raz <raz.s121@gmail.com>
+Date:   Tue May 16 19:28:45 2017 +0300
+
+    mid merge
+
+commit c837ce92be31451538814864cbf2d6eb0fe74841
+Author: Raz <raz.s121@gmail.com>
+Date:   Tue May 16 19:26:27 2017 +0300
+
+    try catch for ip end point
+
+commit e91b5e2c021957bb9e02cbe33692d593bcfb0a9e
+Author: Raz <raz.s121@gmail.com>
+Date:   Sat May 13 22:17:41 2017 +0300
+
+    better client communication
+    better mvvm in singleplayer
+    sync with properties
+
+commit b2fcbf901a934c691bb15761bf9c0efdfd4ccb58
+Author: Raz <raz.s121@gmail.com>
+Date:   Sun May 7 00:18:01 2017 +0300
+
+    starting basic gui-server communication
+    maze board improvemants
+    hooking keys
+    settings are saving
+    create maze working
+    solve maze working
+
+commit 9a6d86f9e3a077e447d478bb03b1dad2506a84af
+Merge: ecc8464 944ea92
+Author: Raz <raz.s121@gmail.com>
+Date:   Fri May 5 12:50:03 2017 +0300
+
+    Merge branch 'raz'
+
+commit 944ea928818572ad1f832a85cf2e7cfa2fdc80a3
+Author: Raz <raz.s121@gmail.com>
+Date:   Fri May 5 12:47:20 2017 +0300
+
+    windows fixes and maze creation user control
+
+commit ecc8464cb06e1a0b84c4da46ad8ec0799d6a6df3
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Wed May 3 20:38:37 2017 +0300
+
+    maze is drawable :)
+
+commit 0dc929c195c2756b375dbecded687773d2a0bb2c
+Author: Raz <raz.s121@gmail.com>
+Date:   Mon May 1 18:11:09 2017 +0300
+
+    menus, views, models and viewmodels added
+
+commit 5b54915a63c17f4d89c81af09931bab0f2ffbd90
+Author: Raz <raz.s121@gmail.com>
+Date:   Mon May 1 03:39:51 2017 +0300
+
+    dynamic grid
+
+commit 15a9cf85a45099ce5d7da2cecf6ccfbe72d0ad34
+Author: Raz <raz.s121@gmail.com>
+Date:   Mon May 1 03:38:01 2017 +0300
+
+    dynamic maze grid
+
+commit a1f85acb2b808cfedd798eceda9517bac6731861
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Mon May 1 02:45:55 2017 +0300
+
+    drawing maze.
+    had some progress... :)
+
+commit affe98352870562fb7b09ca368313490de5f111b
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Sat Apr 29 21:15:56 2017 +0300
+
+    mid-edit
+
+commit 795e0b0830e03737e1249f42bf8cbc55d2b7df33
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Fri Apr 28 17:27:28 2017 +0300
+
+    Ex2 begins :)
+    user control for maze first steps.
+
+commit 6dfd0a0e74d5ad1f23401753bdc9efaa5c84eeb6
+Author: Elisheva Broyer <elish214@gmail.com>
+Date:   Sun Apr 23 14:06:14 2017 +0300
+
+    updated log 21.4.17
+
 commit 89d463e4372249680d07f2acdeeab8e11eac8c89
 Author: Elisheva Broyer <elish214@gmail.com>
 Date:   Fri Apr 21 16:03:57 2017 +0300
